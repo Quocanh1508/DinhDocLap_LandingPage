@@ -75,7 +75,14 @@
 
   <!-- Floating Passport Tracker Widget -->
   <div class="floating-passport-widget" id="btn-view-passport-drawer" title="Xem Hộ Chiếu Độc Lập của bạn">
-    <span class="passport-icon">📜</span>
+    <span class="passport-icon" aria-hidden="true">
+      <svg class="passport-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="2" width="16" height="20" rx="3" fill="rgba(212,175,55,0.08)"/>
+        <circle cx="12" cy="10" r="3.2"/>
+        <path d="M12 6.8v0.8M12 12.4v0.8M8.8 10h0.8M14.4 10h0.8"/>
+        <line x1="8" y1="17" x2="16" y2="17"/>
+      </svg>
+    </span>
     <span style="font-size:0.8rem; font-weight:600; color:var(--cream-ivory);" data-i18n="floating_passport_label">Hộ Chiếu:</span>
     <span class="passport-stamp-counter" id="passport-count-badge">0/3</span>
   </div>
@@ -104,23 +111,53 @@
       <!-- 4 Key Metrics Strip -->
       <div class="hero-metrics-grid">
         <div class="metric-item">
-          <span class="metric-icon">⏳</span>
+          <span class="metric-icon" aria-hidden="true">
+            <svg class="heritage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="13" r="8"/>
+              <polyline points="12 9 12 13 14.5 15.5"/>
+              <path d="M12 5V2"/>
+              <path d="M9 2h6"/>
+            </svg>
+          </span>
           <span class="metric-label" data-i18n="metric_time_label">Thời lượng</span>
           <span class="metric-value" data-i18n="metric_time_val">120 Phút / Suất</span>
         </div>
         <div class="metric-item">
-          <span class="metric-icon">👑</span>
+          <span class="metric-icon" aria-hidden="true">
+            <svg class="heritage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 18h18v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2z"/>
+              <path d="M4 14l3.5-7.5L12 11l4.5-4.5L20 14"/>
+              <circle cx="4" cy="6.5" r="1" fill="currentColor"/>
+              <circle cx="12" cy="4" r="1.2" fill="currentColor"/>
+              <circle cx="20" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+          </span>
           <span class="metric-label" data-i18n="metric_privilege_label">Đặc quyền</span>
           <span class="metric-value" data-i18n="metric_privilege_val">75 – 170 khách / suất</span>
           <span class="metric-sub" data-i18n="metric_privilege_sub">Ngoài giờ mở cửa đại trà</span>
         </div>
         <div class="metric-item">
-          <span class="metric-icon">🗓️</span>
+          <span class="metric-icon" aria-hidden="true">
+            <svg class="heritage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="17" rx="3"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <circle cx="8" cy="15" r="1.2" fill="currentColor"/>
+              <circle cx="12" cy="15" r="1.2" fill="currentColor"/>
+              <circle cx="16" cy="15" r="1.2" fill="currentColor"/>
+            </svg>
+          </span>
           <span class="metric-label" data-i18n="metric_schedule_label">Lịch diễn</span>
           <span class="metric-value" data-i18n="metric_schedule_val">Tối T6, T7 (Việt) | CN (Quốc tế)</span>
         </div>
         <div class="metric-item">
-          <span class="metric-icon">📍</span>
+          <span class="metric-icon" aria-hidden="true">
+            <svg class="heritage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21c-4.5-4.5-8-8.5-8-12a8 8 0 1 1 16 0c0 3.5-3.5 7.5-8 12z"/>
+              <circle cx="12" cy="9" r="2.8"/>
+            </svg>
+          </span>
           <span class="metric-label" data-i18n="metric_location_label">Khởi hành</span>
           <span class="metric-value" data-i18n="metric_location_val">Cổng Nguyễn Du – Dinh Độc Lập</span>
         </div>
@@ -164,7 +201,13 @@
           <div class="sense-card-bg">
             <img src="/assets/images/hero-palace.jpg" alt="Thính giác lịch sử">
           </div>
-          <div class="sense-icon-wrapper">📻</div>
+          <div class="sense-icon-wrapper" aria-hidden="true">
+            <svg class="sense-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          </div>
           <div class="sense-card-content">
             <h3 class="sense-title" data-i18n="sense_audio_title">THÍNH GIÁC</h3>
             <span class="sense-sub" data-i18n="sense_audio_sub">Âm thanh Lịch sử & Nhạc Jazz</span>
@@ -179,7 +222,13 @@
           <div class="sense-card-bg">
             <img src="/assets/images/banquet-3d-mapping.jpg" alt="Thị giác 3D mapping">
           </div>
-          <div class="sense-icon-wrapper">🏛️</div>
+          <div class="sense-icon-wrapper" aria-hidden="true">
+            <svg class="sense-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 9l10-6 10 6v2H2V9z"/>
+              <path d="M4 11v9M8 11v9M12 11v9M16 11v9M20 11v9"/>
+              <path d="M2 20h20v2H2z"/>
+            </svg>
+          </div>
           <div class="sense-card-content">
             <h3 class="sense-title" data-i18n="sense_visual_title">THỊ GIÁC</h3>
             <span class="sense-sub" data-i18n="sense_visual_sub">Thực cảnh & 3D Mapping Ngô Viết Thụ</span>
@@ -194,7 +243,14 @@
           <div class="sense-card-bg">
             <img src="/assets/images/perfume-workshop.jpg" alt="Khứu giác nước hoa">
           </div>
-          <div class="sense-icon-wrapper">🌸</div>
+          <div class="sense-icon-wrapper" aria-hidden="true">
+            <svg class="sense-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3c-2 4-4 8-4 12 0 4 4 6 4 6s4-2 4-6c0-4-2-8-4-12z"/>
+              <path d="M8 15c-3-1-5-4-5-7 3 0 6 3 6 7z"/>
+              <path d="M16 15c3-1 5-4 5-7-3 0-6 3-6 7z"/>
+              <path d="M4 17c2 2 5 3 8 3s6-1 8-3"/>
+            </svg>
+          </div>
           <div class="sense-card-content">
             <h3 class="sense-title" data-i18n="sense_olfactory_title">KHỨU GIÁC</h3>
             <span class="sense-sub" data-i18n="sense_olfactory_sub">Làn Sương Hoa Sen & Xưởng Nước Hoa</span>
@@ -209,7 +265,14 @@
           <div class="sense-card-bg">
             <img src="/assets/images/cocktail-canapes.jpg" alt="Vị giác cocktail canapes">
           </div>
-          <div class="sense-icon-wrapper">🍸</div>
+          <div class="sense-icon-wrapper" aria-hidden="true">
+            <svg class="sense-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h14l-7 8-7-8z"/>
+              <path d="M12 12v8"/>
+              <path d="M8 20h8"/>
+              <path d="M14 2l4 4"/>
+            </svg>
+          </div>
           <div class="sense-card-content">
             <h3 class="sense-title" data-i18n="sense_taste_title">VỊ GIÁC</h3>
             <span class="sense-sub" data-i18n="sense_taste_sub">Signature Cocktail & Canapés</span>
@@ -224,7 +287,13 @@
           <div class="sense-card-bg">
             <img src="/assets/images/merchandise-set.jpg" alt="Xúc giác đóng dấu hộ chiếu">
           </div>
-          <div class="sense-icon-wrapper">📜</div>
+          <div class="sense-icon-wrapper" aria-hidden="true">
+            <svg class="sense-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <circle cx="12" cy="12" r="5" stroke-dasharray="2 2"/>
+              <path d="M12 8.5v7M8.5 12h7"/>
+            </svg>
+          </div>
           <div class="sense-card-content">
             <h3 class="sense-title" data-i18n="sense_touch_title">XÚC GIÁC</h3>
             <span class="sense-sub" data-i18n="sense_touch_sub">Đóng Dấu Hộ Chiếu & Khiêu Vũ</span>
@@ -274,7 +343,15 @@
         <div class="interactive-map-col">
           <div class="map-header-row">
             <h3 class="map-title" data-i18n="map_grounds_title">Khuôn Viên 12 Hecta Dinh Độc Lập</h3>
-            <span class="map-compass-icon" title="Hướng Bắc">🧭</span>
+            <span class="map-compass-icon" title="Hướng Bắc" aria-hidden="true">
+              <svg class="compass-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="9.5" stroke="rgba(212,175,55,0.4)"/>
+                <polygon points="12 4.5 14.2 12 12 10.5 9.8 12" fill="var(--gold-primary)"/>
+                <polygon points="12 19.5 14.2 12 12 13.5 9.8 12" fill="none" stroke="var(--gold-primary)"/>
+                <circle cx="12" cy="12" r="1.5" fill="#0B0F19"/>
+                <text x="12" y="3.5" text-anchor="middle" font-size="5" fill="var(--gold-primary)" font-weight="700">N</text>
+              </svg>
+            </span>
           </div>
 
           <div class="svg-map-wrapper">
@@ -358,18 +435,16 @@
 
         <!-- Right: 5 Station Cards -->
         <div class="journey-timeline-col">
-          
-          <!-- Chặng Mở đầu -->
           <div class="journey-card is-active" data-station-index="0" data-stamp-number="1">
             <div class="journey-card-info">
               <div class="journey-card-meta">
                 <span class="station-pill-index" data-i18n="station_pill_0">CHẶNG 0</span>
                 <span class="station-time-badge">
-                  <span>⏳ 17:45 – 18:00</span> <span class="badge-dur">(15 Phút)</span>
+                  <span><svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg> 17:45 – 18:00</span> <span class="badge-dur">(15 Phút)</span>
                 </span>
               </div>
               <div class="station-route-track">
-                <span>📍</span> <span data-i18n="station_0_route">Cổng Nguyễn Du → Sân cỏ tiền sảnh (~120m)</span>
+                <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 1 1 14 0c0 3.5-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-i18n="station_0_route">Cổng Nguyễn Du → Sân cỏ tiền sảnh (~120m)</span>
               </div>
               <h3 class="station-heading" data-i18n="station_0_title">CHẶNG MỞ ĐẦU: DẤU ẤN KHỞI HÀNH</h3>
               <p class="station-narrative" data-i18n="station_0_detail">
@@ -394,11 +469,11 @@
               <div class="journey-card-meta">
                 <span class="station-pill-index" data-i18n="station_pill_1">TRẠM 1</span>
                 <span class="station-time-badge">
-                  <span>⏳ 18:00 – 18:20</span> <span class="badge-dur">(20 Phút)</span>
+                  <span><svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg> 18:00 – 18:20</span> <span class="badge-dur">(20 Phút)</span>
                 </span>
               </div>
               <div class="station-route-track">
-                <span>📍</span> <span data-i18n="station_1_route">Cổng chính & Sân cỏ → Khán đài (~50m)</span>
+                <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 1 1 14 0c0 3.5-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-i18n="station_1_route">Cổng chính & Sân cỏ → Khán đài (~50m)</span>
               </div>
               <h3 class="station-heading" data-i18n="station_1_title">TRẠM 1: KÝ ỨC – MƯA ĐỎ & THỜI KHẮC LỊCH SỬ</h3>
               <p class="station-narrative" data-i18n="station_1_detail">
@@ -406,7 +481,14 @@
               </p>
             </div>
             <div class="journey-card-stamp-col">
-              <div style="font-size:2.4rem;">⚔️</div>
+              <div class="station-insignia-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 17.5L3 6V3h3l11.5 11.5"/>
+                  <path d="M13 19l2 2 4-4-2-2"/>
+                  <path d="M9.5 17.5L21 6V3h-3L6.5 14.5"/>
+                  <path d="M11 19l-2 2-4-4 2-2"/>
+                </svg>
+              </div>
               <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;" data-i18n="station_1_action_tag">Thực Cảnh Khói Lửa</span>
             </div>
           </div>
@@ -417,11 +499,11 @@
               <div class="journey-card-meta">
                 <span class="station-pill-index" data-i18n="station_pill_2">TRẠM 2</span>
                 <span class="station-time-badge">
-                  <span>⏳ 18:20 – 18:50</span> <span class="badge-dur">(30 Phút)</span>
+                  <span><svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg> 18:20 – 18:50</span> <span class="badge-dur">(30 Phút)</span>
                 </span>
               </div>
               <div class="station-route-track">
-                <span>📍</span> <span data-i18n="station_2_route">Khán đài ngoài trời → Phòng Đại Yến (~100m)</span>
+                <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 1 1 14 0c0 3.5-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-i18n="station_2_route">Khán đài ngoài trời → Phòng Đại Yến (~100m)</span>
               </div>
               <h3 class="station-heading" data-i18n="station_2_title">TRẠM 2: KHẢI HOÀN – ĐẠI TIỆC 3D MAPPING</h3>
               <p class="station-narrative" data-i18n="station_2_detail">
@@ -429,7 +511,13 @@
               </p>
             </div>
             <div class="journey-card-stamp-col">
-              <div style="font-size:2.4rem;">🎆</div>
+              <div class="station-insignia-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+                  <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
+                </svg>
+              </div>
               <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;" data-i18n="station_2_action_tag">3D Mapping & Sương Sen</span>
             </div>
           </div>
@@ -440,11 +528,11 @@
               <div class="journey-card-meta">
                 <span class="station-pill-index" data-i18n="station_pill_3">TRẠM 3</span>
                 <span class="station-time-badge">
-                  <span>⏳ 18:50 – 19:10</span> <span class="badge-dur">(20 Phút)</span>
+                  <span><svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg> 18:50 – 19:10</span> <span class="badge-dur">(20 Phút)</span>
                 </span>
               </div>
               <div class="station-route-track">
-                <span>📍</span> <span data-i18n="station_3_route">Phòng Đại Yến → Phòng Khánh Tiết</span>
+                <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 1 1 14 0c0 3.5-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-i18n="station_3_route">Phòng Đại Yến → Phòng Khánh Tiết</span>
               </div>
               <h3 class="station-heading" data-i18n="station_3_title">TRẠM 3: DẤU ẤN – WORKSHOP ĐIỀU CHẾ HƯƠNG TỰ DO</h3>
               <p class="station-narrative" data-i18n="station_3_detail">
@@ -469,11 +557,11 @@
               <div class="journey-card-meta">
                 <span class="station-pill-index" data-i18n="station_pill_4">TRẠM 4</span>
                 <span class="station-time-badge">
-                  <span>⏳ 19:10 – 20:00</span> <span class="badge-dur">(50 Phút)</span>
+                  <span><svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg> 19:10 – 20:00</span> <span class="badge-dur">(50 Phút)</span>
                 </span>
               </div>
               <div class="station-route-track">
-                <span>📍</span> <span data-i18n="station_4_route">Phòng Khánh Tiết / Sân Thượng → Cổng Nam Kỳ Khởi Nghĩa (~150m)</span>
+                <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 1 1 14 0c0 3.5-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-i18n="station_4_route">Phòng Khánh Tiết / Sân Thượng → Cổng Nam Kỳ Khởi Nghĩa (~150m)</span>
               </div>
               <h3 class="station-heading" data-i18n="station_4_title">TRẠM 4: THĂNG HOA & LƯU LUYẾN – DẠ TIỆC INDOCHINE</h3>
               <p class="station-narrative" data-i18n="station_4_detail">
@@ -527,16 +615,16 @@
             <span class="presets-label" data-i18n="presets_label">GỢI Ý PHONG CÁCH HƯƠNG CHUẨN:</span>
             <div class="presets-row">
               <button type="button" class="preset-pill-btn active" data-top="35" data-mid="45" data-base="20">
-                <span data-i18n="preset_balanced">⚖️ Hòa Bình Khải Hoàn</span>
+                <span class="preset-glyph">✦</span> <span data-i18n="preset_balanced">Hòa Bình Khải Hoàn</span>
               </button>
               <button type="button" class="preset-pill-btn" data-top="60" data-mid="25" data-base="15">
-                <span data-i18n="preset_dawn">🌿 Thanh Khiết Ban Mai</span>
+                <span class="preset-glyph">✦</span> <span data-i18n="preset_dawn">Thanh Khiết Ban Mai</span>
               </button>
               <button type="button" class="preset-pill-btn" data-top="20" data-mid="60" data-base="20">
-                <span data-i18n="preset_heritage">👑 Hoàng Gia Di Sản</span>
+                <span class="preset-glyph">✦</span> <span data-i18n="preset_heritage">Hoàng Gia Di Sản</span>
               </button>
               <button type="button" class="preset-pill-btn" data-top="15" data-mid="25" data-base="60">
-                <span data-i18n="preset_memory">🕯️ Khói Trầm Ký Ức</span>
+                <span class="preset-glyph">✦</span> <span data-i18n="preset_memory">Khói Trầm Ký Ức</span>
               </button>
             </div>
           </div>
@@ -606,15 +694,24 @@
             <!-- 3 Fragrance Metrics -->
             <div class="scent-metrics-row">
               <div class="scent-metric-box">
-                <span class="sm-label" data-i18n="sm_fresh_label">🌿 ĐỘ TƯƠI MÁT</span>
+                <div class="sm-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 12a9 9 0 0 1 9-9z"/><path d="M12 3v9l6 3"/></svg>
+                </div>
+                <span class="sm-label" data-i18n="sm_fresh_label">ĐỘ TƯƠI MÁT</span>
                 <span class="sm-value" id="meter-fresh">72/100</span>
               </div>
               <div class="scent-metric-box">
-                <span class="sm-label" data-i18n="sm_warm_label">🪵 ĐỘ TRẦM ẤM</span>
+                <div class="sm-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+                </div>
+                <span class="sm-label" data-i18n="sm_warm_label">ĐỘ TRẦM ẤM</span>
                 <span class="sm-value" id="meter-warm">68/100</span>
               </div>
               <div class="scent-metric-box">
-                <span class="sm-label" data-i18n="sm_longevity_label">⏳ LƯU HƯƠNG</span>
+                <div class="sm-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 15 15"/></svg>
+                </div>
+                <span class="sm-label" data-i18n="sm_longevity_label">LƯU HƯƠNG</span>
                 <span class="sm-value" id="meter-longevity">8 - 12 Giờ</span>
               </div>
             </div>
@@ -667,8 +764,9 @@
           </div>
 
           <div class="bottle-controls-row">
-            <button class="ghost-btn btn-sm" id="btn-spray-test" data-i18n="spray_test_btn" style="width:100%;">
-              💨 XỊT THỬ MÙI HƯƠNG NÀY
+            <button class="ghost-btn btn-sm" id="btn-spray-test" style="width:100%;">
+              <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="14" r="7"/><path d="M12 7v-3M8 4h8M16 7a4 4 0 0 0-8 0"/></svg>
+              <span data-i18n="spray_test_btn">XỊT THỬ MÙI HƯƠNG NÀY</span>
             </button>
             <button class="gold-btn btn-sm" id="btn-apply-formula" data-i18n="save_scent_btn" style="width:100%;">
               ÁP DỤNG CÔNG THỨC VÀO ĐƠN VÉ
@@ -758,7 +856,7 @@
 
       <!-- Early Bird Privilege Banner -->
       <div class="early-bird-banner" data-i18n="early_bird_banner">
-        🔥 ƯU ĐÃI EARLY BIRD: Giảm ngay 15% cho 100 vị khách đầu tiên! Tặng mã giảm giá tự động 'INDEP15'. Hỗ trợ giữ chỗ 24h.
+        ✦ ĐẶC QUYỀN EARLY BIRD: Giảm ngay 15% cho 100 vị khách đầu tiên! Tặng mã giảm giá tự động 'INDEP15'. Hỗ trợ giữ chỗ 24h.
       </div>
 
       <!-- 3 Pricing Cards -->
@@ -827,11 +925,11 @@
           </div>
 
           <ul class="pricing-features-list">
-            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f1">Bao trọn 01 suất diễn riêng tư (80 – 100 khách)</span></li>
-            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f2">Tùy biến in Logo doanh nghiệp lên Hộ chiếu & Chai nước hoa</span></li>
-            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f3">Menu yến tiệc ẩm thực tùy chọn theo yêu cầu ngoại giao</span></li>
-            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f4">MC song ngữ, diễn văn tri ân đối tác và khách hàng VIP</span></li>
-            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f5">Tối đa tiếp nhận lên đến 170 khách (phụ thu khách vượt mốc)</span></li>
+            <li class="feature-item"><span class="feature-icon">✦</span> <span data-i18n="tier_3_f1">Bao trọn 01 suất diễn riêng tư (80 – 100 khách)</span></li>
+            <li class="feature-item"><span class="feature-icon">✦</span> <span data-i18n="tier_3_f2">Tùy biến in Logo doanh nghiệp lên Hộ chiếu & Chai nước hoa</span></li>
+            <li class="feature-item"><span class="feature-icon">✦</span> <span data-i18n="tier_3_f3">Menu yến tiệc ẩm thực tùy chọn theo yêu cầu ngoại giao</span></li>
+            <li class="feature-item"><span class="feature-icon">✦</span> <span data-i18n="tier_3_f4">MC song ngữ, diễn văn tri ân đối tác và khách hàng VIP</span></li>
+            <li class="feature-item"><span class="feature-icon">✦</span> <span data-i18n="tier_3_f5">Tối đa tiếp nhận lên đến 170 khách (phụ thu khách vượt mốc)</span></li>
           </ul>
 
           <button class="ghost-btn btn-select-tier" data-i18n="tier_3_btn">LIÊN HỆ ĐẶT SHOW RIÊNG</button>
@@ -1284,12 +1382,14 @@
           <span id="modal-hold-badge" class="early-bird-banner" style="display:none; padding:6px 16px; font-size:0.78rem;"></span>
         </div>
 
-        <div style="display:flex; justify-content:center; gap:14px; margin-top:24px;">
-          <button class="gold-btn btn-sm" onclick="window.print()" data-i18n="btn_print_ticket">
-            🖨️ IN HỘ CHIẾU & VÉ ĐIỆN TỬ
+        <div style="display:flex; justify-content:center; gap:14px; margin-top:24px; flex-wrap:wrap;">
+          <button class="gold-btn btn-sm" onclick="window.print()">
+            <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span data-i18n="btn_print_ticket">IN HỘ CHIẾU & VÉ ĐIỆN TỬ</span>
           </button>
-          <button class="ghost-btn btn-sm" onclick="alert('Đã gửi mã vé QR và lịch .ics vào email đăng ký của quý khách!')" data-i18n="btn_wallet_ticket">
-            📲 LƯU VÀO VÍ ĐIỆN TỬ (APPLE/GOOGLE WALLET)
+          <button class="ghost-btn btn-sm" onclick="alert('Đã gửi mã vé QR và lịch .ics vào email đăng ký của quý khách!')">
+            <svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="9" y1="6" x2="15" y2="6"/></svg>
+            <span data-i18n="btn_wallet_ticket">LƯU VÀO VÍ ĐIỆN TỬ (APPLE/GOOGLE WALLET)</span>
           </button>
         </div>
       </div>

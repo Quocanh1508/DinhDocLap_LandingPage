@@ -91,6 +91,22 @@
   color: #0B0F19;
 }
 
+.sense-svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gold-primary);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: stroke 0.3s ease, transform 0.3s ease;
+}
+
+.sense-card:hover .sense-svg {
+  stroke: #0B0F19;
+  transform: scale(1.08);
+}
+
 .sense-card-content {
   position: relative;
   z-index: 2;
@@ -193,8 +209,23 @@
 }
 
 .map-compass-icon {
-  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--gold-primary);
+}
+
+.compass-svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--gold-primary);
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.35));
+  animation: compassRotate 12s ease-in-out infinite alternate;
+}
+
+@keyframes compassRotate {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
 }
 
 .svg-map-wrapper {
@@ -410,6 +441,38 @@
   padding-left: 20px;
 }
 
+.station-insignia-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(18, 24, 38, 0.95) 75%);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.15);
+  margin-bottom: 4px;
+  transition: all 0.35s ease;
+}
+
+.journey-card:hover .station-insignia-badge {
+  transform: scale(1.08) rotate(4deg);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.35);
+  color: var(--gold-light);
+}
+
+.station-insignia-badge svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
 .stamp-action-btn {
   background: rgba(139, 30, 30, 0.15);
   border: 1px solid var(--red-lacquer);
@@ -556,6 +619,20 @@
   font-weight: 700;
   border-color: #FFF;
   box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.preset-icon,
+.preset-glyph {
+  color: var(--gold-primary);
+  font-size: 0.72rem;
+  margin-right: 5px;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+}
+
+.preset-pill-btn.active .preset-icon,
+.preset-pill-btn.active .preset-glyph {
+  color: #0B0F19;
 }
 
 /* Custom Themed Range Sliders */
@@ -732,6 +809,27 @@
   border-radius: var(--radius-sm);
   padding: 8px 10px;
   text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.scent-metric-box:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.sm-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  margin-bottom: 4px;
+}
+
+.sm-icon-wrap svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--gold-primary);
+  stroke-width: 1.6;
+  fill: none;
 }
 
 .sm-label {

@@ -53,10 +53,12 @@ export function initScrollytelling() {
     const activeLang = document.documentElement.lang || 'vi';
     const minUnit = activeLang === 'en' ? 'Mins' : (activeLang === 'fr' ? 'Min' : 'Phút');
 
+    const clockSvg = `<svg class="mini-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>`;
+
     currentShiftText.forEach((el, idx) => {
       if (shiftTimes[activeShift] && shiftTimes[activeShift][idx]) {
         const item = shiftTimes[activeShift][idx];
-        el.innerHTML = `<span>⏳ ${item.time}</span> <span class="badge-dur">(${item.durMins} ${minUnit})</span>`;
+        el.innerHTML = `<span>${clockSvg} ${item.time}</span> <span class="badge-dur">(${item.durMins} ${minUnit})</span>`;
       }
     });
   }

@@ -343,7 +343,7 @@ class SoundscapeEngine {
     });
   }
 
-  // Tactile Sound FX: Heavy Lacquer Stamp Thud
+  // Tactile Sound FX: Gentle Lacquer Stamp & Harmonious Seal
   async playStampSound() {
     this.init();
     if (this.ctx.state === 'suspended') {
@@ -352,35 +352,77 @@ class SoundscapeEngine {
 
     const now = this.ctx.currentTime;
     
-    // Impact thud (low oscillator)
-    const osc = this.ctx.createOscillator();
-    const oscGain = this.ctx.createGain();
-    osc.type = "triangle";
-    osc.frequency.setValueAtTime(180, now);
-    osc.frequency.exponentialRampToValueAtTime(36, now + 0.28);
+    // 1. Soft Warm Felt Press (Gentle rounded tone)
+    const pressOsc = this.ctx.createOscillator();
+    const pressGain = this.ctx.createGain();
+    const pressFilter = this.ctx.createBiquadFilter();
 
-    oscGain.gain.setValueAtTime(0.65, now);
-    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+    pressOsc.type = "sine";
+    pressOsc.frequency.setValueAtTime(130, now);
+    pressOsc.frequency.exponentialRampToValueAtTime(70, now + 0.15);
 
-    osc.connect(oscGain);
-    oscGain.connect(this.masterGain);
-    osc.start(now);
-    osc.stop(now + 0.32);
+    pressFilter.type = "lowpass";
+    pressFilter.frequency.setValueAtTime(240, now);
 
-    // Wooden slap / snap
-    const snapOsc = this.ctx.createOscillator();
-    const snapGain = this.ctx.createGain();
-    snapOsc.type = "sawtooth";
-    snapOsc.frequency.setValueAtTime(850, now);
-    snapOsc.frequency.exponentialRampToValueAtTime(140, now + 0.07);
+    pressGain.gain.setValueAtTime(0.001, now);
+    pressGain.gain.linearRampToValueAtTime(0.2, now + 0.015);
+    pressGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
 
-    snapGain.gain.setValueAtTime(0.35, now);
-    snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+    pressOsc.connect(pressFilter);
+    pressFilter.connect(pressGain);
+    pressGain.connect(this.masterGain);
 
-    snapOsc.connect(snapGain);
-    snapGain.connect(this.masterGain);
-    snapOsc.start(now);
-    snapOsc.stop(now + 0.09);
+    pressOsc.start(now);
+    pressOsc.stop(now + 0.25);
+
+    // 2. Delicate Silk Parchment Friction (Very soft velvet touch)
+    const noiseDur = 0.07;
+    const bufSize = Math.floor(this.ctx.sampleRate * noiseDur);
+    const noiseBuf = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
+    const output = noiseBuf.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) {
+      output[i] = (Math.random() * 2 - 1) * 0.5;
+    }
+
+    const noiseNode = this.ctx.createBufferSource();
+    noiseNode.buffer = noiseBuf;
+
+    const noiseFilter = this.ctx.createBiquadFilter();
+    noiseFilter.type = "bandpass";
+    noiseFilter.frequency.setValueAtTime(900, now);
+    noiseFilter.Q.setValueAtTime(1.8, now);
+
+    const noiseGain = this.ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.001, now);
+    noiseGain.gain.linearRampToValueAtTime(0.045, now + 0.01);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + noiseDur);
+
+    noiseNode.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(this.masterGain);
+
+    noiseNode.start(now);
+    noiseNode.stop(now + noiseDur + 0.02);
+
+    // 3. Gentle Heritage Chime (Delicate harmonic aura of completion)
+    const chimeFreqs = [523.25, 783.99]; // C5, G5 harmonic interval
+    chimeFreqs.forEach((freq, idx) => {
+      const chimeOsc = this.ctx.createOscillator();
+      const chimeGain = this.ctx.createGain();
+
+      chimeOsc.type = "sine";
+      chimeOsc.frequency.setValueAtTime(freq, now + 0.02 + idx * 0.03);
+
+      chimeGain.gain.setValueAtTime(0.0001, now + 0.02 + idx * 0.03);
+      chimeGain.gain.linearRampToValueAtTime(0.055 / (idx + 1), now + 0.04 + idx * 0.03);
+      chimeGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.55 + idx * 0.03);
+
+      chimeOsc.connect(chimeGain);
+      chimeGain.connect(this.masterGain);
+
+      chimeOsc.start(now + 0.02 + idx * 0.03);
+      chimeOsc.stop(now + 0.6);
+    });
   }
 
   // Tactile Sound FX: Perfume Mist Spray

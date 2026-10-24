@@ -348,6 +348,101 @@ h1, h2, h3, h4, .serif-font {
   box-shadow: 0 0 12px var(--gold-bright);
 }
 
+/* Floating Audio Autoplay Invitation Banner */
+.audio-autoplay-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 995;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(14, 19, 31, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--gold-primary);
+  border-radius: 30px;
+  padding: 10px 18px 10px 14px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.35);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.audio-autoplay-banner.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.audio-autoplay-banner:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+.audio-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audio-banner-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  animation: floatGentle 2s infinite ease-in-out;
+}
+
+.audio-banner-text {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cream-ivory);
+  letter-spacing: 0.5px;
+}
+
+.audio-banner-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  margin-left: 4px;
+  border-radius: 50%;
+  transition: color 0.2s ease;
+}
+
+.audio-banner-close:hover {
+  color: #FFF;
+}
+
+@media (max-width: 768px) {
+  .audio-autoplay-banner {
+    bottom: 68px;
+    left: 12px;
+    right: 12px;
+    transform: translateY(120px);
+    border-radius: 20px;
+    padding: 8px 12px;
+    white-space: normal;
+    justify-content: space-between;
+  }
+  .audio-autoplay-banner.visible {
+    transform: translateY(0);
+  }
+  .audio-autoplay-banner:hover {
+    transform: translateY(0);
+  }
+  .audio-banner-text {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+}
+
 /* Hero Section */
 .hero-section {
   position: relative;

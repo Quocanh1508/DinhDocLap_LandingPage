@@ -1,6 +1,6 @@
 // Web Audio & Background Soundscape Engine
 // Plays "優しく舞う桜 – Cherry Blossoms Fall Softly (NOQURA)" as atmospheric background music
-// with auto-start, smooth fade-in/fade-out, and ultra-refined luxury tactile sound FX (perfume spray, stamp, chime).
+// with intelligent autoplay, user-gesture unlock, smooth volume fading, and ultra-refined tactile sound FX.
 
 import { translations } from './translations.js';
 
@@ -11,24 +11,35 @@ class SoundscapeEngine {
     this.audioUrl = '/assets/audio/cherry-blossoms-fall-softly.mp3';
     this.targetVolume = 0.45; // Gentle, elegant background volume
     this.fadeInterval = null;
-    this.hasInteracted = false;
+    this.unlocked = false;
 
-    // Web Audio Context for low-latency tactile sound FX
+    // Web Audio Context for low-latency tactile sound FX (perfume spray, lacquer stamp, chime)
     this.ctx = null;
     this.fxGain = null;
   }
 
-  // Initialize HTML5 Audio Element for background music
+  // Connect to the <audio> element in DOM or create fallback
   initAudioElement() {
-    if (this.audio) return;
-    this.audio = new Audio(this.audioUrl);
+    if (this.audio) return this.audio;
+
+    const el = document.getElementById('bg-soundscape-audio');
+    if (el) {
+      this.audio = el;
+    } else {
+      this.audio = new Audio(this.audioUrl);
+      this.audio.id = 'bg-soundscape-audio';
+      this.audio.loop = true;
+      this.audio.preload = 'auto';
+      document.body.appendChild(this.audio);
+    }
+
     this.audio.loop = true;
-    this.audio.preload = 'auto';
-    this.audio.volume = 0;
+    this.audio.volume = this.targetVolume;
 
     this.audio.addEventListener('play', () => {
       this.isPlaying = true;
       this.updateUIState(true);
+      this.dismissAudioPrompt();
     });
 
     this.audio.addEventListener('pause', () => {
@@ -40,9 +51,11 @@ class SoundscapeEngine {
       this.isPlaying = false;
       this.updateUIState(false);
     });
+
+    return this.audio;
   }
 
-  // Initialize Web Audio API for tactile sound FX (spray, stamp, chime)
+  // Initialize Web Audio API for tactile sound FX
   initAudioContext() {
     if (this.ctx) return;
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -58,46 +71,101 @@ class SoundscapeEngine {
   async autoStart() {
     this.initAudioElement();
 
+    // Strategy 1: Attempt direct unmuted playback (succeeds if domain engagement allows it)
     try {
-      this.audio.volume = 0;
+      this.audio.muted = false;
+      this.audio.volume = this.targetVolume;
       const playPromise = this.audio.play();
       if (playPromise !== undefined) {
         await playPromise;
         this.isPlaying = true;
-        this.fadeIn(1500);
+        this.unlocked = true;
         this.updateUIState(true);
+        this.dismissAudioPrompt();
+        return;
       }
     } catch (err) {
-      // Browser blocked autoplay without user gesture -> listen for first interaction
-      this.setupFirstInteractionListener();
+      // Browser blocked unmuted autoplay -> proceed to gesture unlock & prompt banner
     }
+
+    // Strategy 2: Setup persistent user gesture unlock on first valid interaction
+    this.setupUserGestureUnlock();
+
+    // Strategy 3: Display elegant floating invitation banner
+    this.showAudioPrompt();
   }
 
-  // When browser autoplay is blocked, start music on first touch/click/scroll
-  setupFirstInteractionListener() {
-    const triggerStart = async () => {
-      if (this.hasInteracted) return;
-      this.hasInteracted = true;
+  // Setup user gesture unlock on valid user activation events (click, touch, keydown)
+  setupUserGestureUnlock() {
+    if (this.unlocked) return;
 
-      const events = ['pointerdown', 'touchstart', 'click', 'scroll', 'keydown'];
-      events.forEach(ev => window.removeEventListener(ev, triggerStart, { capture: true }));
+    const unlockEvents = ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'];
 
-      if (!this.isPlaying) {
-        try {
-          this.initAudioElement();
-          this.audio.volume = 0;
-          await this.audio.play();
-          this.isPlaying = true;
-          this.fadeIn(1500);
-          this.updateUIState(true);
-        } catch (e) {
-          console.warn("Audio start on interaction note:", e);
-        }
+    const unlockHandler = async () => {
+      if (this.unlocked || this.isPlaying) return;
+
+      try {
+        this.initAudioElement();
+        this.audio.muted = false;
+        this.audio.volume = 0;
+        await this.audio.play();
+
+        // Audio successfully started
+        this.unlocked = true;
+        this.isPlaying = true;
+        this.fadeIn(1200);
+        this.updateUIState(true);
+        this.dismissAudioPrompt();
+
+        // Remove all unlock listeners once successfully playing
+        unlockEvents.forEach(ev => {
+          document.removeEventListener(ev, unlockHandler, true);
+          window.removeEventListener(ev, unlockHandler, true);
+        });
+      } catch (err) {
+        // Keep listeners active for subsequent touches/clicks
       }
     };
 
-    const events = ['pointerdown', 'touchstart', 'click', 'scroll', 'keydown'];
-    events.forEach(ev => window.addEventListener(ev, triggerStart, { capture: true, once: true }));
+    unlockEvents.forEach(ev => {
+      document.addEventListener(ev, unlockHandler, { capture: true, passive: true });
+      window.addEventListener(ev, unlockHandler, { capture: true, passive: true });
+    });
+  }
+
+  // Show floating audio activation invitation
+  showAudioPrompt() {
+    const banner = document.getElementById('audio-autoplay-banner');
+    if (!banner) return;
+
+    setTimeout(() => {
+      if (!this.isPlaying && !this.unlocked) {
+        banner.classList.add('visible');
+      }
+    }, 600);
+
+    // Close button dismisses banner without playing
+    const closeBtn = document.getElementById('btn-close-audio-banner');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.dismissAudioPrompt();
+      });
+    }
+
+    // Clicking the banner directly plays the sound
+    banner.addEventListener('click', () => {
+      this.toggle();
+      this.dismissAudioPrompt();
+    });
+  }
+
+  // Dismiss floating audio banner
+  dismissAudioPrompt() {
+    const banner = document.getElementById('audio-autoplay-banner');
+    if (banner) {
+      banner.classList.remove('visible');
+    }
   }
 
   // Smooth Volume Fade In
@@ -153,14 +221,17 @@ class SoundscapeEngine {
         this.audio.pause();
         this.isPlaying = false;
         this.updateUIState(false);
-      }, 500);
+      }, 400);
       return false;
     } else {
       try {
+        this.audio.muted = false;
         await this.audio.play();
         this.isPlaying = true;
+        this.unlocked = true;
         this.fadeIn(800);
         this.updateUIState(true);
+        this.dismissAudioPrompt();
         return true;
       } catch (err) {
         console.warn("Manual audio play error:", err);

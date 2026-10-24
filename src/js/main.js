@@ -60,8 +60,8 @@ function initAudioToggle() {
 
   if (!audioToggleBtn) return;
 
-  audioToggleBtn.addEventListener('click', () => {
-    const isPlaying = soundscape.toggle();
+  audioToggleBtn.addEventListener('click', async () => {
+    const isPlaying = await soundscape.toggle();
 
     if (isPlaying) {
       audioToggleBtn.classList.add('playing');
@@ -72,6 +72,7 @@ function initAudioToggle() {
       audioToggleBtn.classList.remove('playing');
       if (soundWaves) soundWaves.classList.remove('active');
       if (audioStatusText) audioStatusText.textContent = 'Âm thanh: Đang tắt';
+      showNotificationToast('Đã tắt âm thanh không gian');
     }
   });
 }

@@ -11,13 +11,34 @@ export function initPerfumeMixer() {
   const valBase = document.getElementById('val-base');
 
   const liquidEl = document.getElementById('perfume-liquid-fill');
+  const auraEl = document.getElementById('flacon-ambient-aura');
   const bottleNameEl = document.getElementById('bottle-engraved-name');
   const scentIdEl = document.getElementById('generated-scent-id');
   const sprayBtn = document.getElementById('btn-spray-test');
   const applyFormulaBtn = document.getElementById('btn-apply-formula');
 
+  // New Profile Elements
+  const archetypeTagEl = document.getElementById('scent-archetype-tag');
+  const personaTitleEl = document.getElementById('scent-persona-title');
+  const personaDescEl = document.getElementById('scent-persona-desc');
+  const dominantBadgeEl = document.getElementById('scent-dominant-badge');
+
+  const barSegTop = document.getElementById('bar-seg-top');
+  const barSegMid = document.getElementById('bar-seg-mid');
+  const barSegBase = document.getElementById('bar-seg-base');
+  const labelSegTop = document.getElementById('label-seg-top');
+  const labelSegMid = document.getElementById('label-seg-mid');
+  const labelSegBase = document.getElementById('label-seg-base');
+
+  const meterFresh = document.getElementById('meter-fresh');
+  const meterWarm = document.getElementById('meter-warm');
+  const meterLongevity = document.getElementById('meter-longevity');
+
+  const presetBtns = document.querySelectorAll('.preset-pill-btn');
   const bookingEngraveInput = document.getElementById('booking-engraved-name');
   const formScentFormula = document.getElementById('form-selected-formula');
+
+  let currentDominantTheme = 'balanced';
 
   function updateMixer() {
     const top = parseInt(sliderTop.value, 10);
@@ -33,17 +54,116 @@ export function initPerfumeMixer() {
     if (valMid) valMid.textContent = `${pMid}%`;
     if (valBase) valBase.textContent = `${pBase}%`;
 
-    // Dynamic color shift based on proportions:
-    // Dawn is fresh golden green/lotus white: rgba(220, 200, 120, ...)
-    // Heritage is rich golden amber: rgba(212, 175, 55, ...)
-    // Memory is deep smoky red/brown lacquer: rgba(139, 30, 30, ...)
-    const r = Math.round((pTop * 210 + pMid * 212 + pBase * 140) / 100);
-    const g = Math.round((pTop * 195 + pMid * 175 + pBase * 45) / 100);
-    const b = Math.round((pTop * 140 + pMid * 55 + pBase * 40) / 100);
+    // 1. Update Segmented Ratio Bar
+    if (barSegTop) {
+      barSegTop.style.width = `${pTop}%`;
+      if (labelSegTop) labelSegTop.textContent = `${pTop}% Sen Nhài`;
+    }
+    if (barSegMid) {
+      barSegMid.style.width = `${pMid}%`;
+      if (labelSegMid) labelSegMid.textContent = `${pMid}% Đàn Hương`;
+    }
+    if (barSegBase) {
+      barSegBase.style.width = `${pBase}%`;
+      if (labelSegBase) labelSegBase.textContent = `${pBase}% Khói Trầm`;
+    }
 
-    if (liquidEl) {
-      liquidEl.style.background = `linear-gradient(180deg, rgba(${r}, ${g}, ${b}, 0.5) 0%, rgba(${r-20}, ${g-25}, ${b-15}, 0.85) 100%)`;
-      liquidEl.style.boxShadow = `inset 0 0 25px rgba(${r}, ${g}, ${b}, 0.5), 0 0 20px rgba(${r}, ${g}, ${b}, 0.3)`;
+    // 2. Dynamic Archetype & Flacon Transformation
+    if (pTop >= 42) {
+      // DAWN DOMINANT (Fresh Lotus Jade Green)
+      currentDominantTheme = 'dawn';
+      if (archetypeTagEl) archetypeTagEl.textContent = '✦ THANH KHIẾT BÌNH MINH';
+      if (personaTitleEl) personaTitleEl.textContent = 'Hương Sen & Nhài Trắng Ban Mai';
+      if (personaDescEl) {
+        personaDescEl.textContent = '“Làn hương sen Bách Diệp và nhài trắng bung nở sương sớm, mang đến cảm giác thanh khiết, tự do, tái sinh và ngập tràn sinh khí mới của Sài Gòn.”';
+      }
+      if (dominantBadgeEl) dominantBadgeEl.textContent = 'Chủ đạo: Hoa Sen Bách Diệp & Nhài Đêm';
+
+      if (meterFresh) meterFresh.textContent = `${Math.min(98, 70 + Math.round(pTop * 0.4))}/100`;
+      if (meterWarm) meterWarm.textContent = `${Math.max(30, 60 - Math.round(pTop * 0.3))}/100`;
+      if (meterLongevity) meterLongevity.textContent = '6 – 8 Giờ';
+
+      // Flacon Jade Transformation
+      if (liquidEl) {
+        liquidEl.style.background = 'linear-gradient(180deg, #6EE7B7 0%, #10B981 45%, #065F46 100%)';
+        liquidEl.style.boxShadow = 'inset 0 0 25px rgba(255, 255, 255, 0.45), 0 0 35px rgba(16, 185, 129, 0.6)';
+        liquidEl.style.height = `${70 + Math.round(pTop * 0.15)}%`;
+      }
+      if (auraEl) {
+        auraEl.style.background = 'radial-gradient(circle, rgba(16, 185, 129, 0.8) 0%, rgba(52, 211, 153, 0.35) 50%, transparent 75%)';
+      }
+
+    } else if (pMid >= 42) {
+      // HERITAGE DOMINANT (Imperial Liquid Gold Amber)
+      currentDominantTheme = 'heritage';
+      if (archetypeTagEl) archetypeTagEl.textContent = '✦ HOÀNG GIA DI SẢN';
+      if (personaTitleEl) personaTitleEl.textContent = 'Gỗ Đàn Hương & Cỏ Hương Bài Quý Tộc';
+      if (personaDescEl) {
+        personaDescEl.textContent = '“Tầng hương ấm nồng của gỗ đàn hương Mysore và cỏ hương bài bừng sáng, toát lên vẻ quyền uy, sang trọng và phong thái danh gia vọng tộc Đông Dương.”';
+      }
+      if (dominantBadgeEl) dominantBadgeEl.textContent = 'Chủ đạo: Gỗ Đàn Hương & Cỏ Hương Bài';
+
+      if (meterFresh) meterFresh.textContent = `${Math.max(40, 65 - Math.round(pMid * 0.2))}/100`;
+      if (meterWarm) meterWarm.textContent = `${Math.min(95, 65 + Math.round(pMid * 0.3))}/100`;
+      if (meterLongevity) meterLongevity.textContent = '10 – 14 Giờ';
+
+      // Flacon Gold Transformation
+      if (liquidEl) {
+        liquidEl.style.background = 'linear-gradient(180deg, #FEF08A 0%, #D4AF37 45%, #92400E 100%)';
+        liquidEl.style.boxShadow = 'inset 0 0 25px rgba(255, 255, 255, 0.45), 0 0 35px rgba(212, 175, 55, 0.7)';
+        liquidEl.style.height = `${70 + Math.round(pMid * 0.15)}%`;
+      }
+      if (auraEl) {
+        auraEl.style.background = 'radial-gradient(circle, rgba(212, 175, 55, 0.85) 0%, rgba(245, 158, 11, 0.35) 50%, transparent 75%)';
+      }
+
+    } else if (pBase >= 42) {
+      // MEMORY DOMINANT (Sacred Lacquer Crimson & Agarwood)
+      currentDominantTheme = 'memory';
+      if (archetypeTagEl) archetypeTagEl.textContent = '✦ KHÓI TRẦM KÝ ỨC';
+      if (personaTitleEl) personaTitleEl.textContent = 'Khói Trầm Hoàng Triều & Hổ Phách Cổ Điển';
+      if (personaDescEl) {
+        personaDescEl.textContent = '“Làn khói trầm Hương Bài cổ kính hòa quyện hổ phách hoàng triều lắng đọng, gợi nhớ những thời khắc lịch sử thiêng liêng và chiều sâu triết lý Dinh Độc Lập.”';
+      }
+      if (dominantBadgeEl) dominantBadgeEl.textContent = 'Chủ đạo: Khói Trầm Hoàng Triều & Rêu Sồi';
+
+      if (meterFresh) meterFresh.textContent = `${Math.max(25, 50 - Math.round(pBase * 0.3))}/100`;
+      if (meterWarm) meterWarm.textContent = `${Math.min(99, 75 + Math.round(pBase * 0.3))}/100`;
+      if (meterLongevity) meterLongevity.textContent = '12 – 16 Giờ';
+
+      // Flacon Crimson Transformation
+      if (liquidEl) {
+        liquidEl.style.background = 'linear-gradient(180deg, #FCA5A5 0%, #B91C1C 45%, #450A0A 100%)';
+        liquidEl.style.boxShadow = 'inset 0 0 25px rgba(255, 255, 255, 0.45), 0 0 35px rgba(139, 30, 30, 0.8)';
+        liquidEl.style.height = `${70 + Math.round(pBase * 0.15)}%`;
+      }
+      if (auraEl) {
+        auraEl.style.background = 'radial-gradient(circle, rgba(139, 30, 30, 0.85) 0%, rgba(220, 38, 38, 0.35) 50%, transparent 75%)';
+      }
+
+    } else {
+      // BALANCED HARMONY (Tri-color Layered Nectar)
+      currentDominantTheme = 'balanced';
+      if (archetypeTagEl) archetypeTagEl.textContent = '✦ KHẢI HOÀN HÒA BÌNH';
+      if (personaTitleEl) personaTitleEl.textContent = 'Bản Hòa Tấu Tự Do Tuyệt Hảo';
+      if (personaDescEl) {
+        personaDescEl.textContent = '“Sự giao thoa hoàn mỹ giữa nét thanh khiết của hoa sen ban mai, nét ấm áp quyền quý của gỗ đàn hương và chiều sâu linh thiêng của khói trầm lịch sử.”';
+      }
+      if (dominantBadgeEl) dominantBadgeEl.textContent = 'Chủ đạo: Tam Hợp Cân Bằng (Sen - Gỗ - Trầm)';
+
+      if (meterFresh) meterFresh.textContent = '72/100';
+      if (meterWarm) meterWarm.textContent = '68/100';
+      if (meterLongevity) meterLongevity.textContent = '8 – 12 Giờ';
+
+      // Flacon Tri-color Layered Transformation
+      if (liquidEl) {
+        liquidEl.style.background = 'linear-gradient(180deg, #A7F3D0 0%, #F5D061 40%, #8B1E1E 100%)';
+        liquidEl.style.boxShadow = 'inset 0 0 25px rgba(255, 255, 255, 0.45), 0 0 35px rgba(212, 175, 55, 0.6)';
+        liquidEl.style.height = '78%';
+      }
+      if (auraEl) {
+        auraEl.style.background = 'radial-gradient(circle, rgba(212, 175, 55, 0.75) 0%, rgba(16, 185, 129, 0.25) 45%, rgba(139, 30, 30, 0.2) 75%)';
+      }
     }
 
     // Generate Scent ID
@@ -53,7 +173,8 @@ export function initPerfumeMixer() {
       top: pTop,
       mid: pMid,
       base: pBase,
-      id: formulaCode
+      id: formulaCode,
+      theme: currentDominantTheme
     };
 
     if (formScentFormula) {
@@ -61,8 +182,35 @@ export function initPerfumeMixer() {
     }
   }
 
+  // Sliders Input Listeners
   [sliderTop, sliderMid, sliderBase].forEach(slider => {
-    if (slider) slider.addEventListener('input', updateMixer);
+    if (slider) {
+      slider.addEventListener('input', () => {
+        // Remove active from presets when user manually tweaks
+        presetBtns.forEach(p => p.classList.remove('active'));
+        updateMixer();
+      });
+    }
+  });
+
+  // Preset Buttons Click Listeners
+  presetBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      presetBtns.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      const topVal = parseInt(btn.dataset.top, 10);
+      const midVal = parseInt(btn.dataset.mid, 10);
+      const baseVal = parseInt(btn.dataset.base, 10);
+
+      sliderTop.value = topVal;
+      sliderMid.value = midVal;
+      sliderBase.value = baseVal;
+
+      soundscape.playChime();
+      updateMixer();
+      showNotificationToast(`Đã chọn phong cách: ${btn.textContent.trim()}`);
+    });
   });
 
   // Sync engraved name between mixer bottle and booking input
@@ -75,31 +223,46 @@ export function initPerfumeMixer() {
     });
   }
 
-  // Test Spray Button
+  // Test Spray Button with Dynamic Mist Colors
   if (sprayBtn) {
     sprayBtn.addEventListener('click', () => {
       soundscape.playSpraySound();
-      createMistParticles();
-      showNotificationToast("Làn sương hương sen, nhài và khói trầm đang lan tỏa...");
+      createColoredMist(currentDominantTheme);
+      showNotificationToast("Làn sương hương thơm tinh tế đang lan tỏa...");
     });
   }
 
-  function createMistParticles() {
+  function createColoredMist(theme) {
     const mistContainer = document.getElementById('perfume-mist-effect');
     if (!mistContainer) return;
     mistContainer.innerHTML = '';
     mistContainer.classList.add('active');
 
-    for (let i = 0; i < 28; i++) {
+    let particleColor = 'rgba(255, 255, 255, 0.9)';
+    let secondaryColor = 'rgba(212, 175, 55, 0.4)';
+
+    if (theme === 'dawn') {
+      particleColor = 'rgba(167, 243, 208, 0.95)';
+      secondaryColor = 'rgba(16, 185, 129, 0.6)';
+    } else if (theme === 'heritage') {
+      particleColor = 'rgba(254, 240, 138, 0.95)';
+      secondaryColor = 'rgba(212, 175, 55, 0.65)';
+    } else if (theme === 'memory') {
+      particleColor = 'rgba(254, 202, 202, 0.95)';
+      secondaryColor = 'rgba(220, 38, 38, 0.6)';
+    }
+
+    for (let i = 0; i < 32; i++) {
       const p = document.createElement('div');
       p.className = 'mist-particle';
-      const angle = (Math.random() - 0.5) * 60; // spray cone
-      const dist = 60 + Math.random() * 120;
+      const angle = (Math.random() - 0.5) * 65; // spray cone
+      const dist = 70 + Math.random() * 130;
       const delay = Math.random() * 0.15;
-      const size = 6 + Math.random() * 18;
+      const size = 8 + Math.random() * 20;
       
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
+      p.style.background = `radial-gradient(circle, ${particleColor} 0%, ${secondaryColor} 60%, transparent 100%)`;
       p.style.setProperty('--angle', `${angle}deg`);
       p.style.setProperty('--dist', `${dist}px`);
       p.style.animationDelay = `${delay}s`;
@@ -123,5 +286,6 @@ export function initPerfumeMixer() {
     });
   }
 
+  // Initial trigger
   updateMixer();
 }

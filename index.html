@@ -517,64 +517,158 @@
 
       <!-- Perfume Mixer Workshop Interactive Panel -->
       <div class="lab-grid">
-        <!-- Sliders Column -->
+        <!-- Sliders & Profile Column -->
         <div class="mixer-col">
           <h3 data-i18n="mixer_heading">PHA THỬ MÙI HƯƠNG "HƯƠNG TỰ DO"</h3>
           <p class="mixer-tagline">Tùy chỉnh tỷ lệ 3 nốt hương để tạo ra làn hương đại diện cho phong thái và ký ức của riêng bạn.</p>
 
+          <!-- Quick Style Preset Buttons -->
+          <div class="scent-presets-container">
+            <span class="presets-label">GỢI Ý PHONG CÁCH HƯƠNG CHUẨN:</span>
+            <div class="presets-row">
+              <button type="button" class="preset-pill-btn active" data-top="35" data-mid="45" data-base="20">
+                <span>⚖️ Hòa Bình Khải Hoàn</span>
+              </button>
+              <button type="button" class="preset-pill-btn" data-top="60" data-mid="25" data-base="15">
+                <span>🌿 Thanh Khiết Ban Mai</span>
+              </button>
+              <button type="button" class="preset-pill-btn" data-top="20" data-mid="60" data-base="20">
+                <span>👑 Hoàng Gia Di Sản</span>
+              </button>
+              <button type="button" class="preset-pill-btn" data-top="15" data-mid="25" data-base="60">
+                <span>🕯️ Khói Trầm Ký Ức</span>
+              </button>
+            </div>
+          </div>
+
           <div class="accord-slider-group">
             <!-- Top Note: Binh Minh -->
-            <div class="accord-item">
+            <div class="accord-item accord-item-top">
               <div class="accord-header">
                 <span class="accord-name" data-i18n="accord_top">NỐT BÌNH MINH (Top Note)</span>
                 <span class="accord-percent" id="val-top">35%</span>
               </div>
               <p class="accord-notes" data-i18n="accord_top_desc">Hoa nhài đêm, Sen trắng Bách Diệp, Trà xanh Bảo Lộc sương sớm</p>
-              <input type="range" min="10" max="60" value="35" class="scent-range" id="slider-top">
+              <input type="range" min="10" max="70" value="35" class="scent-range scent-range-top" id="slider-top">
             </div>
 
             <!-- Mid Note: Di San -->
-            <div class="accord-item">
+            <div class="accord-item accord-item-mid">
               <div class="accord-header">
                 <span class="accord-name" data-i18n="accord_mid">NỐT DI SẢN (Heart Note)</span>
                 <span class="accord-percent" id="val-mid">45%</span>
               </div>
               <p class="accord-notes" data-i18n="accord_mid_desc">Cỏ hương bài Vetiver, Gỗ đàn hương, Vỏ quế An Nam cổ truyền</p>
-              <input type="range" min="15" max="70" value="45" class="scent-range" id="slider-mid">
+              <input type="range" min="10" max="70" value="45" class="scent-range scent-range-mid" id="slider-mid">
             </div>
 
             <!-- Base Note: Ky Uc -->
-            <div class="accord-item">
+            <div class="accord-item accord-item-base">
               <div class="accord-header">
                 <span class="accord-name" data-i18n="accord_base">NỐT KÝ ỨC (Base Note)</span>
                 <span class="accord-percent" id="val-base">20%</span>
               </div>
               <p class="accord-notes" data-i18n="accord_base_desc">Khói trầm Hương Bài, Hổ phách hoàng triều, Rêu sồi cổ kính</p>
-              <input type="range" min="10" max="50" value="20" class="scent-range" id="slider-base">
+              <input type="range" min="10" max="70" value="20" class="scent-range scent-range-base" id="slider-base">
+            </div>
+          </div>
+
+          <!-- Dynamic Scent Character Dashboard -->
+          <div class="scent-persona-card">
+            <div class="persona-header">
+              <span class="persona-badge" id="scent-archetype-tag">✦ KHẢI HOÀN HÒA BÌNH</span>
+              <h4 class="persona-title" id="scent-persona-title">Bản Hòa Tấu Tự Do Tuyệt Hảo</h4>
+            </div>
+            
+            <p class="persona-desc" id="scent-persona-desc">
+              Sự giao thoa hoàn mỹ giữa nét thanh khiết của hoa sen ban mai, nét ấm áp quyền quý của gỗ đàn hương và chiều sâu linh thiêng của khói trầm lịch sử.
+            </p>
+
+            <!-- Segmented Visual Ratio Bar -->
+            <div class="scent-ratio-visual-wrap">
+              <div class="ratio-labels-row">
+                <span>TỶ LỆ PHỐI TRỘN TRỰC QUAN:</span>
+                <span id="scent-dominant-badge" class="dominant-pill">Chủ đạo: Gỗ Đàn Hương & Cỏ Hương Bài</span>
+              </div>
+              <div class="scent-segmented-bar">
+                <div class="scent-segment seg-top" id="bar-seg-top" style="width: 35%;">
+                  <span id="label-seg-top">35% Sen Nhài</span>
+                </div>
+                <div class="scent-segment seg-mid" id="bar-seg-mid" style="width: 45%;">
+                  <span id="label-seg-mid">45% Đàn Hương</span>
+                </div>
+                <div class="scent-segment seg-base" id="bar-seg-base" style="width: 20%;">
+                  <span id="label-seg-base">20% Khói Trầm</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 Fragrance Metrics -->
+            <div class="scent-metrics-row">
+              <div class="scent-metric-box">
+                <span class="sm-label">🌿 ĐỘ TƯƠI MÁT</span>
+                <span class="sm-value" id="meter-fresh">72/100</span>
+              </div>
+              <div class="scent-metric-box">
+                <span class="sm-label">🪵 ĐỘ TRẦM ẤM</span>
+                <span class="sm-value" id="meter-warm">68/100</span>
+              </div>
+              <div class="scent-metric-box">
+                <span class="sm-label">⏳ LƯU HƯƠNG</span>
+                <span class="sm-value" id="meter-longevity">8 - 12 Giờ</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Simulated Flacon Preview Column -->
+        <!-- Simulated Luxury Flacon Preview Column -->
         <div class="bottle-col">
           <div class="perfume-flacon-container">
+            <!-- Dynamic Glowing Aura that shifts color intensely -->
+            <div class="flacon-ambient-aura" id="flacon-ambient-aura"></div>
+
             <div class="perfume-mist-effect" id="perfume-mist-effect"></div>
-            <div class="flacon-cap"></div>
-            <div class="flacon-neck"></div>
             
+            <!-- Luxury Flacon Stopper/Cap -->
+            <div class="flacon-cap">
+              <div class="cap-gem"></div>
+            </div>
+            <div class="flacon-neck">
+              <div class="neck-ring"></div>
+            </div>
+            
+            <!-- Flacon Crystal Glass Body -->
             <div class="flacon-body">
+              <div class="flacon-glass-reflection"></div>
+              
+              <!-- Floating Effervescent Bubbles inside perfume -->
+              <div class="flacon-bubbles-group">
+                <span class="f-bubble b1"></span>
+                <span class="f-bubble b2"></span>
+                <span class="f-bubble b3"></span>
+                <span class="f-bubble b4"></span>
+              </div>
+
+              <!-- 3D Gold Engraved Plaque -->
               <div class="flacon-engraved-plaque">
                 <div class="plaque-brand">HƯƠNG ĐỘC LẬP</div>
                 <div class="plaque-name" id="bottle-engraved-name">TRAN MINH KHOI</div>
                 <div class="plaque-scent-id" id="generated-scent-id">INDEP-1975-B35D45K20</div>
               </div>
-              <div class="perfume-liquid-fill" id="perfume-liquid-fill"></div>
+
+              <!-- Translucent Shimmering Liquid Fill -->
+              <div class="perfume-liquid-fill" id="perfume-liquid-fill">
+                <div class="liquid-wave"></div>
+              </div>
             </div>
+
+            <!-- Heavy Crystal Pedestal Base -->
+            <div class="flacon-pedestal"></div>
           </div>
 
           <div class="bottle-controls-row">
             <button class="ghost-btn btn-sm" id="btn-spray-test" data-i18n="spray_test_btn" style="width:100%;">
-              💨 XỊT THỬ MÙI HƯƠNG
+              💨 XỊT THỬ MÙI HƯƠNG NÀY
             </button>
             <button class="gold-btn btn-sm" id="btn-apply-formula" data-i18n="save_scent_btn" style="width:100%;">
               ÁP DỤNG CÔNG THỨC VÀO ĐƠN VÉ

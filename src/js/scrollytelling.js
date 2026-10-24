@@ -1,4 +1,5 @@
 import { soundscape } from './audio.js';
+import { translations } from './translations.js';
 
 export function initScrollytelling() {
   const progressBar = document.getElementById('bamboo-progress-bar');
@@ -31,32 +32,56 @@ export function initScrollytelling() {
   // 2. Shift Toggle logic (Show 1 vs Show 2)
   const shiftTimes = {
     shift1: [
-      { time: "17:45 – 18:00", dur: "15 Phút" },
-      { time: "18:00 – 18:20", dur: "20 Phút" },
-      { time: "18:20 – 18:50", dur: "30 Phút" },
-      { time: "18:50 – 19:10", dur: "20 Phút" },
-      { time: "19:10 – 20:00", dur: "50 Phút" }
+      { time: "17:45 – 18:00", durMins: 15 },
+      { time: "18:00 – 18:20", durMins: 20 },
+      { time: "18:20 – 18:50", durMins: 30 },
+      { time: "18:50 – 19:10", durMins: 20 },
+      { time: "19:10 – 20:00", durMins: 50 }
     ],
     shift2: [
-      { time: "20:15 – 20:30", dur: "15 Phút" },
-      { time: "20:30 – 20:50", dur: "20 Phút" },
-      { time: "20:50 – 21:20", dur: "30 Phút" },
-      { time: "21:20 – 21:40", dur: "20 Phút" },
-      { time: "21:40 – 22:30", dur: "50 Phút" }
+      { time: "20:15 – 20:30", durMins: 15 },
+      { time: "20:30 – 20:50", durMins: 20 },
+      { time: "20:50 – 21:20", durMins: 30 },
+      { time: "21:20 – 21:40", durMins: 20 },
+      { time: "21:40 – 22:30", durMins: 50 }
     ]
   };
+
+  let activeShift = 'shift1';
+
+  function renderShiftTimes() {
+    const activeLang = document.documentElement.lang || 'vi';
+    const minUnit = activeLang === 'en' ? 'Mins' : (activeLang === 'fr' ? 'Min' : 'Phút');
+
+    currentShiftText.forEach((el, idx) => {
+      if (shiftTimes[activeShift] && shiftTimes[activeShift][idx]) {
+        const item = shiftTimes[activeShift][idx];
+        el.innerHTML = `<span>⏳ ${item.time}</span> <span class="badge-dur">(${item.durMins} ${minUnit})</span>`;
+      }
+    });
+  }
 
   shiftBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       shiftBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const shiftKey = btn.dataset.shift;
-      
-      currentShiftText.forEach((el, idx) => {
-        if (shiftTimes[shiftKey] && shiftTimes[shiftKey][idx]) {
-          el.innerHTML = `<span>⏳ ${shiftTimes[shiftKey][idx].time}</span> <span class="badge-dur">(${shiftTimes[shiftKey][idx].dur})</span>`;
-        }
-      });
+      activeShift = btn.dataset.shift;
+      renderShiftTimes();
+    });
+  });
+
+  // Re-render when language changes
+  window.addEventListener('languageChanged', () => {
+    renderShiftTimes();
+
+    // Update stamped button text
+    const activeLang = document.documentElement.lang || 'vi';
+    const dict = translations[activeLang] || translations.vi;
+    [1, 2, 3].forEach(num => {
+      const btn = document.getElementById(`stamp-btn-${num}`);
+      if (btn && btn.classList.contains('stamped')) {
+        btn.innerHTML = `✓ ${dict.stamped_done || 'ĐÃ ĐÓNG DẤU MỘC'}`;
+      }
     });
   });
 
@@ -79,9 +104,12 @@ export function initScrollytelling() {
     soundscape.playStampSound();
     stampEl.classList.add('stamped');
 
+    const activeLang = document.documentElement.lang || 'vi';
+    const dict = translations[activeLang] || translations.vi;
+
     if (stampBtn) {
       stampBtn.classList.add('stamped');
-      stampBtn.innerHTML = `✓ ${stampBtn.dataset.stampedText || 'ĐÃ ĐÓNG DẤU MỘC'}`;
+      stampBtn.innerHTML = `✓ ${dict.stamped_done || 'ĐÃ ĐÓNG DẤU MỘC'}`;
     }
 
     if (digitalStamp) {
@@ -92,7 +120,12 @@ export function initScrollytelling() {
     updatePassportCounter();
 
     // Trigger visual notification
-    showNotificationToast(`Đã đóng Dấu mộc số ${stationNum} vào Hộ Chiếu Độc Lập!`);
+    const stampNotice = activeLang === 'en' 
+      ? `Official Seal No. ${stationNum} imprinted into your Independence Passport!` 
+      : (activeLang === 'fr' 
+          ? `Sceau officiel N° ${stationNum} apposé sur votre Passeport d'Indépendance !` 
+          : `Đã đóng Dấu mộc số ${stationNum} vào Hộ Chiếu Độc Lập!`);
+    showNotificationToast(stampNotice);
   };
 
   function updatePassportCounter() {

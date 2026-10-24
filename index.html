@@ -76,7 +76,7 @@
   <!-- Floating Passport Tracker Widget -->
   <div class="floating-passport-widget" id="btn-view-passport-drawer" title="Xem Hộ Chiếu Độc Lập của bạn">
     <span class="passport-icon">📜</span>
-    <span style="font-size:0.8rem; font-weight:600; color:var(--cream-ivory);">Hộ Chiếu:</span>
+    <span style="font-size:0.8rem; font-weight:600; color:var(--cream-ivory);" data-i18n="floating_passport_label">Hộ Chiếu:</span>
     <span class="passport-stamp-counter" id="passport-count-badge">0/3</span>
   </div>
 
@@ -147,7 +147,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag" data-i18n="senses_title">ĐÁNH THỨC 5 GIÁC QUAN</span>
-        <h2 class="section-title">Hòa Mình Vào Lịch Sử Bằng Cả Tâm Hồn</h2>
+        <h2 class="section-title" data-i18n="senses_heading">Hòa Mình Vào Lịch Sử Bằng Cả Tâm Hồn</h2>
         <div class="bamboo-divider">
           <span class="bamboo-divider-line"></span>
           <span class="bamboo-divider-knot"></span>
@@ -244,7 +244,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag" data-i18n="timeline_title">ĐƯỜNG HÀNH TRÌNH KHÁM PHÁ 120 PHÚT</span>
-        <h2 class="section-title">Lộ Trình Một Chiều Qua Từng Trạm Ký Ức</h2>
+        <h2 class="section-title" data-i18n="timeline_heading">Lộ Trình Một Chiều Qua Từng Trạm Ký Ức</h2>
         <div class="bamboo-divider">
           <span class="bamboo-divider-line"></span>
           <span class="bamboo-divider-knot"></span>
@@ -273,7 +273,7 @@
         <!-- Left: Interactive SVG Map -->
         <div class="interactive-map-col">
           <div class="map-header-row">
-            <h3 class="map-title">Khuôn Viên 12 Hecta Dinh Độc Lập</h3>
+            <h3 class="map-title" data-i18n="map_grounds_title">Khuôn Viên 12 Hecta Dinh Độc Lập</h3>
             <span class="map-compass-icon" title="Hướng Bắc">🧭</span>
           </div>
 
@@ -350,9 +350,9 @@
           </div>
 
           <div class="map-legend-strip">
-            <div class="legend-item"><span class="legend-dot start"></span> <span>Khởi hành (Nguyễn Du)</span></div>
-            <div class="legend-item"><span class="legend-dot show"></span> <span>Điểm đóng mộc son</span></div>
-            <div class="legend-item"><span class="legend-dot end"></span> <span>Lối ra (Nam Kỳ KN)</span></div>
+            <div class="legend-item"><span class="legend-dot start"></span> <span data-i18n="map_legend_start">Khởi hành (Nguyễn Du)</span></div>
+            <div class="legend-item"><span class="legend-dot show"></span> <span data-i18n="map_legend_stamp">Điểm đóng mộc son</span></div>
+            <div class="legend-item"><span class="legend-dot end"></span> <span data-i18n="map_legend_end">Lối ra (Nam Kỳ KN)</span></div>
           </div>
         </div>
 
@@ -363,7 +363,7 @@
           <div class="journey-card is-active" data-station-index="0" data-stamp-number="1">
             <div class="journey-card-info">
               <div class="journey-card-meta">
-                <span class="station-pill-index">CHẶNG 0</span>
+                <span class="station-pill-index" data-i18n="station_pill_0">CHẶNG 0</span>
                 <span class="station-time-badge">
                   <span>⏳ 17:45 – 18:00</span> <span class="badge-dur">(15 Phút)</span>
                 </span>
@@ -379,10 +379,10 @@
             <div class="journey-card-stamp-col">
               <div class="lacquer-stamp-seal" id="stamp-seal-1">
                 <span class="stamp-num">MỘC I</span>
-                <span class="stamp-name">KHỞI HÀNH</span>
+                <span class="stamp-name" data-i18n="seal_1_name">KHỞI HÀNH</span>
                 <span class="stamp-year">1975</span>
               </div>
-              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="1" id="stamp-btn-1">
+              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="1" id="stamp-btn-1" data-i18n="stamp_btn_1">
                 ĐÓNG DẤU MỘC 1
               </button>
             </div>
@@ -392,7 +392,7 @@
           <div class="journey-card" data-station-index="1">
             <div class="journey-card-info">
               <div class="journey-card-meta">
-                <span class="station-pill-index">TRẠM 1</span>
+                <span class="station-pill-index" data-i18n="station_pill_1">TRẠM 1</span>
                 <span class="station-time-badge">
                   <span>⏳ 18:00 – 18:20</span> <span class="badge-dur">(20 Phút)</span>
                 </span>
@@ -407,7 +407,7 @@
             </div>
             <div class="journey-card-stamp-col">
               <div style="font-size:2.4rem;">⚔️</div>
-              <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;">Thực Cảnh Khói Lửa</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;" data-i18n="station_1_action_tag">Thực Cảnh Khói Lửa</span>
             </div>
           </div>
 
@@ -415,7 +415,7 @@
           <div class="journey-card" data-station-index="2">
             <div class="journey-card-info">
               <div class="journey-card-meta">
-                <span class="station-pill-index">TRẠM 2</span>
+                <span class="station-pill-index" data-i18n="station_pill_2">TRẠM 2</span>
                 <span class="station-time-badge">
                   <span>⏳ 18:20 – 18:50</span> <span class="badge-dur">(30 Phút)</span>
                 </span>
@@ -430,7 +430,7 @@
             </div>
             <div class="journey-card-stamp-col">
               <div style="font-size:2.4rem;">🎆</div>
-              <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;">3D Mapping & Sương Sen</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;" data-i18n="station_2_action_tag">3D Mapping & Sương Sen</span>
             </div>
           </div>
 
@@ -438,7 +438,7 @@
           <div class="journey-card" data-station-index="3" data-stamp-number="2">
             <div class="journey-card-info">
               <div class="journey-card-meta">
-                <span class="station-pill-index">TRẠM 3</span>
+                <span class="station-pill-index" data-i18n="station_pill_3">TRẠM 3</span>
                 <span class="station-time-badge">
                   <span>⏳ 18:50 – 19:10</span> <span class="badge-dur">(20 Phút)</span>
                 </span>
@@ -454,10 +454,10 @@
             <div class="journey-card-stamp-col">
               <div class="lacquer-stamp-seal" id="stamp-seal-2">
                 <span class="stamp-num">MỘC II</span>
-                <span class="stamp-name">DẤU ẤN HƯƠNG</span>
+                <span class="stamp-name" data-i18n="seal_2_name">DẤU ẤN HƯƠNG</span>
                 <span class="stamp-year">ĐẠI YẾN</span>
               </div>
-              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="2" id="stamp-btn-2">
+              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="2" id="stamp-btn-2" data-i18n="stamp_btn_2">
                 ĐÓNG DẤU MỘC 2
               </button>
             </div>
@@ -467,7 +467,7 @@
           <div class="journey-card" data-station-index="4" data-stamp-number="3">
             <div class="journey-card-info">
               <div class="journey-card-meta">
-                <span class="station-pill-index">TRẠM 4</span>
+                <span class="station-pill-index" data-i18n="station_pill_4">TRẠM 4</span>
                 <span class="station-time-badge">
                   <span>⏳ 19:10 – 20:00</span> <span class="badge-dur">(50 Phút)</span>
                 </span>
@@ -483,10 +483,10 @@
             <div class="journey-card-stamp-col">
               <div class="lacquer-stamp-seal" id="stamp-seal-3">
                 <span class="stamp-num">MỘC III</span>
-                <span class="stamp-name">HOÀN TẤT</span>
+                <span class="stamp-name" data-i18n="seal_3_name">HOÀN TẤT</span>
                 <span class="stamp-year">HÒA BÌNH</span>
               </div>
-              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="3" id="stamp-btn-3">
+              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="3" id="stamp-btn-3" data-i18n="stamp_btn_3">
                 ĐÓNG DẤU MỘC 3
               </button>
             </div>
@@ -504,7 +504,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag" data-i18n="lab_title">XƯỞNG HƯƠNG & BỘ VẬT PHẨM ĐỘC BẢN</span>
-        <h2 class="section-title">Nghệ Thuật Khứu Giác Độc Bản Vượt Thời Gian</h2>
+        <h2 class="section-title" data-i18n="lab_heading">Nghệ Thuật Khứu Giác Độc Bản Vượt Thời Gian</h2>
         <div class="bamboo-divider">
           <span class="bamboo-divider-line"></span>
           <span class="bamboo-divider-knot"></span>
@@ -520,23 +520,23 @@
         <!-- Sliders & Profile Column -->
         <div class="mixer-col">
           <h3 data-i18n="mixer_heading">PHA THỬ MÙI HƯƠNG "HƯƠNG TỰ DO"</h3>
-          <p class="mixer-tagline">Tùy chỉnh tỷ lệ 3 nốt hương để tạo ra làn hương đại diện cho phong thái và ký ức của riêng bạn.</p>
+          <p class="mixer-tagline" data-i18n="lab_desc">Tùy chỉnh tỷ lệ 3 nốt hương để tạo ra làn hương đại diện cho phong thái và ký ức của riêng bạn.</p>
 
           <!-- Quick Style Preset Buttons -->
           <div class="scent-presets-container">
-            <span class="presets-label">GỢI Ý PHONG CÁCH HƯƠNG CHUẨN:</span>
+            <span class="presets-label" data-i18n="presets_label">GỢI Ý PHONG CÁCH HƯƠNG CHUẨN:</span>
             <div class="presets-row">
               <button type="button" class="preset-pill-btn active" data-top="35" data-mid="45" data-base="20">
-                <span>⚖️ Hòa Bình Khải Hoàn</span>
+                <span data-i18n="preset_balanced">⚖️ Hòa Bình Khải Hoàn</span>
               </button>
               <button type="button" class="preset-pill-btn" data-top="60" data-mid="25" data-base="15">
-                <span>🌿 Thanh Khiết Ban Mai</span>
+                <span data-i18n="preset_dawn">🌿 Thanh Khiết Ban Mai</span>
               </button>
               <button type="button" class="preset-pill-btn" data-top="20" data-mid="60" data-base="20">
-                <span>👑 Hoàng Gia Di Sản</span>
+                <span data-i18n="preset_heritage">👑 Hoàng Gia Di Sản</span>
               </button>
               <button type="button" class="preset-pill-btn" data-top="15" data-mid="25" data-base="60">
-                <span>🕯️ Khói Trầm Ký Ức</span>
+                <span data-i18n="preset_memory">🕯️ Khói Trầm Ký Ức</span>
               </button>
             </div>
           </div>
@@ -587,7 +587,7 @@
             <!-- Segmented Visual Ratio Bar -->
             <div class="scent-ratio-visual-wrap">
               <div class="ratio-labels-row">
-                <span>TỶ LỆ PHỐI TRỘN TRỰC QUAN:</span>
+                <span data-i18n="ratio_visual_label">TỶ LỆ PHỐI TRỘN TRỰC QUAN:</span>
                 <span id="scent-dominant-badge" class="dominant-pill">Chủ đạo: Gỗ Đàn Hương & Cỏ Hương Bài</span>
               </div>
               <div class="scent-segmented-bar">
@@ -606,15 +606,15 @@
             <!-- 3 Fragrance Metrics -->
             <div class="scent-metrics-row">
               <div class="scent-metric-box">
-                <span class="sm-label">🌿 ĐỘ TƯƠI MÁT</span>
+                <span class="sm-label" data-i18n="sm_fresh_label">🌿 ĐỘ TƯƠI MÁT</span>
                 <span class="sm-value" id="meter-fresh">72/100</span>
               </div>
               <div class="scent-metric-box">
-                <span class="sm-label">🪵 ĐỘ TRẦM ẤM</span>
+                <span class="sm-label" data-i18n="sm_warm_label">🪵 ĐỘ TRẦM ẤM</span>
                 <span class="sm-value" id="meter-warm">68/100</span>
               </div>
               <div class="scent-metric-box">
-                <span class="sm-label">⏳ LƯU HƯƠNG</span>
+                <span class="sm-label" data-i18n="sm_longevity_label">⏳ LƯU HƯƠNG</span>
                 <span class="sm-value" id="meter-longevity">8 - 12 Giờ</span>
               </div>
             </div>
@@ -651,7 +651,7 @@
 
               <!-- 3D Gold Engraved Plaque -->
               <div class="flacon-engraved-plaque">
-                <div class="plaque-brand">HƯƠNG ĐỘC LẬP</div>
+                <div class="plaque-brand" data-i18n="brand_title">HƯƠNG ĐỘC LẬP</div>
                 <div class="plaque-name" id="bottle-engraved-name">TRAN MINH KHOI</div>
                 <div class="plaque-scent-id" id="generated-scent-id">INDEP-1975-B35D45K20</div>
               </div>
@@ -745,7 +745,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag" data-i18n="pricing_title">BẢNG GIÁ VÉ & ĐẶT CHỖ TRỰC TUYẾN</span>
-        <h2 class="section-title">Chọn Hạng Hộ Chiếu Đặc Quyền</h2>
+        <h2 class="section-title" data-i18n="pricing_heading">Chọn Hạng Hộ Chiếu Đặc Quyền</h2>
         <div class="bamboo-divider">
           <span class="bamboo-divider-line"></span>
           <span class="bamboo-divider-knot"></span>
@@ -772,7 +772,7 @@
             <div class="pricing-price-box">
               <span class="price-currency">VNĐ</span>
               <span class="price-num" data-i18n="tier_1_price">1.850.000</span>
-              <span class="price-unit">/khách</span>
+              <span class="price-unit" data-i18n="per_guest">/khách</span>
             </div>
             <div class="pricing-usd-sub" data-i18n="tier_1_usd">~$75 USD / Khách</div>
           </div>
@@ -797,7 +797,7 @@
             <div class="pricing-price-box">
               <span class="price-currency">VNĐ</span>
               <span class="price-num" data-i18n="tier_2_price">2.650.000</span>
-              <span class="price-unit">/khách</span>
+              <span class="price-unit" data-i18n="per_guest">/khách</span>
             </div>
             <div class="pricing-usd-sub" data-i18n="tier_2_usd">~$110 USD / Khách</div>
           </div>
@@ -821,7 +821,7 @@
             <div class="pricing-price-box">
               <span class="price-currency">VNĐ</span>
               <span class="price-num" data-i18n="tier_3_price">160.000.000</span>
-              <span class="price-unit">/suất</span>
+              <span class="price-unit" data-i18n="per_show">/suất</span>
             </div>
             <div class="pricing-usd-sub" data-i18n="tier_3_usd">~$6,500 USD / Suất trọn gói</div>
           </div>
@@ -857,33 +857,33 @@
 
               <div class="date-slots-strip" id="date-slots-container">
                 <div class="date-slot-pill selected" data-day-code="fri" data-date-string="Thứ Sáu, 06/11/2026">
-                  <div class="slot-day">THỨ SÁU</div>
+                  <div class="slot-day" data-i18n="day_fri">THỨ SÁU</div>
                   <div class="slot-date">06/11</div>
-                  <div class="slot-lang">Tiếng Việt</div>
+                  <div class="slot-lang" data-i18n="lang_vn">Tiếng Việt</div>
                 </div>
 
                 <div class="date-slot-pill" data-day-code="sat" data-date-string="Thứ Bảy, 07/11/2026">
-                  <div class="slot-day">THỨ BẢY</div>
+                  <div class="slot-day" data-i18n="day_sat">THỨ BẢY</div>
                   <div class="slot-date">07/11</div>
-                  <div class="slot-lang">Tiếng Việt</div>
+                  <div class="slot-lang" data-i18n="lang_vn">Tiếng Việt</div>
                 </div>
 
                 <div class="date-slot-pill" data-day-code="sun" data-date-string="Chủ Nhật, 08/11/2026">
-                  <div class="slot-day">CHỦ NHẬT</div>
+                  <div class="slot-day" data-i18n="day_sun">CHỦ NHẬT</div>
                   <div class="slot-date">08/11</div>
-                  <div class="slot-lang">English & Français</div>
+                  <div class="slot-lang" data-i18n="lang_intl">English & Français</div>
                 </div>
 
                 <div class="date-slot-pill" data-day-code="fri" data-date-string="Thứ Sáu, 13/11/2026">
-                  <div class="slot-day">THỨ SÁU</div>
+                  <div class="slot-day" data-i18n="day_fri">THỨ SÁU</div>
                   <div class="slot-date">13/11</div>
-                  <div class="slot-lang">Tiếng Việt</div>
+                  <div class="slot-lang" data-i18n="lang_vn">Tiếng Việt</div>
                 </div>
 
                 <div class="date-slot-pill" data-day-code="sat" data-date-string="Thứ Bảy, 14/11/2026">
-                  <div class="slot-day">THỨ BẢY</div>
+                  <div class="slot-day" data-i18n="day_sat">THỨ BẢY</div>
                   <div class="slot-date">14/11</div>
-                  <div class="slot-lang">Tiếng Việt</div>
+                  <div class="slot-lang" data-i18n="lang_vn">Tiếng Việt</div>
                 </div>
               </div>
             </div>
@@ -896,16 +896,16 @@
                 <label class="shift-radio-label">
                   <input type="radio" name="booking-shift" value="1" checked>
                   <div>
-                    <strong>Suất 1: 18:00 – 20:00</strong>
-                    <div style="font-size:0.75rem; color:var(--text-muted);">(Mở cổng đón khách 17:40)</div>
+                    <strong data-i18n="shift_1_label">Suất 1: 18:00 – 20:00</strong>
+                    <div style="font-size:0.75rem; color:var(--text-muted);" data-i18n="shift_1_gate">(Mở cổng đón khách 17:40)</div>
                   </div>
                 </label>
 
                 <label class="shift-radio-label">
                   <input type="radio" name="booking-shift" value="2">
                   <div>
-                    <strong>Suất 2: 20:30 – 22:30</strong>
-                    <div style="font-size:0.75rem; color:var(--text-muted);">(Mở cổng đón khách 20:10)</div>
+                    <strong data-i18n="shift_2_label">Suất 2: 20:30 – 22:30</strong>
+                    <div style="font-size:0.75rem; color:var(--text-muted);" data-i18n="shift_2_gate">(Mở cổng đón khách 20:10)</div>
                   </div>
                 </label>
               </div>
@@ -918,16 +918,16 @@
 
             <!-- Step 3: Tier & Quantity -->
             <div>
-              <label class="form-label" data-i18n="form_step3">Hạng Vé</label>
+              <label class="form-label" data-i18n="form_tier_label">Hạng Vé</label>
               <select class="form-select" id="booking-tier-select">
-                <option value="standard">Hạng Tiêu Chuẩn (Freedom Pass) - 1.850.000 VNĐ</option>
-                <option value="vip" selected>Hạng Thượng Hạng (Independence VIP) - 2.650.000 VNĐ</option>
-                <option value="corporate">Gói Doanh Nghiệp (Private Charter) - 160.000.000 VNĐ</option>
+                <option value="standard" data-i18n="form_option_std">Hạng Tiêu Chuẩn (Freedom Pass) - 1.850.000 VNĐ</option>
+                <option value="vip" selected data-i18n="form_option_vip">Hạng Thượng Hạng (Independence VIP) - 2.650.000 VNĐ</option>
+                <option value="corporate" data-i18n="form_option_corp">Gói Doanh Nghiệp (Private Charter) - 160.000.000 VNĐ</option>
               </select>
             </div>
 
             <div>
-              <label class="form-label">Số Lượng Vé</label>
+              <label class="form-label" data-i18n="form_qty_label">Số Lượng Vé</label>
               <div class="quantity-control">
                 <button type="button" class="qty-btn" id="qty-minus">-</button>
                 <input type="text" class="qty-input" id="booking-qty" value="2" readonly>
@@ -939,7 +939,7 @@
             <div class="form-group-full">
               <label class="form-label" data-i18n="form_engrave_input">Tên muốn in/khắc lên chai nước hoa (tối đa 24 ký tự):</label>
               <input type="text" class="form-input" id="booking-engraved-name" placeholder="Ví dụ: TRAN MINH KHOI" value="TRAN MINH KHOI" maxlength="24">
-              <div style="font-size:0.76rem; color:var(--gold-light); margin-top:6px;">
+              <div style="font-size:0.76rem; color:var(--gold-light); margin-top:6px;" data-i18n="engrave_help">
                 ✦ Tên sẽ được khắc laser mạ vàng lên thân lọ nước hoa độc bản mang về.
               </div>
             </div>
@@ -982,15 +982,15 @@
           <!-- Price Summary Box -->
           <div class="booking-summary-strip">
             <div class="summary-row">
-              <span>Tạm tính (Giá niêm yết):</span>
+              <span data-i18n="subtotal_label">Tạm tính (Giá niêm yết):</span>
               <span id="price-subtotal">5.300.000 VNĐ</span>
             </div>
             <div class="summary-row discount-row">
-              <span>Đặc quyền Early Bird (Giảm 15%):</span>
+              <span data-i18n="early_bird_discount_label">Đặc quyền Early Bird (Giảm 15%):</span>
               <span id="price-discount">-795.000 VNĐ (Mã INDEP15)</span>
             </div>
             <div class="summary-row total-row">
-              <span>Tổng thanh toán:</span>
+              <span data-i18n="total_label">Tổng thanh toán:</span>
               <span class="total-val" id="price-total">4.505.000 VNĐ</span>
             </div>
           </div>
@@ -1011,7 +1011,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag" data-i18n="faq_title">HÀNH TRANG CHUẨN BỊ & LƯU Ý VẬN HÀNH</span>
-        <h2 class="section-title">Những Điều Cần Biết Trước Chuyến Đi</h2>
+        <h2 class="section-title" data-i18n="faq_heading">Những Điều Cần Biết Trước Chuyến Đi</h2>
         <div class="bamboo-divider">
           <span class="bamboo-divider-line"></span>
           <span class="bamboo-divider-knot"></span>
@@ -1118,11 +1118,11 @@
           <div class="brand-link" style="margin-bottom:18px;">
             <div class="brand-emblem">✦</div>
             <div class="brand-text-col">
-              <span class="brand-sub">DI TÍCH QUỐC GIA ĐẶC BIỆT DINH ĐỘC LẬP</span>
-              <span class="brand-title">HƯƠNG ĐỘC LẬP</span>
+              <span class="brand-sub" data-i18n="brand_sub">DI TÍCH QUỐC GIA ĐẶC BIỆT DINH ĐỘC LẬP</span>
+              <span class="brand-title" data-i18n="brand_title">HƯƠNG ĐỘC LẬP</span>
             </div>
           </div>
-          <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+          <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;" data-i18n="footer_desc">
             Sản phẩm du lịch đêm đa giác quan cao cấp tái hiện tinh hoa lịch sử và triết lý kiến trúc Đông Dương qua nghệ thuật thực cảnh, 3D mapping và mùi hương độc bản.
           </p>
           <div style="font-size:0.84rem; color:var(--gold-primary); font-weight:600;" data-i18n="footer_hotline">
@@ -1132,35 +1132,35 @@
 
         <!-- Col 2: Navigation -->
         <div class="footer-col">
-          <h4>Khám Phá</h4>
+          <h4 data-i18n="footer_discover_heading">Khám Phá</h4>
           <ul class="footer-links-list">
-            <li><a href="#section-senses">5 Giác Quan Lịch Sử</a></li>
-            <li><a href="#section-timeline">Lộ Trình 120 Phút</a></li>
-            <li><a href="#section-lab">Xưởng Pha Chế Hương</a></li>
-            <li><a href="#section-pricing">Bảng Giá Vé</a></li>
-            <li><a href="#section-refill">Tra Cứu Scent ID</a></li>
+            <li><a href="#section-senses" data-i18n="footer_link_senses">5 Giác Quan Lịch Sử</a></li>
+            <li><a href="#section-timeline" data-i18n="footer_link_timeline">Lộ Trình 120 Phút</a></li>
+            <li><a href="#section-lab" data-i18n="footer_link_atelier">Xưởng Pha Chế Hương</a></li>
+            <li><a href="#section-pricing" data-i18n="footer_link_pricing">Bảng Giá Vé</a></li>
+            <li><a href="#section-refill" data-i18n="footer_link_refill">Tra Cứu Scent ID</a></li>
           </ul>
         </div>
 
         <!-- Col 3: Practical Info -->
         <div class="footer-col">
-          <h4>Thông Tin</h4>
+          <h4 data-i18n="footer_info_heading">Thông Tin</h4>
           <ul class="footer-links-list">
-            <li><a href="#section-faq">Cổng Nguyễn Du (Đón khách)</a></li>
-            <li><a href="#section-faq">Cổng Nam Kỳ (Lối ra)</a></li>
-            <li><a href="#section-faq">Quy định Trang Phục</a></li>
-            <li><a href="#section-faq">Mái Che Mùa Mưa</a></li>
-            <li><a href="#section-faq">Chính Sách Hoàn/Đổi Vé</a></li>
+            <li><a href="#section-faq" data-i18n="footer_link_gate_in">Cổng Nguyễn Du (Đón khách)</a></li>
+            <li><a href="#section-faq" data-i18n="footer_link_gate_out">Cổng Nam Kỳ (Lối ra)</a></li>
+            <li><a href="#section-faq" data-i18n="footer_link_dress">Quy định Trang Phục</a></li>
+            <li><a href="#section-faq" data-i18n="footer_link_rain">Mái Che Mùa Mưa</a></li>
+            <li><a href="#section-faq" data-i18n="footer_link_policy">Chính Sách Hoàn/Đổi Vé</a></li>
           </ul>
         </div>
 
         <!-- Col 4: Location -->
         <div class="footer-col">
-          <h4>Địa Điểm</h4>
+          <h4 data-i18n="footer_location_heading">Địa Điểm</h4>
           <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6;" data-i18n="footer_address_val">
             Di tích Quốc gia Đặc biệt Dinh Độc Lập – Cổng đón khách: 108 Nguyễn Du, P. Bến Thành, Q.1, TP. Hồ Chí Minh.
           </p>
-          <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted);">
+          <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted);" data-i18n="footer_gate_hours">
             Giờ đón khách Suất 1: 17h40 | Suất 2: 20h10
           </div>
         </div>
@@ -1171,7 +1171,7 @@
           © 2026 ĐÊM DI SẢN ĐA GIÁC QUAN: HƯƠNG ĐỘC LẬP (SCENT OF INDEPENDENCE). ALL RIGHTS RESERVED.
         </div>
         <div>
-          <span>Được cấp phép bởi Ban Quản lý Di tích Dinh Độc Lập</span>
+          <span data-i18n="footer_license">Được cấp phép bởi Ban Quản lý Di tích Dinh Độc Lập</span>
         </div>
       </div>
     </div>
@@ -1183,7 +1183,7 @@
   <div class="heritage-modal" id="trailer-modal">
     <div class="modal-dialog">
       <button class="modal-close-icon" id="btn-close-trailer">&times;</button>
-      <h3 style="font-family:var(--font-serif); font-size:1.6rem; color:var(--gold-light); margin-bottom:16px;">
+      <h3 style="font-family:var(--font-serif); font-size:1.6rem; color:var(--gold-light); margin-bottom:16px;" data-i18n="trailer_modal_title">
         HƯƠNG ĐỘC LẬP — CINEMATIC TRAILER
       </h3>
       <div class="trailer-screen-box">
@@ -1193,8 +1193,8 @@
         </div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:0.85rem; color:var(--text-muted);">Âm thanh vòm định hướng • Độ phân giải 4K</span>
-        <a href="#section-booking" class="gold-btn btn-sm" onclick="document.getElementById('trailer-modal').classList.remove('active')">
+        <span style="font-size:0.85rem; color:var(--text-muted);" data-i18n="trailer_specs">Âm thanh vòm định hướng • Độ phân giải 4K</span>
+        <a href="#section-booking" class="gold-btn btn-sm" onclick="document.getElementById('trailer-modal').classList.remove('active')" data-i18n="trailer_cta_btn">
           ĐẶT VÉ TRẢI NGHIỆM THỰC TẾ
         </a>
       </div>
@@ -1213,8 +1213,8 @@
           <div style="display:flex; align-items:center; gap:12px;">
             <div class="brand-emblem" style="width:36px; height:36px; font-size:1rem;">✦</div>
             <div>
-              <div style="font-size:0.6rem; letter-spacing:2px; color:var(--gold-light);">HỘ CHIẾU ĐỘC LẬP • E-PASSPORT</div>
-              <div style="font-size:1.1rem; font-family:var(--font-serif); color:var(--gold-primary); font-weight:700;">HƯƠNG ĐỘC LẬP</div>
+              <div style="font-size:0.6rem; letter-spacing:2px; color:var(--gold-light);" data-i18n="modal_passport_title">HỘ CHIẾU ĐỘC LẬP • E-PASSPORT</div>
+              <div style="font-size:1.1rem; font-family:var(--font-serif); color:var(--gold-primary); font-weight:700;" data-i18n="brand_title">HƯƠNG ĐỘC LẬP</div>
             </div>
           </div>
           <div>
@@ -1224,58 +1224,58 @@
 
         <table class="passport-info-table">
           <tr>
-            <td>Mã vé điện tử:</td>
+            <td data-i18n="ticket_code_label">Mã vé điện tử:</td>
             <td id="modal-ticket-code" style="color:var(--gold-bright); font-family:var(--font-serif);">INDEP-1975-VIP-8892</td>
           </tr>
           <tr>
-            <td>Chủ sở hữu Hộ chiếu:</td>
+            <td data-i18n="ticket_guest_label">Chủ sở hữu Hộ chiếu:</td>
             <td id="modal-guest-name">Nguyễn Văn A</td>
           </tr>
           <tr>
-            <td>Ngày khởi hành:</td>
+            <td data-i18n="ticket_date_label">Ngày khởi hành:</td>
             <td id="modal-event-date">Thứ Sáu, 06/11/2026</td>
           </tr>
           <tr>
-            <td>Suất diễn:</td>
+            <td data-i18n="ticket_shift_label">Suất diễn:</td>
             <td id="modal-event-shift">Suất 1: 18:00 – 20:00 (Mở cổng 17:40)</td>
           </tr>
           <tr>
-            <td>Cổng đón khách:</td>
-            <td>108 Nguyễn Du, P. Bến Thành, Q.1</td>
+            <td data-i18n="ticket_gate_label">Cổng đón khách:</td>
+            <td data-i18n="ticket_gate_val">108 Nguyễn Du, P. Bến Thành, Q.1</td>
           </tr>
           <tr>
-            <td>Tên khắc trên chai nước hoa:</td>
+            <td data-i18n="ticket_engrave_label">Tên khắc trên chai nước hoa:</td>
             <td id="modal-perfume-engraved" style="color:var(--gold-light); font-weight:700;">TRAN MINH KHOI</td>
           </tr>
           <tr>
-            <td>Mã công thức Scent ID:</td>
+            <td data-i18n="ticket_scent_id_label">Mã công thức Scent ID:</td>
             <td id="modal-scent-id">INDEP-1975-B35D45K20</td>
           </tr>
           <tr>
-            <td>Số lượng đăng ký:</td>
+            <td data-i18n="ticket_qty_label">Số lượng đăng ký:</td>
             <td id="modal-qty-seats">2 Vé</td>
           </tr>
         </table>
 
         <!-- Stamped Seals Row on Passport -->
-        <div style="text-align:center; font-size:0.75rem; letter-spacing:1px; color:var(--gold-light); margin-bottom:8px;">
+        <div style="text-align:center; font-size:0.75rem; letter-spacing:1px; color:var(--gold-light); margin-bottom:8px;" data-i18n="ticket_stamps_certified">
           3 DẤU MỘC SON HÀNH TRÌNH CHỨNG NHẬN
         </div>
 
         <div class="passport-sheet-stamps-grid">
           <div class="lacquer-stamp-seal stamped">
             <span class="stamp-num">MỘC I</span>
-            <span class="stamp-name">KHỞI HÀNH</span>
+            <span class="stamp-name" data-i18n="seal_1_name">KHỞI HÀNH</span>
             <span class="stamp-year">1975</span>
           </div>
           <div class="lacquer-stamp-seal stamped">
             <span class="stamp-num">MỘC II</span>
-            <span class="stamp-name">DẤU ẤN HƯƠNG</span>
+            <span class="stamp-name" data-i18n="seal_2_name">DẤU ẤN HƯƠNG</span>
             <span class="stamp-year">ĐẠI YẾN</span>
           </div>
           <div class="lacquer-stamp-seal stamped">
             <span class="stamp-num">MỘC III</span>
-            <span class="stamp-name">HOÀN TẤT</span>
+            <span class="stamp-name" data-i18n="seal_3_name">HOÀN TẤT</span>
             <span class="stamp-year">HÒA BÌNH</span>
           </div>
         </div>
@@ -1285,10 +1285,10 @@
         </div>
 
         <div style="display:flex; justify-content:center; gap:14px; margin-top:24px;">
-          <button class="gold-btn btn-sm" onclick="window.print()">
+          <button class="gold-btn btn-sm" onclick="window.print()" data-i18n="btn_print_ticket">
             🖨️ IN HỘ CHIẾU & VÉ ĐIỆN TỬ
           </button>
-          <button class="ghost-btn btn-sm" onclick="alert('Đã gửi mã vé QR và lịch .ics vào email đăng ký của quý khách!')">
+          <button class="ghost-btn btn-sm" onclick="alert('Đã gửi mã vé QR và lịch .ics vào email đăng ký của quý khách!')" data-i18n="btn_wallet_ticket">
             📲 LƯU VÀO VÍ ĐIỆN TỬ (APPLE/GOOGLE WALLET)
           </button>
         </div>
@@ -1302,10 +1302,10 @@
   <div class="heritage-modal" id="passport-drawer-modal">
     <div class="modal-dialog">
       <button class="modal-close-icon" onclick="document.getElementById('passport-drawer-modal').classList.remove('active'); document.body.style.overflow='';">&times;</button>
-      <h3 style="font-family:var(--font-serif); font-size:1.6rem; color:var(--gold-light); margin-bottom:12px;">
+      <h3 style="font-family:var(--font-serif); font-size:1.6rem; color:var(--gold-light); margin-bottom:12px;" data-i18n="drawer_title">
         HỘ CHIẾU ĐỘC LẬP CỦA BẠN
       </h3>
-      <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:24px;">
+      <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:24px;" data-i18n="drawer_desc">
         Khi bạn cuộn chuột qua từng chặng trong phần "Lộ Trình 120 Phút", 3 dấu mộc son sẽ được tự động đóng lên hộ chiếu.
       </p>
 
@@ -1313,23 +1313,23 @@
         <div class="passport-sheet-stamps-grid">
           <div class="lacquer-stamp-seal" id="digital-stamp-1">
             <span class="stamp-num">MỘC I</span>
-            <span class="stamp-name">KHỞI HÀNH</span>
+            <span class="stamp-name" data-i18n="seal_1_name">KHỞI HÀNH</span>
             <span class="stamp-year">1975</span>
           </div>
           <div class="lacquer-stamp-seal" id="digital-stamp-2">
             <span class="stamp-num">MỘC II</span>
-            <span class="stamp-name">DẤU ẤN HƯƠNG</span>
+            <span class="stamp-name" data-i18n="seal_2_name">DẤU ẤN HƯƠNG</span>
             <span class="stamp-year">ĐẠI YẾN</span>
           </div>
           <div class="lacquer-stamp-seal" id="digital-stamp-3">
             <span class="stamp-num">MỘC III</span>
-            <span class="stamp-name">HOÀN TẤT</span>
+            <span class="stamp-name" data-i18n="seal_3_name">HOÀN TẤT</span>
             <span class="stamp-year">HÒA BÌNH</span>
           </div>
         </div>
 
         <div style="text-align:center; margin-top:20px;">
-          <a href="#section-timeline" class="gold-btn btn-sm" onclick="document.getElementById('passport-drawer-modal').classList.remove('active'); document.body.style.overflow='';">
+          <a href="#section-timeline" class="gold-btn btn-sm" onclick="document.getElementById('passport-drawer-modal').classList.remove('active'); document.body.style.overflow='';" data-i18n="drawer_continue_btn">
             TIẾP TỤC KHÁM PHÁ LỘ TRÌNH ĐỂ THU THẬP ĐỦ 3 MỘC
           </a>
         </div>

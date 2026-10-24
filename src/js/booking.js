@@ -1,6 +1,7 @@
 import confetti from 'canvas-confetti';
 import { soundscape } from './audio.js';
 import { showNotificationToast } from './scrollytelling.js';
+import { translations } from './translations.js';
 
 export function initBookingEngine() {
   const tierCards = document.querySelectorAll('.pricing-card');
@@ -49,7 +50,10 @@ export function initBookingEngine() {
     const key = `${dateKey}-${shiftKey}`;
     const left = seatMap[key] || 16;
 
-    seatCounterEl.innerHTML = `<span class="seat-pulse"></span> Chỉ còn <strong>${left}/100</strong> chỗ trống`;
+    const activeLang = document.documentElement.lang || 'vi';
+    const dict = translations[activeLang] || translations.vi;
+    const template = dict.seats_available || 'Chỉ còn <strong>{count}/100</strong> chỗ trống';
+    seatCounterEl.innerHTML = `<span class="seat-pulse"></span> ${template.replace('{count}', left)}`;
   }
 
   function calculatePrices() {
@@ -63,9 +67,13 @@ export function initBookingEngine() {
     const discount = Math.round(subtotal * discountRate);
     const total = subtotal - discount;
 
-    if (subtotalEl) subtotalEl.textContent = `${subtotal.toLocaleString('vi-VN')} VNĐ`;
-    if (discountEl) discountEl.textContent = `-${discount.toLocaleString('vi-VN')} VNĐ (Early Bird 15%)`;
-    if (totalEl) totalEl.textContent = `${total.toLocaleString('vi-VN')} VNĐ`;
+    const activeLang = document.documentElement.lang || 'vi';
+    const currencySymbol = activeLang === 'en' ? 'VND' : 'VNĐ';
+    const discountSuffix = activeLang === 'en' ? '(15% Early Bird)' : (activeLang === 'fr' ? '(15% Early Bird)' : '(Early Bird 15%)');
+
+    if (subtotalEl) subtotalEl.textContent = `${subtotal.toLocaleString('vi-VN')} ${currencySymbol}`;
+    if (discountEl) discountEl.textContent = `-${discount.toLocaleString('vi-VN')} ${currencySymbol} ${discountSuffix}`;
+    if (totalEl) totalEl.textContent = `${total.toLocaleString('vi-VN')} ${currencySymbol}`;
   }
 
   // Tier Card Clicks
@@ -155,6 +163,12 @@ export function initBookingEngine() {
     radio.addEventListener('change', updateSeatCounter);
   });
 
+  // Re-calculate when language changes
+  window.addEventListener('languageChanged', () => {
+    updateSeatCounter();
+    calculatePrices();
+  });
+
   // Initial calculations
   setTier('vip');
   updateSeatCounter();
@@ -168,8 +182,19 @@ export function initBookingEngine() {
       const phone = document.getElementById('booking-phone')?.value || '';
       const email = document.getElementById('booking-email')?.value || '';
       const engravedName = document.getElementById('booking-engraved-name')?.value || 'HƯƠNG TỰ DO';
-      const selectedDate = document.querySelector('.date-slot-pill.selected')?.dataset.dateString || 'Thứ Sáu tới';
-      const selectedShift = document.querySelector('input[name="booking-shift"]:checked')?.value === '1' ? 'Suất 1 (18:00 – 20:00)' : 'Suất 2 (20:30 – 22:30)';
+      
+      const activeLang = document.documentElement.lang || 'vi';
+      const dict = translations[activeLang] || translations.vi;
+
+      const selectedDatePill = document.querySelector('.date-slot-pill.selected');
+      const dayName = selectedDatePill?.querySelector('.slot-day')?.textContent.trim() || '';
+      const dateNum = selectedDatePill?.querySelector('.slot-date')?.textContent.trim() || '';
+      const selectedDate = `${dayName}, ${dateNum}/2026`;
+
+      const selectedShift = document.querySelector('input[name="booking-shift"]:checked')?.value === '1' 
+        ? (dict.shift_1_label || 'Suất 1: 18:00 – 20:00') 
+        : (dict.shift_2_label || 'Suất 2: 20:30 – 22:30');
+      
       const is24hHold = document.getElementById('booking-hold-24h')?.checked;
 
       soundscape.playChime();
@@ -183,6 +208,10 @@ export function initBookingEngine() {
       });
 
       // Display Independence Passport & Ticket Modal
+      const tierNameDisplay = currentTier === 'standard' 
+        ? (dict.tier_1_tag || 'FREEDOM PASS') 
+        : (currentTier === 'corporate' ? (dict.tier_3_tag || 'PRIVATE CHARTER') : (dict.tier_2_tag || 'INDEPENDENCE VIP'));
+
       showPassportTicketModal({
         fullName,
         phone,
@@ -190,7 +219,7 @@ export function initBookingEngine() {
         engravedName: engravedName.toUpperCase(),
         date: selectedDate,
         shift: selectedShift,
-        tierName: tierPrices[currentTier].name,
+        tierName: tierNameDisplay,
         quantity: currentQuantity,
         scentId: window.currentScentFormula?.id || 'INDEP-1975-B35D45K20',
         isHold: is24hHold
@@ -205,6 +234,8 @@ export function showPassportTicketModal(data) {
   if (!modal) return;
 
   const ticketCode = `INDEP-1975-${Math.floor(1000 + Math.random() * 9000)}`;
+  const activeLang = document.documentElement.lang || 'vi';
+  const dict = translations[activeLang] || translations.vi;
 
   modal.querySelector('#modal-ticket-code').textContent = ticketCode;
   modal.querySelector('#modal-guest-name').textContent = data.fullName;
@@ -213,13 +244,15 @@ export function showPassportTicketModal(data) {
   modal.querySelector('#modal-event-shift').textContent = data.shift;
   modal.querySelector('#modal-perfume-engraved').textContent = data.engravedName;
   modal.querySelector('#modal-scent-id').textContent = data.scentId;
-  modal.querySelector('#modal-qty-seats').textContent = `${data.quantity} Vé`;
+
+  const seatSuffix = dict.ticket_seats_suffix || 'Vé';
+  modal.querySelector('#modal-qty-seats').textContent = `${data.quantity} ${seatSuffix}`;
 
   const holdBadge = modal.querySelector('#modal-hold-badge');
   if (holdBadge) {
     if (data.isHold) {
       holdBadge.style.display = 'inline-block';
-      holdBadge.textContent = '⏳ Giữ chỗ 24h đang kích hoạt';
+      holdBadge.textContent = dict.hold_badge_text || '⏳ Giữ chỗ 24h đang kích hoạt';
     } else {
       holdBadge.style.display = 'none';
     }

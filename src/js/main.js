@@ -6,6 +6,10 @@ import { initBookingEngine } from './booking.js';
 
 let currentLang = 'vi';
 
+export function getCurrentLang() {
+  return currentLang;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Sub-modules
   initScrollytelling();
@@ -48,8 +52,29 @@ export function applyLanguage(lang) {
     }
   });
 
-  // Also update HTML lang attribute
+  // Update HTML lang attribute, title, and meta description
   document.documentElement.lang = lang;
+  if (dict.meta_title) {
+    document.title = dict.meta_title;
+  }
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc && dict.meta_description) {
+    metaDesc.content = dict.meta_description;
+  }
+
+  // Update audio status button label if present
+  const audioBtn = document.getElementById('audio-toggle-btn');
+  const audioStatusText = document.getElementById('audio-status-text');
+  if (audioBtn && audioStatusText) {
+    if (audioBtn.classList.contains('playing')) {
+      audioStatusText.textContent = dict.audio_playing_text || 'Đang phát: Jazz Sài Gòn & Radio 70s';
+    } else {
+      audioStatusText.textContent = dict.audio_label || 'Âm thanh Không gian';
+    }
+  }
+
+  // Dispatch event for other reactive modules
+  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang, dict } }));
 }
 
 // Audio Bar & Visualizer
@@ -62,17 +87,18 @@ function initAudioToggle() {
 
   audioToggleBtn.addEventListener('click', async () => {
     const isPlaying = await soundscape.toggle();
+    const dict = translations[currentLang] || translations.vi;
 
     if (isPlaying) {
       audioToggleBtn.classList.add('playing');
       if (soundWaves) soundWaves.classList.add('active');
-      if (audioStatusText) audioStatusText.textContent = 'Đang phát: Jazz Sài Gòn & Radio 70s';
-      showNotificationToast('Đã bật không gian âm thanh Jazz & Radio hoài niệm thập niên 70');
+      if (audioStatusText) audioStatusText.textContent = dict.audio_playing_text || 'Đang phát: Jazz Sài Gòn & Radio 70s';
+      showNotificationToast(dict.toast_audio_on || 'Đã bật không gian âm thanh Jazz & Radio hoài niệm thập niên 70');
     } else {
       audioToggleBtn.classList.remove('playing');
       if (soundWaves) soundWaves.classList.remove('active');
-      if (audioStatusText) audioStatusText.textContent = 'Âm thanh: Đang tắt';
-      showNotificationToast('Đã tắt âm thanh không gian');
+      if (audioStatusText) audioStatusText.textContent = dict.audio_muted_text || 'Âm thanh: Đang tắt';
+      showNotificationToast(dict.toast_audio_off || 'Đã tắt âm thanh không gian');
     }
   });
 }
@@ -129,13 +155,31 @@ function startTrailerSimulation() {
   const videoOverlay = document.getElementById('trailer-screen-subtitles');
   if (!videoOverlay) return;
 
-  const script = [
-    { time: 0, text: "Tháng 4 năm 1975... Thời khắc chuyển giao của lịch sử." },
-    { time: 4, text: "Di tích Quốc gia Đặc biệt Dinh Độc Lập thắp sáng trong đêm." },
-    { time: 8, text: "Tiếng rền của khói lửa, tiếng còi xe tăng, âm vang hòa bình." },
-    { time: 13, text: "Hương hoa sen, trà xanh và khói trầm lưu giữ tự do." },
-    { time: 17, text: "HƯƠNG ĐỘC LẬP – Lưu giữ tự do trong từng giác quan." }
-  ];
+  const scriptsByLang = {
+    vi: [
+      { time: 0, text: "Tháng 4 năm 1975... Thời khắc chuyển giao của lịch sử." },
+      { time: 4, text: "Di tích Quốc gia Đặc biệt Dinh Độc Lập thắp sáng trong đêm." },
+      { time: 8, text: "Tiếng rền của khói lửa, tiếng còi xe tăng, âm vang hòa bình." },
+      { time: 13, text: "Hương hoa sen, trà xanh và khói trầm lưu giữ tự do." },
+      { time: 17, text: "HƯƠNG ĐỘC LẬP – Lưu giữ tự do trong từng giác quan." }
+    ],
+    en: [
+      { time: 0, text: "April 1975... A momentous turning point in history." },
+      { time: 4, text: "Independence Palace illuminated in the nocturnal splendor of Saigon." },
+      { time: 8, text: "Echoes of martial fire, the historic breakthrough, dawn of peace." },
+      { time: 13, text: "Bespoke notes of sacred lotus, royal woods, and eternal incense." },
+      { time: 17, text: "SCENT OF INDEPENDENCE – Preserving freedom in every awakened sense." }
+    ],
+    fr: [
+      { time: 0, text: "Avril 1975... Le tournant décisif de l'Histoire." },
+      { time: 4, text: "Le Palais de l'Indépendance s'illumine dans la nuit saïgonnaise." },
+      { time: 8, text: "Fracas des combats, chars franchissant les grilles, aube de paix." },
+      { time: 13, text: "Effluves de lotus blanc, thé vert et encens sacré de la liberté." },
+      { time: 17, text: "PARFUM D'INDÉPENDANCE – Éveillez vos sens au cœur de la liberté." }
+    ]
+  };
+
+  const script = scriptsByLang[currentLang] || scriptsByLang.vi;
 
   let sec = 0;
   videoOverlay.textContent = script[0].text;
@@ -189,20 +233,53 @@ function initScentIdRefill() {
   refillBtn.addEventListener('click', () => {
     const code = refillInput.value.trim().toUpperCase();
     if (!code) {
-      showNotificationToast('Vui lòng nhập mã Scent ID để tra cứu!');
+      const emptyMsg = currentLang === 'en' 
+        ? 'Please enter your Scent ID code!' 
+        : (currentLang === 'fr' ? 'Veuillez saisir votre code Scent ID !' : 'Vui lòng nhập mã Scent ID để tra cứu!');
+      showNotificationToast(emptyMsg);
       return;
     }
 
     soundscape.playChime();
     refillResult.style.display = 'block';
+
+    const refillTexts = {
+      vi: {
+        badge: "✦ CÔNG THỨC HỢP LỆ TRONG KHO LƯU TRỮ DINH ĐỘC LẬP",
+        desc: "Công thức gốc lưu trữ: <strong>35% Sen Bách Diệp & Nhài Đêm</strong> • <strong>45% Cỏ Hương Bài & Đàn Hương</strong> • <strong>20% Khói Trầm Hoàng Triều</strong>.",
+        btnOrder: "ĐẶT REFILL CHAI 50ML (850.000 VNĐ)",
+        btnGift: "GỬI TẶNG BẠN BÈ (GIFT CARD)",
+        alertOrder: `Đã thêm 01 chai Refill 50ml (${code}) vào giỏ quà tặng! Bộ phận Chăm sóc Di sản sẽ liên hệ quý khách.`,
+        alertGift: "Mã quà tặng số hóa cho bạn bè đã được gửi tới email liên kết!"
+      },
+      en: {
+        badge: "✦ VALID ARCHIVED FORMULA IN INDEPENDENCE PALACE REGISTRY",
+        desc: "Archived master formula: <strong>35% Sacred Lotus & Night Jasmine</strong> • <strong>45% Royal Vetiver & Mysore Sandalwood</strong> • <strong>20% Imperial Agarwood Smoke</strong>.",
+        btnOrder: "ORDER 50ML REFILL FLACON ($35 USD)",
+        btnGift: "SEND COMPLIMENTARY GIFT CARD",
+        alertOrder: `Added 1x 50ml Refill (${code}) to gift cart! Heritage Concierge will contact you shortly.`,
+        alertGift: "Digital gift card with QR code has been dispatched to your registered email!"
+      },
+      fr: {
+        badge: "✦ FORMULE ARCHIVÉE OFFICIELLE AU REGISTRE DU PALAIS DE L'INDÉPENDANCE",
+        desc: "Formule originale : <strong>35% Lotus Blanc & Jasmin</strong> • <strong>45% Vétiver & Santal de Mysore</strong> • <strong>20% Encens d'Oud Royal</strong>.",
+        btnOrder: "COMMANDER LA RECHARGE 50ML (35 €)",
+        btnGift: "OFFRIR EN CARTE CADEAU",
+        alertOrder: `1 flacon recharge 50ml (${code}) ajouté au panier ! La conciergerie vous contactera sous peu.`,
+        alertGift: "La carte cadeau numérique avec QR code a été envoyée par courriel !"
+      }
+    };
+
+    const rt = refillTexts[currentLang] || refillTexts.vi;
+
     refillResult.innerHTML = `
       <div class="refill-found-box">
-        <div class="refill-status-badge">✦ CÔNG THỨC HỢP LỆ TRONG KHO LƯU TRỮ DINH ĐỘC LẬP</div>
-        <h4>Mã Scent ID: <span class="gold-text">${code}</span></h4>
-        <p class="refill-desc">Công thức gốc lưu trữ: <strong>35% Sen Bách Diệp & Nhài Đêm</strong> • <strong>45% Cỏ Hương Bài & Đàn Hương</strong> • <strong>20% Khói Trầm Hoàng Triều</strong>.</p>
+        <div class="refill-status-badge">${rt.badge}</div>
+        <h4>Mã / Code Scent ID: <span class="gold-text">${code}</span></h4>
+        <p class="refill-desc">${rt.desc}</p>
         <div class="refill-action-row">
-          <button class="gold-btn btn-sm" onclick="alert('Đã thêm 01 chai Refill 50ml (${code}) vào giỏ quà tặng! Bộ phận Chăm sóc Di sản sẽ liên hệ quý khách.')">ĐẶT REFILL CHAI 50ML (850.000 VNĐ)</button>
-          <button class="ghost-btn btn-sm" onclick="alert('Mã quà tặng số hóa cho bạn bè đã được gửi tới email liên kết!')">GỬI TẶNG BẠN BÈ (GIFT CARD)</button>
+          <button class="gold-btn btn-sm" onclick="alert('${rt.alertOrder}')">${rt.btnOrder}</button>
+          <button class="ghost-btn btn-sm" onclick="alert('${rt.alertGift}')">${rt.btnGift}</button>
         </div>
       </div>
     `;

@@ -1,351 +1,306 @@
-// Web Audio API Ambient Soundscape & Sound FX Engine
-// Generates nostalgic 1970s Saigon Jazz, vintage radio tuning, warm vinyl crackle, and realistic tactile sound FX
+// Web Audio & Background Soundscape Engine
+// Plays "優しく舞う桜 – Cherry Blossoms Fall Softly (NOQURA)" as atmospheric background music
+// with auto-start, smooth fade-in/fade-out, and ultra-refined luxury tactile sound FX (perfume spray, stamp, chime).
+
+import { translations } from './translations.js';
 
 class SoundscapeEngine {
   constructor() {
-    this.ctx = null;
+    this.audio = null;
     this.isPlaying = false;
-    this.masterGain = null;
-    this.radioGain = null;
-    this.musicGain = null;
-    this.noiseNode = null;
-    this.loopTimer = null;
-    this.bassTimer = null;
-    this.leadTimer = null;
-    this.step = 0;
-    
-    // Rich 1970s Saigon Jazz Chords (Frequencies in Hz)
-    // Dm9 -> G13 -> Cmaj9 -> Am11 -> Fmaj7#11 -> Em9 -> A7alt -> Dm11
-    this.chordProgression = [
-      {
-        name: "Dm9",
-        bass: 73.42, // D2
-        walking: [73.42, 82.41, 98.00, 110.00],
-        notes: [146.83, 174.61, 220.00, 261.63, 329.63], // D3, F3, A3, C4, E4
-        melody: [440.00, 392.00, 329.63] // A4, G4, E4
-      },
-      {
-        name: "G13",
-        bass: 98.00, // G2
-        walking: [98.00, 110.00, 123.47, 130.81],
-        notes: [196.00, 246.94, 293.66, 329.63, 440.00], // G3, B3, D4, E4, A4
-        melody: [392.00, 329.63, 293.66] // G4, E4, D4
-      },
-      {
-        name: "Cmaj9",
-        bass: 65.41, // C2
-        walking: [65.41, 82.41, 98.00, 110.00],
-        notes: [130.81, 164.81, 196.00, 246.94, 293.66], // C3, E3, G3, B3, D4
-        melody: [293.66, 329.63, 392.00] // D4, E4, G4
-      },
-      {
-        name: "Am11",
-        bass: 110.00, // A2
-        walking: [110.00, 98.00, 87.31, 73.42],
-        notes: [220.00, 261.63, 293.66, 329.63, 392.00], // A3, C4, D4, E4, G4
-        melody: [440.00, 493.88, 440.00] // A4, B4, A4
-      },
-      {
-        name: "Fmaj7",
-        bass: 87.31, // F2
-        walking: [87.31, 98.00, 110.00, 123.47],
-        notes: [174.61, 220.00, 261.63, 329.63, 369.99], // F3, A3, C4, E4, F#4
-        melody: [349.23, 329.63, 293.66] // F4, E4, D4
-      },
-      {
-        name: "Em9",
-        bass: 82.41, // E2
-        walking: [82.41, 98.00, 110.00, 116.54],
-        notes: [164.81, 196.00, 246.94, 293.66, 369.99], // E3, G3, B3, D4, F#4
-        melody: [329.63, 293.66, 246.94] // E4, D4, B3
-      },
-      {
-        name: "A7alt",
-        bass: 110.00, // A2
-        walking: [110.00, 123.47, 138.59, 146.83],
-        notes: [220.00, 277.18, 329.63, 392.00, 415.30], // A3, C#4, E4, G4, G#4
-        melody: [415.30, 392.00, 329.63] // G#4, G4, E4
-      },
-      {
-        name: "Dm11",
-        bass: 73.42, // D2
-        walking: [73.42, 82.41, 98.00, 110.00],
-        notes: [146.83, 220.00, 261.63, 293.66, 349.23], // D3, A3, C4, D4, F4
-        melody: [440.00, 349.23, 293.66] // A4, F4, D4
-      }
-    ];
+    this.audioUrl = '/assets/audio/cherry-blossoms-fall-softly.mp3';
+    this.targetVolume = 0.45; // Gentle, elegant background volume
+    this.fadeInterval = null;
+    this.hasInteracted = false;
+
+    // Web Audio Context for low-latency tactile sound FX
+    this.ctx = null;
+    this.fxGain = null;
   }
 
-  init() {
+  // Initialize HTML5 Audio Element for background music
+  initAudioElement() {
+    if (this.audio) return;
+    this.audio = new Audio(this.audioUrl);
+    this.audio.loop = true;
+    this.audio.preload = 'auto';
+    this.audio.volume = 0;
+
+    this.audio.addEventListener('play', () => {
+      this.isPlaying = true;
+      this.updateUIState(true);
+    });
+
+    this.audio.addEventListener('pause', () => {
+      this.isPlaying = false;
+      this.updateUIState(false);
+    });
+
+    this.audio.addEventListener('ended', () => {
+      this.isPlaying = false;
+      this.updateUIState(false);
+    });
+  }
+
+  // Initialize Web Audio API for tactile sound FX (spray, stamp, chime)
+  initAudioContext() {
     if (this.ctx) return;
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
     this.ctx = new AudioContextClass();
-
-    // Master Output Gain (Audible & Warm)
-    this.masterGain = this.ctx.createGain();
-    this.masterGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
-    this.masterGain.connect(this.ctx.destination);
-
-    // Sub-gains
-    this.musicGain = this.ctx.createGain();
-    this.musicGain.gain.setValueAtTime(0.8, this.ctx.currentTime);
-    this.musicGain.connect(this.masterGain);
-
-    this.radioGain = this.ctx.createGain();
-    this.radioGain.gain.setValueAtTime(0.22, this.ctx.currentTime);
-    this.radioGain.connect(this.masterGain);
+    this.fxGain = this.ctx.createGain();
+    this.fxGain.gain.setValueAtTime(0.85, this.ctx.currentTime);
+    this.fxGain.connect(this.ctx.destination);
   }
 
-  async toggle() {
-    this.init();
-    
-    // Ensure context is running after user click
-    if (this.ctx.state === 'suspended') {
-      try {
-        await this.ctx.resume();
-      } catch (err) {
-        console.warn("Could not resume AudioContext:", err);
+  // Auto-start music on page load, handling browser autoplay restrictions
+  async autoStart() {
+    this.initAudioElement();
+
+    try {
+      this.audio.volume = 0;
+      const playPromise = this.audio.play();
+      if (playPromise !== undefined) {
+        await playPromise;
+        this.isPlaying = true;
+        this.fadeIn(1500);
+        this.updateUIState(true);
       }
+    } catch (err) {
+      // Browser blocked autoplay without user gesture -> listen for first interaction
+      this.setupFirstInteractionListener();
     }
+  }
+
+  // When browser autoplay is blocked, start music on first touch/click/scroll
+  setupFirstInteractionListener() {
+    const triggerStart = async () => {
+      if (this.hasInteracted) return;
+      this.hasInteracted = true;
+
+      const events = ['pointerdown', 'touchstart', 'click', 'scroll', 'keydown'];
+      events.forEach(ev => window.removeEventListener(ev, triggerStart, { capture: true }));
+
+      if (!this.isPlaying) {
+        try {
+          this.initAudioElement();
+          this.audio.volume = 0;
+          await this.audio.play();
+          this.isPlaying = true;
+          this.fadeIn(1500);
+          this.updateUIState(true);
+        } catch (e) {
+          console.warn("Audio start on interaction note:", e);
+        }
+      }
+    };
+
+    const events = ['pointerdown', 'touchstart', 'click', 'scroll', 'keydown'];
+    events.forEach(ev => window.addEventListener(ev, triggerStart, { capture: true, once: true }));
+  }
+
+  // Smooth Volume Fade In
+  fadeIn(duration = 1200) {
+    if (!this.audio) return;
+    if (this.fadeInterval) clearInterval(this.fadeInterval);
+    const steps = 30;
+    const stepTime = duration / steps;
+    const volIncrement = this.targetVolume / steps;
+
+    this.fadeInterval = setInterval(() => {
+      if (!this.audio) {
+        clearInterval(this.fadeInterval);
+        return;
+      }
+      if (this.audio.volume + volIncrement >= this.targetVolume) {
+        this.audio.volume = this.targetVolume;
+        clearInterval(this.fadeInterval);
+      } else {
+        this.audio.volume += volIncrement;
+      }
+    }, stepTime);
+  }
+
+  // Smooth Volume Fade Out
+  fadeOut(callback, duration = 600) {
+    if (!this.audio) {
+      if (callback) callback();
+      return;
+    }
+    if (this.fadeInterval) clearInterval(this.fadeInterval);
+    const steps = 20;
+    const stepTime = duration / steps;
+    const volDecrement = this.audio.volume / steps;
+
+    this.fadeInterval = setInterval(() => {
+      if (!this.audio || this.audio.volume - volDecrement <= 0.01) {
+        if (this.audio) this.audio.volume = 0;
+        clearInterval(this.fadeInterval);
+        if (callback) callback();
+      } else {
+        this.audio.volume = Math.max(0, this.audio.volume - volDecrement);
+      }
+    }, stepTime);
+  }
+
+  // User Manual Toggle Button in Header
+  async toggle() {
+    this.initAudioElement();
 
     if (this.isPlaying) {
-      this.stop();
+      this.fadeOut(() => {
+        this.audio.pause();
+        this.isPlaying = false;
+        this.updateUIState(false);
+      }, 500);
       return false;
     } else {
-      await this.start();
-      return true;
-    }
-  }
-
-  async start() {
-    this.isPlaying = true;
-
-    // 1. Play realistic 1970s Radio Dial Tuning & Needle Drop
-    this.playRadioTuningIntro();
-
-    // 2. Start Warm Vinyl Crackle in background
-    setTimeout(() => {
-      if (this.isPlaying) {
-        this.startVinylNoise();
-      }
-    }, 400);
-
-    // 3. Start the Vintage Saigon Jazz Arrangement after short tuning effect
-    setTimeout(() => {
-      if (this.isPlaying) {
-        this.step = 0;
-        this.playJazzCycle();
-        this.loopTimer = setInterval(() => {
-          if (this.isPlaying) {
-            this.playJazzCycle();
-          }
-        }, 4000);
-      }
-    }, 550);
-  }
-
-  stop() {
-    this.isPlaying = false;
-    if (this.loopTimer) {
-      clearInterval(this.loopTimer);
-      this.loopTimer = null;
-    }
-    if (this.bassTimer) {
-      clearInterval(this.bassTimer);
-      this.bassTimer = null;
-    }
-    if (this.leadTimer) {
-      clearInterval(this.leadTimer);
-      this.leadTimer = null;
-    }
-    if (this.noiseNode) {
       try {
-        this.noiseNode.stop();
-        this.noiseNode.disconnect();
-      } catch (e) {}
-      this.noiseNode = null;
+        await this.audio.play();
+        this.isPlaying = true;
+        this.fadeIn(800);
+        this.updateUIState(true);
+        return true;
+      } catch (err) {
+        console.warn("Manual audio play error:", err);
+        return false;
+      }
     }
   }
 
-  // 1970s Analog Radio Dial Sweep & Needle Drop
-  playRadioTuningIntro() {
+  // Synchronize UI header button, equalizer bars, and label
+  updateUIState(playing) {
+    const audioBtn = document.getElementById('audio-toggle-btn');
+    const soundWaves = document.getElementById('sound-waves-indicator');
+    const audioStatusText = document.getElementById('audio-status-text');
+    const activeLang = document.documentElement.lang || 'vi';
+    const dict = translations[activeLang] || translations.vi;
+
+    if (audioBtn) {
+      audioBtn.classList.toggle('playing', playing);
+    }
+    if (soundWaves) {
+      soundWaves.classList.toggle('active', playing);
+    }
+    if (audioStatusText) {
+      audioStatusText.textContent = playing 
+        ? (dict.audio_playing_text || 'Đang phát: Hoa Anh Đào Rơi Dịu Dàng (NOQURA)')
+        : (dict.audio_muted_text || 'Âm thanh: Đang tắt');
+    }
+  }
+
+  // =========================================================================
+  // TACTILE SOUND FX: ULTRA-REFINED LUXURY PERFUME MIST SPRAY
+  // =========================================================================
+  async playSpraySound() {
+    this.initAudioContext();
     if (!this.ctx) return;
+
+    if (this.ctx.state === 'suspended') {
+      try { await this.ctx.resume(); } catch(e) {}
+    }
+
     const now = this.ctx.currentTime;
 
-    // High dial sweep whistle
-    const sweepOsc = this.ctx.createOscillator();
-    const sweepGain = this.ctx.createGain();
-    sweepOsc.type = "sine";
-    sweepOsc.frequency.setValueAtTime(1800, now);
-    sweepOsc.frequency.exponentialRampToValueAtTime(750, now + 0.35);
-    sweepOsc.frequency.linearRampToValueAtTime(1200, now + 0.5);
+    // 1. Mechanical Atomizer Valve Micro-Click (Subtle metallic precision)
+    const clickOsc = this.ctx.createOscillator();
+    const clickGain = this.ctx.createGain();
+    const clickFilter = this.ctx.createBiquadFilter();
 
-    sweepGain.gain.setValueAtTime(0.001, now);
-    sweepGain.gain.linearRampToValueAtTime(0.12, now + 0.1);
-    sweepGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    clickOsc.type = "triangle";
+    clickOsc.frequency.setValueAtTime(5400, now);
+    clickOsc.frequency.exponentialRampToValueAtTime(1400, now + 0.015);
 
-    sweepOsc.connect(sweepGain);
-    sweepGain.connect(this.radioGain);
-    sweepOsc.start(now);
-    sweepOsc.stop(now + 0.52);
+    clickFilter.type = "highpass";
+    clickFilter.frequency.setValueAtTime(2600, now);
 
-    // Needle drop thump
-    const popOsc = this.ctx.createOscillator();
-    const popGain = this.ctx.createGain();
-    popOsc.type = "triangle";
-    popOsc.frequency.setValueAtTime(90, now + 0.35);
-    popOsc.frequency.exponentialRampToValueAtTime(30, now + 0.45);
+    clickGain.gain.setValueAtTime(0.0001, now);
+    clickGain.gain.linearRampToValueAtTime(0.05, now + 0.003);
+    clickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.018);
 
-    popGain.gain.setValueAtTime(0.25, now + 0.35);
-    popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.48);
+    clickOsc.connect(clickFilter);
+    clickFilter.connect(clickGain);
+    clickGain.connect(this.fxGain);
 
-    popOsc.connect(popGain);
-    popGain.connect(this.masterGain);
-    popOsc.start(now + 0.35);
-    popOsc.stop(now + 0.5);
-  }
+    clickOsc.start(now);
+    clickOsc.stop(now + 0.022);
 
-  // Continuous Warm Vinyl Noise + Crackle Pops
-  startVinylNoise() {
-    if (!this.ctx || this.noiseNode) return;
-    const sampleRate = this.ctx.sampleRate;
-    const bufferSize = sampleRate * 3; // 3 seconds loop
-    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, sampleRate);
+    // 2. Silky Aerated Mist Vapor (Smooth filtered pink/white whisper)
+    const dur = 0.52;
+    const bufferSize = Math.floor(this.ctx.sampleRate * dur);
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
     const data = noiseBuffer.getChannelData(0);
 
+    let lastOut = 0.0;
     for (let i = 0; i < bufferSize; i++) {
-      // Gentle surface hiss
-      const hiss = (Math.random() * 2 - 1) * 0.025;
-      // Periodic distinct vinyl crackles & pops
-      const crackle = Math.random() < 0.003 ? (Math.random() * 0.5 - 0.25) : 0;
-      data[i] = hiss + crackle;
+      const white = Math.random() * 2 - 1;
+      // Soft one-pole filter for pinkish, natural aerosol character
+      lastOut = (lastOut * 0.4) + (white * 0.6);
+      data[i] = lastOut;
     }
 
-    this.noiseNode = this.ctx.createBufferSource();
-    this.noiseNode.buffer = noiseBuffer;
-    this.noiseNode.loop = true;
+    const spraySource = this.ctx.createBufferSource();
+    spraySource.buffer = noiseBuffer;
 
-    // Tube radio bandpass filter (Warm vintage tone)
-    const bandpass = this.ctx.createBiquadFilter();
-    bandpass.type = "bandpass";
-    bandpass.frequency.setValueAtTime(1200, this.ctx.currentTime);
-    bandpass.Q.setValueAtTime(1.2, this.ctx.currentTime);
+    // Bandpass centered at silky 5600Hz - characteristic of fine fragrance nozzles
+    const sprayFilter = this.ctx.createBiquadFilter();
+    sprayFilter.type = "bandpass";
+    sprayFilter.frequency.setValueAtTime(5600, now);
+    sprayFilter.frequency.exponentialRampToValueAtTime(3400, now + dur);
+    sprayFilter.Q.setValueAtTime(1.5, now);
 
-    this.noiseNode.connect(bandpass);
-    bandpass.connect(this.radioGain);
-    this.noiseNode.start();
-  }
+    // Highpass to eliminate any rumble or harsh thud
+    const highpass = this.ctx.createBiquadFilter();
+    highpass.type = "highpass";
+    highpass.frequency.setValueAtTime(2400, now);
 
-  // Play One 4-second Jazz Cycle (Chord + Walking Bass + Soulful Melody)
-  playJazzCycle() {
-    if (!this.ctx || !this.isPlaying) return;
-    const item = this.chordProgression[this.step % this.chordProgression.length];
-    this.step++;
-    const now = this.ctx.currentTime;
+    const sprayGain = this.ctx.createGain();
+    // Gentle curve: smooth attack (25ms) -> gentle body -> organic tail
+    sprayGain.gain.setValueAtTime(0.0001, now + 0.004);
+    sprayGain.gain.linearRampToValueAtTime(0.16, now + 0.035);
+    sprayGain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
 
-    // A. Lush Fender Rhodes / Electric Piano Chords
-    item.notes.forEach((freq, idx) => {
-      // Main fundamental oscillator
-      const osc1 = this.ctx.createOscillator();
-      // Slight detune for warm vintage analog chorus
-      const osc2 = this.ctx.createOscillator();
-      const chordGain = this.ctx.createGain();
-      const filter = this.ctx.createBiquadFilter();
+    spraySource.connect(highpass);
+    highpass.connect(sprayFilter);
+    sprayFilter.connect(sprayGain);
+    sprayGain.connect(this.fxGain);
 
-      osc1.type = "sine";
-      osc1.frequency.setValueAtTime(freq, now + idx * 0.05);
+    spraySource.start(now + 0.004);
+    spraySource.stop(now + dur + 0.03);
 
-      osc2.type = "triangle";
-      osc2.frequency.setValueAtTime(freq * 1.002, now + idx * 0.05); // +3 cents detune
+    // 3. Delicate Crystalline Resonance (Aura of fine fragrance blooming)
+    // Dreamy, ethereal chord [C#6, G#6, E7] ringing like micro-droplets in sunlight
+    const auraNotes = [1108.73, 1661.22, 2637.02];
+    auraNotes.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
 
-      // Vintage Warm Lowpass Filter
-      filter.type = "lowpass";
-      filter.frequency.setValueAtTime(800, now);
-      filter.frequency.exponentialRampToValueAtTime(380, now + 3.8);
+      osc.type = "sine";
+      const noteStart = now + 0.04 + idx * 0.02;
+      const noteDur = 0.52 - idx * 0.05;
 
-      // Volume envelope (Cleanly audible)
-      const peakVol = 0.16 / (idx + 1) * 1.8;
-      chordGain.gain.setValueAtTime(0.001, now + idx * 0.05);
-      chordGain.gain.linearRampToValueAtTime(peakVol, now + idx * 0.05 + 0.18);
-      chordGain.gain.exponentialRampToValueAtTime(0.001, now + 3.9);
+      osc.frequency.setValueAtTime(freq, noteStart);
 
-      osc1.connect(filter);
-      osc2.connect(filter);
-      filter.connect(chordGain);
-      chordGain.connect(this.musicGain);
+      gain.gain.setValueAtTime(0.0001, noteStart);
+      gain.gain.linearRampToValueAtTime(0.024 / (idx + 1), noteStart + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + noteDur);
 
-      osc1.start(now + idx * 0.05);
-      osc2.start(now + idx * 0.05);
-      osc1.stop(now + 4.0);
-      osc2.stop(now + 4.0);
-    });
+      osc.connect(gain);
+      gain.connect(this.fxGain);
 
-    // B. Plucked Acoustic Double-Bass (Walking Bass on Beats 1, 2, 3, 4)
-    item.walking.forEach((bFreq, beatIdx) => {
-      const beatTime = now + beatIdx * 0.95;
-      const bassOsc = this.ctx.createOscillator();
-      const bassGain = this.ctx.createGain();
-      const bassFilter = this.ctx.createBiquadFilter();
-
-      bassOsc.type = "triangle";
-      bassOsc.frequency.setValueAtTime(bFreq, beatTime);
-
-      bassFilter.type = "lowpass";
-      bassFilter.frequency.setValueAtTime(220, beatTime);
-
-      // Acoustic pluck envelope
-      bassGain.gain.setValueAtTime(0.001, beatTime);
-      bassGain.gain.linearRampToValueAtTime(0.38, beatTime + 0.04);
-      bassGain.gain.exponentialRampToValueAtTime(0.001, beatTime + 0.85);
-
-      bassOsc.connect(bassFilter);
-      bassFilter.connect(bassGain);
-      bassGain.connect(this.musicGain);
-
-      bassOsc.start(beatTime);
-      bassOsc.stop(beatTime + 0.9);
-    });
-
-    // C. Soulful Nostalgic Tenor Sax / Trumpet Lead
-    item.melody.forEach((mFreq, mIdx) => {
-      const mTime = now + 0.6 + mIdx * 1.1;
-      const leadOsc = this.ctx.createOscillator();
-      const leadGain = this.ctx.createGain();
-      const vibrato = this.ctx.createOscillator();
-      const vibratoGain = this.ctx.createGain();
-      const leadFilter = this.ctx.createBiquadFilter();
-
-      leadOsc.type = "sawtooth";
-      leadOsc.frequency.setValueAtTime(mFreq, mTime);
-
-      // 5Hz Subtle Vibrato
-      vibrato.frequency.setValueAtTime(5.2, mTime);
-      vibratoGain.gain.setValueAtTime(4.5, mTime); // +/- 4.5Hz pitch vibrato
-      vibrato.connect(leadOsc.frequency);
-
-      // Soft Saxophone Formant Filter
-      leadFilter.type = "bandpass";
-      leadFilter.frequency.setValueAtTime(1100, mTime);
-      leadFilter.Q.setValueAtTime(2.2, mTime);
-
-      leadGain.gain.setValueAtTime(0.001, mTime);
-      leadGain.gain.linearRampToValueAtTime(0.18, mTime + 0.15);
-      leadGain.gain.exponentialRampToValueAtTime(0.001, mTime + 1.05);
-
-      leadOsc.connect(leadFilter);
-      leadFilter.connect(leadGain);
-      leadGain.connect(this.musicGain);
-
-      vibrato.start(mTime);
-      leadOsc.start(mTime);
-      vibrato.stop(mTime + 1.1);
-      leadOsc.stop(mTime + 1.1);
+      osc.start(noteStart);
+      osc.stop(noteStart + noteDur + 0.04);
     });
   }
 
-  // Tactile Sound FX: Gentle Lacquer Stamp & Harmonious Seal
+  // =========================================================================
+  // TACTILE SOUND FX: GENTLE LACQUER STAMP & HARMONIOUS SEAL
+  // =========================================================================
   async playStampSound() {
-    this.init();
+    this.initAudioContext();
+    if (!this.ctx) return;
+
     if (this.ctx.state === 'suspended') {
       try { await this.ctx.resume(); } catch(e) {}
     }
@@ -370,7 +325,7 @@ class SoundscapeEngine {
 
     pressOsc.connect(pressFilter);
     pressFilter.connect(pressGain);
-    pressGain.connect(this.masterGain);
+    pressGain.connect(this.fxGain);
 
     pressOsc.start(now);
     pressOsc.stop(now + 0.25);
@@ -399,7 +354,7 @@ class SoundscapeEngine {
 
     noiseNode.connect(noiseFilter);
     noiseFilter.connect(noiseGain);
-    noiseGain.connect(this.masterGain);
+    noiseGain.connect(this.fxGain);
 
     noiseNode.start(now);
     noiseNode.stop(now + noiseDur + 0.02);
@@ -418,54 +373,20 @@ class SoundscapeEngine {
       chimeGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.55 + idx * 0.03);
 
       chimeOsc.connect(chimeGain);
-      chimeGain.connect(this.masterGain);
+      chimeGain.connect(this.fxGain);
 
       chimeOsc.start(now + 0.02 + idx * 0.03);
       chimeOsc.stop(now + 0.6);
     });
   }
 
-  // Tactile Sound FX: Perfume Mist Spray
-  async playSpraySound() {
-    this.init();
-    if (this.ctx.state === 'suspended') {
-      try { await this.ctx.resume(); } catch(e) {}
-    }
-
-    const now = this.ctx.currentTime;
-    const dur = 0.55;
-    const bufferSize = this.ctx.sampleRate * dur;
-    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-    const data = noiseBuffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = Math.random() * 2 - 1;
-    }
-
-    const sprayNode = this.ctx.createBufferSource();
-    sprayNode.buffer = noiseBuffer;
-
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = "bandpass";
-    filter.frequency.setValueAtTime(3400, now);
-    filter.frequency.exponentialRampToValueAtTime(1600, now + dur);
-    filter.Q.setValueAtTime(2.2, now);
-
-    const sprayGain = this.ctx.createGain();
-    sprayGain.gain.setValueAtTime(0.001, now);
-    sprayGain.gain.linearRampToValueAtTime(0.4, now + 0.05);
-    sprayGain.gain.exponentialRampToValueAtTime(0.001, now + dur);
-
-    sprayNode.connect(filter);
-    filter.connect(sprayGain);
-    sprayGain.connect(this.masterGain);
-
-    sprayNode.start(now);
-    sprayNode.stop(now + dur + 0.05);
-  }
-
-  // Tactile Sound FX: Chime / Success
+  // =========================================================================
+  // TACTILE SOUND FX: CHIME / SUCCESS
+  // =========================================================================
   async playChime() {
-    this.init();
+    this.initAudioContext();
+    if (!this.ctx) return;
+
     if (this.ctx.state === 'suspended') {
       try { await this.ctx.resume(); } catch(e) {}
     }
@@ -477,13 +398,13 @@ class SoundscapeEngine {
       osc.frequency.setValueAtTime(freq, now + idx * 0.09);
 
       gain.gain.setValueAtTime(0.001, now + idx * 0.09);
-      gain.gain.exponentialRampToValueAtTime(0.2, now + idx * 0.09 + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.09 + 0.8);
+      gain.gain.exponentialRampToValueAtTime(0.18, now + idx * 0.09 + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.09 + 0.7);
 
       osc.connect(gain);
-      gain.connect(this.masterGain);
+      gain.connect(this.fxGain);
       osc.start(now + idx * 0.09);
-      osc.stop(now + idx * 0.09 + 0.85);
+      osc.stop(now + idx * 0.09 + 0.75);
     });
   }
 }

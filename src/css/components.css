@@ -1064,21 +1064,117 @@
   letter-spacing: 0.5px;
 }
 
-/* Mist Effect Container */
+/* Mist Effect Container at flacon nozzle */
 .perfume-mist-effect {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 20;
+  overflow: visible;
+}
+
+/* Flacon Cap Tactile Depression */
+.flacon-cap {
+  transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+.flacon-cap.pressing {
+  transform: translateY(4px) scale(0.97);
+}
+
+/* Ambient Aura Pulse during Spray */
+.flacon-ambient-aura.spray-aura-pulse {
+  animation: sprayAuraGlow 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sprayAuraGlow {
+  0% { transform: scale(1); opacity: 0.85; }
+  35% { transform: scale(1.35); opacity: 1; filter: blur(35px); }
+  100% { transform: scale(1); opacity: 0.85; filter: blur(45px); }
+}
+
+/* Layer 1: Ethereal Vapor Clouds */
+.mist-vapor-puff {
   position: absolute;
   top: 10px;
   left: 50%;
-  transform: translateX(-50%);
+  border-radius: 50%;
   pointer-events: none;
-  z-index: 10;
+  animation: vaporBloom 1.2s cubic-bezier(0.12, 0.8, 0.35, 1) forwards;
 }
 
-.mist-particle {
+@keyframes vaporBloom {
+  0% {
+    transform: translate(-50%, 0) scale(0.2);
+    opacity: 0.85;
+    filter: blur(4px);
+  }
+  30% {
+    opacity: 0.65;
+    filter: blur(14px);
+  }
+  100% {
+    transform: translate(calc(-50% + var(--vx, 0px)), -150px) scale(3.2);
+    opacity: 0;
+    filter: blur(28px);
+  }
+}
+
+/* Layer 2: Fine Atomized Micro-Droplets */
+.mist-micro-droplet {
   position: absolute;
+  top: 10px;
+  left: 50%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(212, 175, 55, 0.4) 60%, transparent 100%);
-  animation: mistFloat 0.9s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  pointer-events: none;
+  animation: dropletFly 0.95s cubic-bezier(0.15, 0.85, 0.45, 1) forwards;
+}
+
+@keyframes dropletFly {
+  0% {
+    transform: translate(-50%, 0) scale(0.6);
+    opacity: 0.95;
+  }
+  40% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), var(--ty)) scale(0.15);
+    opacity: 0;
+  }
+}
+
+/* Layer 3: Glistening Golden Olfactory Sparkles */
+.mist-glint {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  font-size: 11px;
+  line-height: 1;
+  pointer-events: none;
+  animation: glintFloat 1.2s cubic-bezier(0.16, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes glintFloat {
+  0% {
+    transform: translate(-50%, 0) scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--tx) * 0.4), calc(var(--ty) * 0.4)) scale(1.1) rotate(90deg);
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), var(--ty)) scale(0.2) rotate(260deg);
+    opacity: 0;
+  }
 }
 
 .bottle-controls-row {

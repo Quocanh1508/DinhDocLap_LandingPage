@@ -241,40 +241,97 @@ export function initPerfumeMixer() {
     mistContainer.innerHTML = '';
     mistContainer.classList.add('active');
 
-    let particleColor = 'rgba(255, 255, 255, 0.9)';
-    let secondaryColor = 'rgba(212, 175, 55, 0.4)';
-
-    if (theme === 'dawn') {
-      particleColor = 'rgba(167, 243, 208, 0.95)';
-      secondaryColor = 'rgba(16, 185, 129, 0.6)';
-    } else if (theme === 'heritage') {
-      particleColor = 'rgba(254, 240, 138, 0.95)';
-      secondaryColor = 'rgba(212, 175, 55, 0.65)';
-    } else if (theme === 'memory') {
-      particleColor = 'rgba(254, 202, 202, 0.95)';
-      secondaryColor = 'rgba(220, 38, 38, 0.6)';
+    // Tactile flacon cap nozzle depression
+    const cap = document.querySelector('.flacon-cap');
+    if (cap) {
+      cap.classList.add('pressing');
+      setTimeout(() => cap.classList.remove('pressing'), 160);
     }
 
-    for (let i = 0; i < 32; i++) {
+    // Ambient aura glow pulse
+    if (auraEl) {
+      auraEl.classList.remove('spray-aura-pulse');
+      void auraEl.offsetWidth; // trigger reflow
+      auraEl.classList.add('spray-aura-pulse');
+      setTimeout(() => auraEl.classList.remove('spray-aura-pulse'), 1200);
+    }
+
+    // Palette configuration based on active theme
+    let vaporColor = 'rgba(255, 250, 220, 0.7)';
+    let dropletCore = 'rgba(255, 255, 255, 0.98)';
+    let dropletEdge = 'rgba(212, 175, 55, 0.65)';
+    let sparkleColor = '#FDF0CD';
+
+    if (theme === 'dawn') {
+      vaporColor = 'rgba(167, 243, 208, 0.75)';
+      dropletCore = 'rgba(209, 250, 229, 0.98)';
+      dropletEdge = 'rgba(16, 185, 129, 0.7)';
+      sparkleColor = '#A7F3D0';
+    } else if (theme === 'heritage') {
+      vaporColor = 'rgba(254, 240, 138, 0.75)';
+      dropletCore = 'rgba(255, 255, 255, 0.98)';
+      dropletEdge = 'rgba(212, 175, 55, 0.8)';
+      sparkleColor = '#FFE27D';
+    } else if (theme === 'memory') {
+      vaporColor = 'rgba(254, 202, 202, 0.75)';
+      dropletCore = 'rgba(254, 226, 226, 0.98)';
+      dropletEdge = 'rgba(220, 38, 38, 0.75)';
+      sparkleColor = '#FCA5A5';
+    }
+
+    // 1. Billowing Vapor Puffs (3 expanding soft clouds)
+    for (let i = 0; i < 3; i++) {
+      const puff = document.createElement('div');
+      puff.className = 'mist-vapor-puff';
+      const size = 38 + i * 16;
+      puff.style.width = `${size}px`;
+      puff.style.height = `${size}px`;
+      puff.style.background = `radial-gradient(circle, ${vaporColor} 0%, rgba(255, 255, 255, 0.25) 45%, transparent 75%)`;
+      puff.style.setProperty('--vx', `${(i - 1) * 22}px`);
+      puff.style.animationDelay = `${i * 0.06}s`;
+      mistContainer.appendChild(puff);
+    }
+
+    // 2. Fine Atomized Micro-Droplets (36 silky particles shooting upwards in cone)
+    for (let i = 0; i < 36; i++) {
       const p = document.createElement('div');
-      p.className = 'mist-particle';
-      const angle = (Math.random() - 0.5) * 65; // spray cone
-      const dist = 70 + Math.random() * 130;
-      const delay = Math.random() * 0.15;
-      const size = 8 + Math.random() * 20;
-      
+      p.className = 'mist-micro-droplet';
+      const spreadX = (Math.random() - 0.5) * 110; // -55px to +55px
+      const shootY = -(70 + Math.random() * 125);   // -70px to -195px
+      const delay = Math.random() * 0.12;
+      const size = 3 + Math.random() * 5.5; // fine micro size
+
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
-      p.style.background = `radial-gradient(circle, ${particleColor} 0%, ${secondaryColor} 60%, transparent 100%)`;
-      p.style.setProperty('--angle', `${angle}deg`);
-      p.style.setProperty('--dist', `${dist}px`);
+      p.style.background = `radial-gradient(circle, ${dropletCore} 20%, ${dropletEdge} 75%, transparent 100%)`;
+      p.style.boxShadow = `0 0 6px ${dropletEdge}`;
+      p.style.setProperty('--tx', `${spreadX}px`);
+      p.style.setProperty('--ty', `${shootY}px`);
       p.style.animationDelay = `${delay}s`;
       mistContainer.appendChild(p);
     }
 
+    // 3. Olfactory Crystalline Sparkles (8 glistening stars)
+    const sparkleGlyphs = ['✦', '✧', '⋆', '✦'];
+    for (let i = 0; i < 8; i++) {
+      const sp = document.createElement('div');
+      sp.className = 'mist-glint';
+      sp.textContent = sparkleGlyphs[i % sparkleGlyphs.length];
+      const spreadX = (Math.random() - 0.5) * 90;
+      const shootY = -(90 + Math.random() * 110);
+      const delay = 0.04 + Math.random() * 0.18;
+
+      sp.style.color = sparkleColor;
+      sp.style.textShadow = `0 0 10px ${sparkleColor}, 0 0 16px rgba(255,255,255,0.8)`;
+      sp.style.setProperty('--tx', `${spreadX}px`);
+      sp.style.setProperty('--ty', `${shootY}px`);
+      sp.style.animationDelay = `${delay}s`;
+      mistContainer.appendChild(sp);
+    }
+
     setTimeout(() => {
       mistContainer.classList.remove('active');
-    }, 1200);
+    }, 1300);
   }
 
   // Apply to ticket booking form

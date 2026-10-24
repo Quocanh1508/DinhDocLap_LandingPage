@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScentIdRefill();
   initSmoothScroll();
   initMobileMenu();
+  soundscape.autoStart();
 });
 
 // Language Switcher
@@ -68,7 +69,7 @@ export function applyLanguage(lang) {
   const audioStatusText = document.getElementById('audio-status-text');
   if (audioBtn && audioStatusText) {
     if (audioBtn.classList.contains('playing')) {
-      audioStatusText.textContent = dict.audio_playing_text || 'Đang phát: Jazz Sài Gòn & Radio 70s';
+      audioStatusText.textContent = dict.audio_playing_text || 'Đang phát: Hoa Anh Đào Rơi Dịu Dàng (NOQURA)';
     } else {
       audioStatusText.textContent = dict.audio_label || 'Âm thanh Không gian';
     }
@@ -81,9 +82,6 @@ export function applyLanguage(lang) {
 // Audio Bar & Visualizer
 function initAudioToggle() {
   const audioToggleBtn = document.getElementById('audio-toggle-btn');
-  const soundWaves = document.getElementById('sound-waves-indicator');
-  const audioStatusText = document.getElementById('audio-status-text');
-
   if (!audioToggleBtn) return;
 
   audioToggleBtn.addEventListener('click', async () => {
@@ -91,14 +89,8 @@ function initAudioToggle() {
     const dict = translations[currentLang] || translations.vi;
 
     if (isPlaying) {
-      audioToggleBtn.classList.add('playing');
-      if (soundWaves) soundWaves.classList.add('active');
-      if (audioStatusText) audioStatusText.textContent = dict.audio_playing_text || 'Đang phát: Jazz Sài Gòn & Radio 70s';
-      showNotificationToast(dict.toast_audio_on || 'Đã bật không gian âm thanh Jazz & Radio hoài niệm thập niên 70');
+      showNotificationToast(dict.toast_audio_on || 'Đang phát: Hoa Anh Đào Rơi Dịu Dàng (NOQURA)');
     } else {
-      audioToggleBtn.classList.remove('playing');
-      if (soundWaves) soundWaves.classList.remove('active');
-      if (audioStatusText) audioStatusText.textContent = dict.audio_muted_text || 'Âm thanh: Đang tắt';
       showNotificationToast(dict.toast_audio_off || 'Đã tắt âm thanh không gian');
     }
   });

@@ -1882,7 +1882,9 @@
   color: var(--text-muted);
 }
 
-/* Responsive adjustments */
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE STYLES (COMPONENTS.CSS)
+   ========================================================================== */
 @media (max-width: 1024px) {
   .senses-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1899,7 +1901,7 @@
   }
   .pricing-cards-grid {
     grid-template-columns: 1fr;
-    max-width: 500px;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -1909,38 +1911,518 @@
 }
 
 @media (max-width: 768px) {
-  .senses-grid {
-    grid-template-columns: 1fr;
+  /* Section Padding & Headers */
+  .section-pad {
+    padding: 56px 0;
   }
+  .section-title {
+    font-size: clamp(1.6rem, 6.5vw, 2.2rem);
+    line-height: 1.25;
+  }
+  .section-tag {
+    font-size: 0.68rem;
+    letter-spacing: 1.2px;
+  }
+  .section-desc {
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    line-height: 1.55;
+  }
+  .bamboo-divider {
+    margin-bottom: 16px;
+  }
+
+  /* 5 Senses: App-like Horizontal Snap Carousel */
+  .senses-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding: 4px 4px 18px 4px;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 24px;
+  }
+  .senses-grid::-webkit-scrollbar {
+    height: 4px;
+  }
+  .senses-grid::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.4);
+    border-radius: 4px;
+  }
+  .sense-card {
+    flex: 0 0 82%;
+    min-width: 260px;
+    max-width: 320px;
+    min-height: 320px;
+    scroll-snap-align: center;
+    padding: 24px 18px 20px 18px;
+  }
+  .sense-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 14px;
+  }
+  .sense-svg {
+    width: 22px;
+    height: 22px;
+  }
+  .sense-title {
+    font-size: 1.05rem;
+  }
+  .sense-sub {
+    font-size: 0.76rem;
+    margin-bottom: 10px;
+  }
+  .sense-desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  /* Timeline & Map */
+  .timeline-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .interactive-map-col {
+    position: relative;
+    top: 0;
+  }
+  .svg-map-wrapper {
+    height: 250px;
+    width: 100%;
+  }
+  .map-header-row {
+    margin-bottom: 10px;
+  }
+  .map-title {
+    font-size: 0.92rem;
+  }
+  .map-legend-strip {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    font-size: 0.72rem;
+    padding: 10px 14px;
+  }
+
+  /* Shift switcher */
+  .shift-switcher-bar {
+    margin-bottom: 24px;
+  }
+  .shift-toggle-wrapper {
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    padding: 4px;
+  }
+  .shift-toggle-btn {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 0.76rem;
+    text-align: center;
+  }
+
+  /* Journey Cards */
+  .journey-card {
+    grid-template-columns: 1fr;
+    padding: 18px 16px;
+    gap: 16px;
+  }
+  .journey-card-meta {
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .station-pill-index {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+  .station-time-badge {
+    font-size: 0.75rem;
+  }
+  .station-route-track {
+    font-size: 0.78rem;
+    margin-bottom: 10px;
+  }
+  .station-heading {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .station-narrative {
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+  .journey-card-stamp-col {
+    border-left: none;
+    border-top: 1px dashed rgba(212, 175, 55, 0.25);
+    padding-left: 0;
+    padding-top: 14px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .lacquer-stamp-seal {
+    width: 72px;
+    height: 72px;
+    font-size: 0.65rem;
+  }
+  .station-insignia-badge {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0;
+  }
+  .station-insignia-badge svg {
+    width: 24px;
+    height: 24px;
+  }
+  .stamp-action-btn {
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Perfume Lab Section */
   .lab-grid {
     grid-template-columns: 1fr;
-    padding: 24px;
+    padding: 22px 16px;
+    gap: 30px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 48px;
+  }
+  .mixer-col h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .mixer-tagline {
+    font-size: 0.82rem;
+    margin-bottom: 20px;
+  }
+  .scent-presets-container {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+  .presets-label {
+    font-size: 0.68rem;
+    margin-bottom: 8px;
+  }
+  .presets-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+  .preset-pill-btn {
+    width: 100%;
+    padding: 8px 4px;
+    font-size: 0.7rem;
+    justify-content: center;
+    text-align: center;
+  }
+  .accord-slider-group {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .accord-item {
+    padding: 12px 14px;
+  }
+  .accord-name {
+    font-size: 0.8rem;
+  }
+  .accord-percent {
+    font-size: 0.92rem;
+  }
+  .accord-notes {
+    font-size: 0.74rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  /* Persona Card */
+  .scent-persona-card {
+    padding: 14px;
+    border-radius: var(--radius-md);
+  }
+  .persona-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+  .persona-title {
+    font-size: 1.05rem;
+  }
+  .persona-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .ratio-labels-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 0.7rem;
+  }
+  .dominant-pill {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+  }
+  .scent-segmented-bar {
+    height: 24px;
+    font-size: 0.65rem;
+  }
+
+  /* Scent metrics 3-col mobile */
+  .scent-metrics-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .scent-metric-box {
+    padding: 6px 2px;
+  }
+  .sm-icon-wrap {
+    margin-bottom: 2px;
+  }
+  .sm-icon-wrap svg {
+    width: 14px;
+    height: 14px;
+  }
+  .sm-label {
+    font-size: 0.52rem;
+    letter-spacing: 0;
+  }
+  .sm-value {
+    font-size: 0.74rem;
+  }
+
+  /* Simulated Flacon Column */
+  .bottle-col {
+    width: 100%;
+  }
+  .perfume-flacon-container {
+    width: 200px;
+    height: 310px;
+    transform: scale(0.9);
+    margin: 0 auto;
+  }
+  .bottle-controls-row {
+    margin-top: 0;
+    gap: 10px;
+    width: 100%;
+  }
+  .bottle-controls-row .ghost-btn,
+  .bottle-controls-row .gold-btn {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 0.78rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Merchandise Grid */
+  .merch-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .merch-img-box {
+    height: 130px;
+  }
+  .merch-info {
+    padding: 10px 8px;
+  }
+  .merch-title {
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+  }
+  .merch-desc {
+    font-size: 0.68rem;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Pricing Cards */
+  .pricing-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+  .early-bird-banner {
+    padding: 10px 14px;
+    font-size: 0.76rem;
+    line-height: 1.45;
+    margin-bottom: 24px;
+  }
+  .pricing-card {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
+  .pricing-tier-name {
+    font-size: 1.1rem;
+  }
+  .pricing-price-box {
+    font-size: 1.6rem;
+  }
+  .pricing-features-list {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .feature-item {
+    font-size: 0.82rem;
+  }
+
+  /* Booking Form Widget */
+  .booking-widget-card {
+    padding: 22px 14px;
+    border-radius: var(--radius-lg);
+  }
+  .widget-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
   }
   .booking-form-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
   }
   .form-group-full {
     grid-column: span 1;
   }
-  .journey-card {
-    grid-template-columns: 1fr;
+  .form-label {
+    font-size: 0.76rem;
+    margin-bottom: 6px;
   }
-  .journey-card-stamp-col {
-    border-left: none;
-    border-top: 1px dashed rgba(212, 175, 55, 0.2);
-    padding-left: 0;
-    padding-top: 20px;
+  .form-input, .form-select, .form-textarea {
+    padding: 12px 14px;
+    font-size: 0.88rem;
+  }
+  .date-slots-strip {
+    gap: 6px;
+  }
+  .date-slot-pill {
+    padding: 8px 4px;
+    min-width: 75px;
+  }
+  .slot-day {
+    font-size: 0.65rem;
+  }
+  .slot-date {
+    font-size: 0.85rem;
+  }
+  .slot-lang {
+    font-size: 0.6rem;
   }
   .shift-radio-row {
     flex-direction: column;
+    gap: 8px;
   }
-  .merch-grid {
-    grid-template-columns: 1fr;
+  .shift-radio-label {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+  .booking-summary-strip {
+    padding: 16px 14px;
+    margin-bottom: 20px;
+  }
+  .summary-row {
+    font-size: 0.84rem;
+  }
+  .summary-row.total-row {
+    font-size: 1.05rem;
+  }
+  #btn-confirm-booking {
+    width: 100%;
+    padding: 15px 16px;
+    font-size: 0.84rem;
+  }
+
+  /* Refill Section */
+  .refill-strip-card {
+    padding: 22px 14px;
+    margin-top: 36px;
+    border-radius: var(--radius-lg);
+  }
+  .refill-input-row {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .refill-input-row .gold-btn {
+    width: 100%;
+  }
+  .refill-action-row {
+    flex-direction: column;
+  }
+  .refill-action-row button {
+    width: 100%;
+  }
+  .heritage-commit-box {
+    padding: 20px 14px;
+    margin-top: 28px;
+  }
+
+  /* Modals */
+  .heritage-modal {
+    padding: 12px;
+  }
+  .modal-dialog {
+    padding: 24px 16px;
+    max-width: 96vw;
+    max-height: 92vh;
+    border-radius: var(--radius-lg);
+  }
+  .modal-close-icon {
+    top: 14px;
+    right: 14px;
+    font-size: 1.4rem;
+  }
+  .trailer-screen-box {
+    height: 200px;
+    margin-bottom: 16px;
+  }
+  .passport-sheet-body {
+    padding: 16px 10px;
+  }
+  .passport-sheet-stamps-grid {
+    gap: 6px;
+  }
+  .passport-sheet-stamps-grid .lacquer-stamp-seal {
+    width: 66px;
+    height: 66px;
+    font-size: 0.6rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 48px 0 24px 0;
   }
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
   }
-  .booking-widget-card {
-    padding: 24px;
+  .footer-col h4 {
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .merch-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .merch-img-box {
+    height: 160px;
+  }
+  .presets-row {
+    grid-template-columns: 1fr;
   }
 }

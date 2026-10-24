@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HƯƠNG ĐỘC LẬP — The Independence Nocturne | Đêm Di Sản Đa Giác Quan Dinh Độc Lập</title>
+  <meta name="description" content="Trải nghiệm Đêm Di Sản Đa Giác Quan độc bản tại Di tích Quốc gia Đặc biệt Dinh Độc Lập. Từ Khói Lửa đến Hương Tự Do – Đắm chìm trong 120 phút thực cảnh, 3D mapping, xưởng chế tác nước hoa và dạ tiệc Jazz Đông Dương.">
+  <meta name="theme-color" content="#0B0F19">
+  
+  <!-- Google Fonts: Cormorant Garamond & Playfair Display (Serif), Montserrat (Sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/src/css/variables.css">
+  <link rel="stylesheet" href="/src/css/animations.css">
+  <link rel="stylesheet" href="/src/css/main.css">
+  <link rel="stylesheet" href="/src/css/components.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       SENSORY STICKY BAR & NAVIGATION
+       ======================================================================== -->
+  <header class="sensory-header" id="sensory-navbar">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link" id="brand-logo-link">
+        <div class="brand-emblem">✦</div>
+        <div class="brand-text-col">
+          <span class="brand-sub" data-i18n="brand_sub">DI TÍCH QUỐC GIA ĐẶC BIỆT DINH ĐỘC LẬP</span>
+          <span class="brand-title" data-i18n="brand_title">HƯƠNG ĐỘC LẬP</span>
+        </div>
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="#section-senses" class="nav-link" data-i18n="nav_senses">5 Giác Quan</a>
+        <a href="#section-timeline" class="nav-link" data-i18n="nav_timeline">Lịch Trình 120P</a>
+        <a href="#section-lab" class="nav-link" data-i18n="nav_workshop">Xưởng Hương & Quà</a>
+        <a href="#section-pricing" class="nav-link" data-i18n="nav_pricing">Hạng Vé</a>
+        <a href="#section-refill" class="nav-link" data-i18n="nav_refill">Tra Cứu Scent ID</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="vi" id="btn-lang-vi">VI</button>
+          <button class="lang-btn" data-lang="en" id="btn-lang-en">EN</button>
+          <button class="lang-btn" data-lang="fr" id="btn-lang-fr">FR</button>
+        </div>
+
+        <!-- Atmospheric Audio Toggle -->
+        <button class="audio-ctrl-btn" id="audio-toggle-btn" title="Bật/Tắt âm thanh không gian thập niên 70 & Nhạc Jazz">
+          <div class="equalizer-bars" id="sound-waves-indicator">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+          </div>
+          <span id="audio-status-text" data-i18n="audio_label">Âm thanh Không gian</span>
+        </button>
+
+        <!-- CTA Reserve Button -->
+        <a href="#section-booking" class="gold-btn btn-sm" data-i18n="nav_book">Đặt Hộ Chiếu</a>
+      </div>
+    </div>
+
+    <!-- Architectural Bamboo Stone Screen (Rèm Hoa Đá Đốt Trúc) Scroll Progress -->
+    <div class="bamboo-progress-container" title="Tiến trình hành trình">
+      <div class="bamboo-progress-bar" id="bamboo-progress-bar"></div>
+    </div>
+  </header>
+
+  <!-- Floating Passport Tracker Widget -->
+  <div class="floating-passport-widget" id="btn-view-passport-drawer" title="Xem Hộ Chiếu Độc Lập của bạn">
+    <span class="passport-icon">📜</span>
+    <span style="font-size:0.8rem; font-weight:600; color:var(--cream-ivory);">Hộ Chiếu:</span>
+    <span class="passport-stamp-counter" id="passport-count-badge">0/3</span>
+  </div>
+
+  <!-- ========================================================================
+       SECTION 1: HERO BANNER (MÀN HÌNH MỞ ĐẦU)
+       ======================================================================== -->
+  <section class="hero-section" id="section-hero">
+    <div class="hero-bg-media">
+      <img src="/assets/images/hero-palace.jpg" alt="Dinh Độc Lập lung linh trong đêm" class="hero-bg-img">
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-badge-pill" data-i18n="hero_badge">
+        <span>✦</span> ĐÊM DI SẢN ĐA GIÁC QUAN ĐỘC BẢN TẠI DINH ĐỘC LẬP <span>✦</span>
+      </div>
+
+      <h1 class="hero-main-title" data-i18n="hero_title">HƯƠNG ĐỘC LẬP</h1>
+      <h2 class="hero-sub-title" data-i18n="hero_subtitle">THE INDEPENDENCE NOCTURNE</h2>
+      
+      <p class="hero-tagline" data-i18n="hero_tagline">
+        “Từ Khói Lửa đến Hương Tự Do – Lưu giữ hương vị tự do trong từng giác quan.”
+      </p>
+
+      <!-- 4 Key Metrics Strip -->
+      <div class="hero-metrics-grid">
+        <div class="metric-item">
+          <span class="metric-icon">⏳</span>
+          <span class="metric-label" data-i18n="metric_time_label">Thời lượng</span>
+          <span class="metric-value" data-i18n="metric_time_val">120 Phút / Suất</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-icon">👑</span>
+          <span class="metric-label" data-i18n="metric_privilege_label">Đặc quyền</span>
+          <span class="metric-value" data-i18n="metric_privilege_val">75 – 170 khách / suất</span>
+          <span class="metric-sub" data-i18n="metric_privilege_sub">Ngoài giờ mở cửa đại trà</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-icon">🗓️</span>
+          <span class="metric-label" data-i18n="metric_schedule_label">Lịch diễn</span>
+          <span class="metric-value" data-i18n="metric_schedule_val">Tối T6, T7 (Việt) | CN (Quốc tế)</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-icon">📍</span>
+          <span class="metric-label" data-i18n="metric_location_label">Khởi hành</span>
+          <span class="metric-value" data-i18n="metric_location_val">Cổng Nguyễn Du – Dinh Độc Lập</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-cta-group">
+        <a href="#section-booking" class="gold-btn" id="hero-btn-book" data-i18n="cta_book_now">
+          <span>ĐẶT HỘ CHIẾU ĐỘC LẬP NGAY</span>
+          <span>→</span>
+        </a>
+        <button class="ghost-btn" id="btn-open-trailer" data-i18n="cta_watch_trailer">
+          <span>▶</span>
+          <span>XEM TRAILER 20 GIÂY</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 2: ĐÁNH THỨC 5 GIÁC QUAN (5-SENSE INTERACTIVE CARDS)
+       ======================================================================== -->
+  <section class="section-pad" id="section-senses">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="senses_title">ĐÁNH THỨC 5 GIÁC QUAN</span>
+        <h2 class="section-title">Hòa Mình Vào Lịch Sử Bằng Cả Tâm Hồn</h2>
+        <div class="bamboo-divider">
+          <span class="bamboo-divider-line"></span>
+          <span class="bamboo-divider-knot"></span>
+          <span class="bamboo-divider-line right"></span>
+        </div>
+        <p class="section-desc" data-i18n="senses_sub">
+          Khám phá không gian quyền uy bậc nhất Sài Gòn trong trải nghiệm sống động chưa từng có
+        </p>
+      </div>
+
+      <div class="senses-grid">
+        <!-- 1. Thính giác -->
+        <div class="sense-card" id="sense-card-audio">
+          <div class="sense-card-bg">
+            <img src="/assets/images/hero-palace.jpg" alt="Thính giác lịch sử">
+          </div>
+          <div class="sense-icon-wrapper">📻</div>
+          <div class="sense-card-content">
+            <h3 class="sense-title" data-i18n="sense_audio_title">THÍNH GIÁC</h3>
+            <span class="sense-sub" data-i18n="sense_audio_sub">Âm thanh Lịch sử & Nhạc Jazz</span>
+            <p class="sense-desc" data-i18n="sense_audio_desc">
+              Lắng nghe tiếng radio thập niên 70 dọc hàng cây cổ thụ, tiếng trống trận hào hùng và giai điệu nhạc sống Jazz/tình ca Sài Gòn hoài niệm.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. Thị giác -->
+        <div class="sense-card" id="sense-card-visual">
+          <div class="sense-card-bg">
+            <img src="/assets/images/banquet-3d-mapping.jpg" alt="Thị giác 3D mapping">
+          </div>
+          <div class="sense-icon-wrapper">🏛️</div>
+          <div class="sense-card-content">
+            <h3 class="sense-title" data-i18n="sense_visual_title">THỊ GIÁC</h3>
+            <span class="sense-sub" data-i18n="sense_visual_sub">Thực cảnh & 3D Mapping Ngô Viết Thụ</span>
+            <p class="sense-desc" data-i18n="sense_visual_desc">
+              Mãn nhãn với võ thuật thực cảnh khói lửa hào hùng và đại tiệc 3D Mapping bóc tách triết lý kiến trúc phương Đông của KTS Ngô Viết Thụ.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. Khứu giác -->
+        <div class="sense-card" id="sense-card-olfactory">
+          <div class="sense-card-bg">
+            <img src="/assets/images/perfume-workshop.jpg" alt="Khứu giác nước hoa">
+          </div>
+          <div class="sense-icon-wrapper">🌸</div>
+          <div class="sense-card-content">
+            <h3 class="sense-title" data-i18n="sense_olfactory_title">KHỨU GIÁC</h3>
+            <span class="sense-sub" data-i18n="sense_olfactory_sub">Làn Sương Hoa Sen & Xưởng Nước Hoa</span>
+            <p class="sense-desc" data-i18n="sense_olfactory_desc">
+              Đắm mình trong làn sương khuếch tán hương hoa sen, thảo mộc cuối màn Mapping và tự tay phối chế chai nước hoa độc bản mang về.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4. Vị giác -->
+        <div class="sense-card" id="sense-card-taste">
+          <div class="sense-card-bg">
+            <img src="/assets/images/cocktail-canapes.jpg" alt="Vị giác cocktail canapes">
+          </div>
+          <div class="sense-icon-wrapper">🍸</div>
+          <div class="sense-card-content">
+            <h3 class="sense-title" data-i18n="sense_taste_title">VỊ GIÁC</h3>
+            <span class="sense-sub" data-i18n="sense_taste_sub">Signature Cocktail & Canapés</span>
+            <p class="sense-desc" data-i18n="sense_taste_desc">
+              Thưởng thức 3 loại Signature Cocktail thiết kế riêng, rượu vang hảo hạng và tiệc nhẹ Canapés chuẩn phong vị Fine-casual Đông Dương.
+            </p>
+          </div>
+        </div>
+
+        <!-- 5. Xúc giác -->
+        <div class="sense-card" id="sense-card-touch">
+          <div class="sense-card-bg">
+            <img src="/assets/images/merchandise-set.jpg" alt="Xúc giác đóng dấu hộ chiếu">
+          </div>
+          <div class="sense-icon-wrapper">📜</div>
+          <div class="sense-card-content">
+            <h3 class="sense-title" data-i18n="sense_touch_title">XÚC GIÁC</h3>
+            <span class="sense-sub" data-i18n="sense_touch_sub">Đóng Dấu Hộ Chiếu & Khiêu Vũ</span>
+            <p class="sense-desc" data-i18n="sense_touch_desc">
+              Tự tay đóng 3 dấu mộc son lên Hộ chiếu Độc Lập bằng bìa da dập nổi và hòa mình vào điệu khiêu vũ thăng hoa dưới ánh đèn pha lê.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 3: BẢN ĐỒ HÀNH TRÌNH 120 PHÚT (INTERACTIVE TIMELINE & MAP)
+       ======================================================================== -->
+  <section class="section-pad" id="section-timeline" style="background: rgba(8, 12, 20, 0.7);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="timeline_title">ĐƯỜNG HÀNH TRÌNH KHÁM PHÁ 120 PHÚT</span>
+        <h2 class="section-title">Lộ Trình Một Chiều Qua Từng Trạm Ký Ức</h2>
+        <div class="bamboo-divider">
+          <span class="bamboo-divider-line"></span>
+          <span class="bamboo-divider-knot"></span>
+          <span class="bamboo-divider-line right"></span>
+        </div>
+        <p class="section-desc" data-i18n="timeline_sub">
+          Lộ trình một chiều độc nhất qua các không gian linh thiêng và tráng lệ của Dinh Độc Lập
+        </p>
+      </div>
+
+      <!-- Shift Switcher -->
+      <div class="shift-switcher-bar">
+        <div class="shift-toggle-wrapper">
+          <button class="shift-toggle-btn active" data-shift="shift1" id="btn-shift-1">
+            <span data-i18n="shift_1">Suất 1: 18:00 – 20:00 (Mở cổng 17:40)</span>
+          </button>
+          <button class="shift-toggle-btn" data-shift="shift2" id="btn-shift-2">
+            <span data-i18n="shift_2">Suất 2: 20:30 – 22:30 (Mở cổng 20:10)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollytelling Layout: Sticky Map Left + 5 Stations Right -->
+      <div class="timeline-layout">
+        
+        <!-- Left: Interactive SVG Map -->
+        <div class="interactive-map-col">
+          <div class="map-header-row">
+            <h3 class="map-title">Khuôn Viên 12 Hecta Dinh Độc Lập</h3>
+            <span class="map-compass-icon" title="Hướng Bắc">🧭</span>
+          </div>
+
+          <div class="svg-map-wrapper">
+            <svg class="svg-palace-map" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background grounds -->
+              <rect x="10" y="10" width="380" height="340" rx="12" fill="#070B12" stroke="rgba(212,175,55,0.15)" stroke-width="1"/>
+              
+              <!-- Perimeter Streets -->
+              <text x="200" y="24" text-anchor="middle" fill="#5A6679" font-size="9" letter-spacing="1">ĐƯỜNG NGUYỄN THỊ MINH KHAI (CỬA SAU)</text>
+              <text x="200" y="348" text-anchor="middle" fill="#5A6679" font-size="9" letter-spacing="1">ĐƯỜNG NAM KỲ KHỞI NGHĨA (CỔNG CHÍNH - LỐI RA)</text>
+              <text x="18" y="180" fill="#5A6679" font-size="9" letter-spacing="1" transform="rotate(-90 18 180)">ĐƯỜNG HUYỀN TRÂN CÔNG CHÚA</text>
+              <text x="385" y="180" fill="#5A6679" font-size="9" letter-spacing="1" transform="rotate(90 385 180)">ĐƯỜNG NGUYỄN DU (CỔNG VÀO CHECK-IN)</text>
+
+              <!-- Central Oval Lawn & Fountain -->
+              <ellipse cx="200" cy="245" rx="85" ry="45" class="map-svg-lawn"/>
+              <ellipse cx="200" cy="245" rx="30" ry="16" class="map-svg-fountain"/>
+              <circle cx="200" cy="245" r="5" fill="#D4AF37" opacity="0.8"/>
+
+              <!-- Palace Main Building footprint -->
+              <rect x="120" y="100" width="160" height="85" rx="4" class="map-svg-palace"/>
+              <!-- Architectural Bamboo Stone Sunscreen graphic -->
+              <line x1="130" y1="120" x2="270" y2="120" stroke="rgba(212,175,55,0.5)" stroke-dasharray="3 4" stroke-width="3"/>
+              <line x1="130" y1="135" x2="270" y2="135" stroke="rgba(212,175,55,0.5)" stroke-dasharray="3 4" stroke-width="3"/>
+              <text x="200" y="152" text-anchor="middle" fill="#F3E5AB" font-size="10" font-weight="700">TÒA DINH CHÍNH</text>
+              
+              <!-- Indoor Rooms indicators -->
+              <rect x="130" y="162" width="60" height="18" fill="#1E2B42" rx="2"/>
+              <text x="160" y="174" text-anchor="middle" fill="#C5B697" font-size="7">Phòng Đại Yến</text>
+
+              <rect x="210" y="162" width="60" height="18" fill="#1E2B42" rx="2"/>
+              <text x="240" y="174" text-anchor="middle" fill="#C5B697" font-size="7">Phòng Khánh Tiết</text>
+
+              <!-- One-Way Route Trail (Background dashed line) -->
+              <path d="M 370 280 Q 280 290 200 280 Q 140 270 160 215 Q 165 190 160 170 Q 185 155 235 170 Q 260 210 200 330" 
+                    class="map-svg-route-trail"/>
+
+              <!-- Dynamic Glowing Golden Route Line (Animated as scrolled) -->
+              <path id="svg-route-path" 
+                    d="M 370 280 Q 280 290 200 280 Q 140 270 160 215 Q 165 190 160 170 Q 185 155 235 170 Q 260 210 200 330" 
+                    class="map-svg-route-active"/>
+
+              <!-- Waypoint Nodes -->
+              <!-- 0: Cổng Nguyễn Du -->
+              <g class="map-svg-node active" data-station-index="0" transform="translate(370, 280)">
+                <circle cx="0" cy="0" r="9"/>
+                <text x="0" y="4" text-anchor="middle">0</text>
+              </g>
+
+              <!-- 1: Sân cỏ & Khán đài -->
+              <g class="map-svg-node" data-station-index="1" transform="translate(200, 280)">
+                <circle cx="0" cy="0" r="9"/>
+                <text x="0" y="4" text-anchor="middle">1</text>
+              </g>
+
+              <!-- 2: Khán đài 3D Mapping & Mặt tiền -->
+              <g class="map-svg-node" data-station-index="2" transform="translate(160, 215)">
+                <circle cx="0" cy="0" r="9"/>
+                <text x="0" y="4" text-anchor="middle">2</text>
+              </g>
+
+              <!-- 3: Phòng Đại Yến Workshop -->
+              <g class="map-svg-node" data-station-index="3" transform="translate(160, 170)">
+                <circle cx="0" cy="0" r="9"/>
+                <text x="0" y="4" text-anchor="middle">3</text>
+              </g>
+
+              <!-- 4: Phòng Khánh Tiết & Cổng Ra Nam Kỳ -->
+              <g class="map-svg-node" data-station-index="4" transform="translate(200, 330)">
+                <circle cx="0" cy="0" r="9"/>
+                <text x="0" y="4" text-anchor="middle">4</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="map-legend-strip">
+            <div class="legend-item"><span class="legend-dot start"></span> <span>Khởi hành (Nguyễn Du)</span></div>
+            <div class="legend-item"><span class="legend-dot show"></span> <span>Điểm đóng mộc son</span></div>
+            <div class="legend-item"><span class="legend-dot end"></span> <span>Lối ra (Nam Kỳ KN)</span></div>
+          </div>
+        </div>
+
+        <!-- Right: 5 Station Cards -->
+        <div class="journey-timeline-col">
+          
+          <!-- Chặng Mở đầu -->
+          <div class="journey-card is-active" data-station-index="0" data-stamp-number="1">
+            <div class="journey-card-info">
+              <div class="journey-card-meta">
+                <span class="station-pill-index">CHẶNG 0</span>
+                <span class="station-time-badge">
+                  <span>⏳ 17:45 – 18:00</span> <span class="badge-dur">(15 Phút)</span>
+                </span>
+              </div>
+              <div class="station-route-track">
+                <span>📍</span> <span data-i18n="station_0_route">Cổng Nguyễn Du → Sân cỏ tiền sảnh (~120m)</span>
+              </div>
+              <h3 class="station-heading" data-i18n="station_0_title">CHẶNG MỞ ĐẦU: DẤU ẤN KHỞI HÀNH</h3>
+              <p class="station-narrative" data-i18n="station_0_detail">
+                Mở cổng đón khách trước 20 phút (17:40 / 20:10). Quý khách nhận 'Hộ chiếu Độc Lập' và đóng Dấu mộc số 1: Dấu ấn Khởi hành. Nhân sự trong trang phục Sài Gòn xưa cầm đèn bão dẫn đoàn đi bộ dưới hàng cổ thụ trong âm vang tiếng radio thập niên 70.
+              </p>
+            </div>
+            <div class="journey-card-stamp-col">
+              <div class="lacquer-stamp-seal" id="stamp-seal-1">
+                <span class="stamp-num">MỘC I</span>
+                <span class="stamp-name">KHỞI HÀNH</span>
+                <span class="stamp-year">1975</span>
+              </div>
+              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="1" id="stamp-btn-1">
+                ĐÓNG DẤU MỘC 1
+              </button>
+            </div>
+          </div>
+
+          <!-- Trạm 1: Ký Ức -->
+          <div class="journey-card" data-station-index="1">
+            <div class="journey-card-info">
+              <div class="journey-card-meta">
+                <span class="station-pill-index">TRẠM 1</span>
+                <span class="station-time-badge">
+                  <span>⏳ 18:00 – 18:20</span> <span class="badge-dur">(20 Phút)</span>
+                </span>
+              </div>
+              <div class="station-route-track">
+                <span>📍</span> <span data-i18n="station_1_route">Cổng chính & Sân cỏ → Khán đài (~50m)</span>
+              </div>
+              <h3 class="station-heading" data-i18n="station_1_title">TRẠM 1: KÝ ỨC – MƯA ĐỎ & THỜI KHẮC LỊCH SỬ</h3>
+              <p class="station-narrative" data-i18n="station_1_detail">
+                16 phút trình diễn thực cảnh (Live-action): 14 diễn viên võ thuật và múa tái hiện trận cận chiến bi tráng trong 'Mưa đỏ' với khói lửa, cao trào âm thanh – ánh sáng tái hiện xe tăng húc cổng Dinh 30/4/1975. 4 phút di chuyển tiến về Khán đài danh dự.
+              </p>
+            </div>
+            <div class="journey-card-stamp-col">
+              <div style="font-size:2.4rem;">⚔️</div>
+              <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;">Thực Cảnh Khói Lửa</span>
+            </div>
+          </div>
+
+          <!-- Trạm 2: Khải Hoàn -->
+          <div class="journey-card" data-station-index="2">
+            <div class="journey-card-info">
+              <div class="journey-card-meta">
+                <span class="station-pill-index">TRẠM 2</span>
+                <span class="station-time-badge">
+                  <span>⏳ 18:20 – 18:50</span> <span class="badge-dur">(30 Phút)</span>
+                </span>
+              </div>
+              <div class="station-route-track">
+                <span>📍</span> <span data-i18n="station_2_route">Khán đài ngoài trời → Phòng Đại Yến (~100m)</span>
+              </div>
+              <h3 class="station-heading" data-i18n="station_2_title">TRẠM 2: KHẢI HOÀN – ĐẠI TIỆC 3D MAPPING</h3>
+              <p class="station-narrative" data-i18n="station_2_detail">
+                25 phút 3D Mapping & Khứu giác: Bóc tách kiến trúc KTS Ngô Viết Thụ (8p) → Dòng chảy lịch sử & cờ tung bay (12p) → Phun sương hương sen, thảo mộc phủ khắp khán đài (5p). 5 phút di chuyển qua thảm đỏ tiến vào Phòng Đại Yến.
+              </p>
+            </div>
+            <div class="journey-card-stamp-col">
+              <div style="font-size:2.4rem;">🎆</div>
+              <span style="font-size:0.75rem; color:var(--text-muted); text-align:center;">3D Mapping & Sương Sen</span>
+            </div>
+          </div>
+
+          <!-- Trạm 3: Dấu Ấn (Workshop Hương) -->
+          <div class="journey-card" data-station-index="3" data-stamp-number="2">
+            <div class="journey-card-info">
+              <div class="journey-card-meta">
+                <span class="station-pill-index">TRẠM 3</span>
+                <span class="station-time-badge">
+                  <span>⏳ 18:50 – 19:10</span> <span class="badge-dur">(20 Phút)</span>
+                </span>
+              </div>
+              <div class="station-route-track">
+                <span>📍</span> <span data-i18n="station_3_route">Phòng Đại Yến → Phòng Khánh Tiết</span>
+              </div>
+              <h3 class="station-heading" data-i18n="station_3_title">TRẠM 3: DẤU ẤN – WORKSHOP ĐIỀU CHẾ HƯƠNG TỰ DO</h3>
+              <p class="station-narrative" data-i18n="station_3_detail">
+                15 phút chế tác cùng Nghệ nhân mùi hương: Tự tay phối trộn 3 tầng hương (Bình Minh – Di Sản – Ký Ức) từ hoa nhài, sen, trà xanh, cỏ hương bài, khói trầm; dán nhãn tên và đóng Dấu mộc số 2. 5 phút tiến sang không gian tiệc.
+              </p>
+            </div>
+            <div class="journey-card-stamp-col">
+              <div class="lacquer-stamp-seal" id="stamp-seal-2">
+                <span class="stamp-num">MỘC II</span>
+                <span class="stamp-name">DẤU ẤN HƯƠNG</span>
+                <span class="stamp-year">ĐẠI YẾN</span>
+              </div>
+              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="2" id="stamp-btn-2">
+                ĐÓNG DẤU MỘC 2
+              </button>
+            </div>
+          </div>
+
+          <!-- Trạm 4: Thăng Hoa & Lưu Luyến -->
+          <div class="journey-card" data-station-index="4" data-stamp-number="3">
+            <div class="journey-card-info">
+              <div class="journey-card-meta">
+                <span class="station-pill-index">TRẠM 4</span>
+                <span class="station-time-badge">
+                  <span>⏳ 19:10 – 20:00</span> <span class="badge-dur">(50 Phút)</span>
+                </span>
+              </div>
+              <div class="station-route-track">
+                <span>📍</span> <span data-i18n="station_4_route">Phòng Khánh Tiết / Sân Thượng → Cổng Nam Kỳ Khởi Nghĩa (~150m)</span>
+              </div>
+              <h3 class="station-heading" data-i18n="station_4_title">TRẠM 4: THĂNG HOA & LƯU LUYẾN – DẠ TIỆC INDOCHINE</h3>
+              <p class="station-narrative" data-i18n="station_4_detail">
+                42 phút Dạ tiệc & Khiêu vũ: Thưởng thức Canapés, rượu vang và 3 loại Signature Cocktail nơi từng diễn ra yến tiệc nguyên thủ; ban nhạc sống Jazz và vũ công khiêu vũ. 8 phút đóng Dấu mộc số 3, nhận bộ quà sưu tầm và tải ảnh tức thời qua QR Code.
+              </p>
+            </div>
+            <div class="journey-card-stamp-col">
+              <div class="lacquer-stamp-seal" id="stamp-seal-3">
+                <span class="stamp-num">MỘC III</span>
+                <span class="stamp-name">HOÀN TẤT</span>
+                <span class="stamp-year">HÒA BÌNH</span>
+              </div>
+              <button class="stamp-action-btn manual-stamp-action" data-stamp-number="3" id="stamp-btn-3">
+                ĐÓNG DẤU MỘC 3
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 4: TƯƠNG TÁC THỬ MÙI HƯƠNG & BỘ VẬT PHẨM (PERFUME LAB)
+       ======================================================================== -->
+  <section class="section-pad" id="section-lab">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="lab_title">XƯỞNG HƯƠNG & BỘ VẬT PHẨM ĐỘC BẢN</span>
+        <h2 class="section-title">Nghệ Thuật Khứu Giác Độc Bản Vượt Thời Gian</h2>
+        <div class="bamboo-divider">
+          <span class="bamboo-divider-line"></span>
+          <span class="bamboo-divider-knot"></span>
+          <span class="bamboo-divider-line right"></span>
+        </div>
+        <p class="section-desc" data-i18n="lab_sub">
+          Trực quan hóa công thức hương cá nhân và khám phá bộ sưu tập quà tặng lưu niệm cao cấp
+        </p>
+      </div>
+
+      <!-- Perfume Mixer Workshop Interactive Panel -->
+      <div class="lab-grid">
+        <!-- Sliders Column -->
+        <div class="mixer-col">
+          <h3 data-i18n="mixer_heading">PHA THỬ MÙI HƯƠNG "HƯƠNG TỰ DO"</h3>
+          <p class="mixer-tagline">Tùy chỉnh tỷ lệ 3 nốt hương để tạo ra làn hương đại diện cho phong thái và ký ức của riêng bạn.</p>
+
+          <div class="accord-slider-group">
+            <!-- Top Note: Binh Minh -->
+            <div class="accord-item">
+              <div class="accord-header">
+                <span class="accord-name" data-i18n="accord_top">NỐT BÌNH MINH (Top Note)</span>
+                <span class="accord-percent" id="val-top">35%</span>
+              </div>
+              <p class="accord-notes" data-i18n="accord_top_desc">Hoa nhài đêm, Sen trắng Bách Diệp, Trà xanh Bảo Lộc sương sớm</p>
+              <input type="range" min="10" max="60" value="35" class="scent-range" id="slider-top">
+            </div>
+
+            <!-- Mid Note: Di San -->
+            <div class="accord-item">
+              <div class="accord-header">
+                <span class="accord-name" data-i18n="accord_mid">NỐT DI SẢN (Heart Note)</span>
+                <span class="accord-percent" id="val-mid">45%</span>
+              </div>
+              <p class="accord-notes" data-i18n="accord_mid_desc">Cỏ hương bài Vetiver, Gỗ đàn hương, Vỏ quế An Nam cổ truyền</p>
+              <input type="range" min="15" max="70" value="45" class="scent-range" id="slider-mid">
+            </div>
+
+            <!-- Base Note: Ky Uc -->
+            <div class="accord-item">
+              <div class="accord-header">
+                <span class="accord-name" data-i18n="accord_base">NỐT KÝ ỨC (Base Note)</span>
+                <span class="accord-percent" id="val-base">20%</span>
+              </div>
+              <p class="accord-notes" data-i18n="accord_base_desc">Khói trầm Hương Bài, Hổ phách hoàng triều, Rêu sồi cổ kính</p>
+              <input type="range" min="10" max="50" value="20" class="scent-range" id="slider-base">
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulated Flacon Preview Column -->
+        <div class="bottle-col">
+          <div class="perfume-flacon-container">
+            <div class="perfume-mist-effect" id="perfume-mist-effect"></div>
+            <div class="flacon-cap"></div>
+            <div class="flacon-neck"></div>
+            
+            <div class="flacon-body">
+              <div class="flacon-engraved-plaque">
+                <div class="plaque-brand">HƯƠNG ĐỘC LẬP</div>
+                <div class="plaque-name" id="bottle-engraved-name">TRAN MINH KHOI</div>
+                <div class="plaque-scent-id" id="generated-scent-id">INDEP-1975-B35D45K20</div>
+              </div>
+              <div class="perfume-liquid-fill" id="perfume-liquid-fill"></div>
+            </div>
+          </div>
+
+          <div class="bottle-controls-row">
+            <button class="ghost-btn btn-sm" id="btn-spray-test" data-i18n="spray_test_btn" style="width:100%;">
+              💨 XỊT THỬ MÙI HƯƠNG
+            </button>
+            <button class="gold-btn btn-sm" id="btn-apply-formula" data-i18n="save_scent_btn" style="width:100%;">
+              ÁP DỤNG CÔNG THỨC VÀO ĐƠN VÉ
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Merchandise Set Showcase -->
+      <h3 style="text-align:center; font-family:var(--font-serif); font-size:1.6rem; color:var(--cream-ivory); margin-bottom:36px;" data-i18n="merch_heading">
+        BỘ VẬT PHẨM SƯU TẦM KÈM THEO
+      </h3>
+
+      <div class="merch-grid">
+        <!-- Item 1: Passport -->
+        <div class="merch-card">
+          <div class="merch-media">
+            <img src="/assets/images/merchandise-set.jpg" alt="Hộ Chiếu Độc Lập">
+          </div>
+          <div class="merch-body">
+            <h4 class="merch-title" data-i18n="item_passport_title">Hộ Chiếu Độc Lập</h4>
+            <p class="merch-desc" data-i18n="item_passport_desc">
+              Bìa da dập nổi họa tiết Rèm hoa đá đốt trúc, ép kim vàng 18K, tích hợp Bản đồ mùi hương (Scent Map) và 3 trang đóng mộc son.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 2: Bespoke Perfume Bottle -->
+        <div class="merch-card">
+          <div class="merch-media">
+            <img src="/assets/images/perfume-flacon.jpg" alt="Lọ nước hoa độc bản">
+          </div>
+          <div class="merch-body">
+            <h4 class="merch-title" data-i18n="item_perfume_title">Lọ Nước Hoa Độc Bản</h4>
+            <p class="merch-desc" data-i18n="item_perfume_desc">
+              Dung tích 10ml (Hạng Tiêu chuẩn) hoặc 30ml (Hạng VIP), khắc tên riêng mạ vàng kèm mã định danh Scent ID trọn đời.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 3: Canvas Tote Bag -->
+        <div class="merch-card">
+          <div class="merch-media">
+            <img src="/assets/images/merchandise-set.jpg" alt="Túi Tote Canvas Di Sản">
+          </div>
+          <div class="merch-body">
+            <h4 class="merch-title" data-i18n="item_tote_title">Túi Tote Canvas Di Sản</h4>
+            <p class="merch-desc" data-i18n="item_tote_desc">
+              Vải bố dệt mộc dập quai da bò thủ công, in phác thảo bản vẽ kiến trúc Dinh Độc Lập của KTS Ngô Viết Thụ.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 4: Silk Bandana -->
+        <div class="merch-card">
+          <div class="merch-media">
+            <img src="/assets/images/jazz-soiree.jpg" alt="Khăn Lụa Bandana Indochine">
+          </div>
+          <div class="merch-body">
+            <h4 class="merch-title" data-i18n="item_bandana_title">Khăn Lụa Bandana Indochine</h4>
+            <p class="merch-desc" data-i18n="item_bandana_desc">
+              Lụa satin tơ tằm thượng hạng, họa tiết gạch bông cổ điển thập niên 70 kết hợp biểu tượng sen trắng và chim bồ câu hòa bình.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 5: BẢNG GIÁ & BOOKING ENGINE
+       ======================================================================== -->
+  <section class="section-pad" id="section-pricing" style="background: rgba(8, 12, 20, 0.8);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="pricing_title">BẢNG GIÁ VÉ & ĐẶT CHỖ TRỰC TUYẾN</span>
+        <h2 class="section-title">Chọn Hạng Hộ Chiếu Đặc Quyền</h2>
+        <div class="bamboo-divider">
+          <span class="bamboo-divider-line"></span>
+          <span class="bamboo-divider-knot"></span>
+          <span class="bamboo-divider-line right"></span>
+        </div>
+        <p class="section-desc" data-i18n="pricing_sub">
+          Số lượng chỗ ngồi cực kỳ giới hạn cho mỗi đêm diễn. Vui lòng đặt sớm để đảm bảo trải nghiệm trọn vẹn nhất.
+        </p>
+      </div>
+
+      <!-- Early Bird Privilege Banner -->
+      <div class="early-bird-banner" data-i18n="early_bird_banner">
+        🔥 ƯU ĐÃI EARLY BIRD: Giảm ngay 15% cho 100 vị khách đầu tiên! Tặng mã giảm giá tự động 'INDEP15'. Hỗ trợ giữ chỗ 24h.
+      </div>
+
+      <!-- 3 Pricing Cards -->
+      <div class="pricing-cards-grid">
+        
+        <!-- Tier 1: Freedom Pass -->
+        <div class="pricing-card" data-tier="standard" id="tier-card-standard">
+          <div class="pricing-header">
+            <div class="pricing-tier-name" data-i18n="tier_1_name">HẠNG TIÊU CHUẨN</div>
+            <div class="pricing-tier-tag" data-i18n="tier_1_tag">TỰ DO (FREEDOM PASS)</div>
+            <div class="pricing-price-box">
+              <span class="price-currency">VNĐ</span>
+              <span class="price-num" data-i18n="tier_1_price">1.850.000</span>
+              <span class="price-unit">/khách</span>
+            </div>
+            <div class="pricing-usd-sub" data-i18n="tier_1_usd">~$75 USD / Khách</div>
+          </div>
+
+          <ul class="pricing-features-list">
+            <li class="feature-item"><span class="feature-icon">✓</span> <span data-i18n="tier_1_f1">Vị trí ngồi xem show tiêu chuẩn</span></li>
+            <li class="feature-item"><span class="feature-icon">✓</span> <span data-i18n="tier_1_f2">01 lọ nước hoa 10ml tự tay pha chế</span></li>
+            <li class="feature-item"><span class="feature-icon">✓</span> <span data-i18n="tier_1_f3">01 ly Signature Cocktail & Tiệc Canapés</span></li>
+            <li class="feature-item"><span class="feature-icon">✓</span> <span data-i18n="tier_1_f4">Bộ sưu tập: Hộ chiếu, Túi Canvas, Khăn Lụa</span></li>
+            <li class="feature-item"><span class="feature-icon">✓</span> <span data-i18n="tier_1_f5">Chụp ảnh lấy liền & quét QR tải ảnh tức thời</span></li>
+          </ul>
+
+          <button class="ghost-btn btn-select-tier" data-i18n="tier_1_btn">CHỌN HẠNG TỰ DO</button>
+        </div>
+
+        <!-- Tier 2: VIP Independence (Featured) -->
+        <div class="pricing-card featured selected" data-tier="vip" id="tier-card-vip">
+          <div class="featured-badge" data-i18n="tier_2_badge">ĐƯỢC CHỌN NHIỀU NHẤT</div>
+          <div class="pricing-header">
+            <div class="pricing-tier-name" data-i18n="tier_2_name">HẠNG THƯỢNG HẠNG (VIP)</div>
+            <div class="pricing-tier-tag" data-i18n="tier_2_tag">ĐỘC LẬP (INDEPENDENCE VIP)</div>
+            <div class="pricing-price-box">
+              <span class="price-currency">VNĐ</span>
+              <span class="price-num" data-i18n="tier_2_price">2.650.000</span>
+              <span class="price-unit">/khách</span>
+            </div>
+            <div class="pricing-usd-sub" data-i18n="tier_2_usd">~$110 USD / Khách</div>
+          </div>
+
+          <ul class="pricing-features-list">
+            <li class="feature-item"><span class="feature-icon">★</span> <span data-i18n="tier_2_f1">Lối đi ưu tiên & Đón tiếp VIP (Priority Check-in)</span></li>
+            <li class="feature-item"><span class="feature-icon">★</span> <span data-i18n="tier_2_f2">Ghế hàng đầu danh dự xem 3D Mapping & Khán đài</span></li>
+            <li class="feature-item"><span class="feature-icon">★</span> <span data-i18n="tier_2_f3">01 lọ nước hoa 30ml khắc tên riêng mạ vàng</span></li>
+            <li class="feature-item"><span class="feature-icon">★</span> <span data-i18n="tier_2_f4">Free-flow Cocktail, rượu vang không giới hạn & Canapés</span></li>
+            <li class="feature-item"><span class="feature-icon">★</span> <span data-i18n="tier_2_f5">Bộ sưu tập VIP & Dịch vụ ảnh chuyên cơ</span></li>
+          </ul>
+
+          <button class="gold-btn btn-select-tier" data-i18n="tier_2_btn">CHỌN HẠNG ĐỘC LẬP VIP</button>
+        </div>
+
+        <!-- Tier 3: Corporate Charter -->
+        <div class="pricing-card" data-tier="corporate" id="tier-card-corporate">
+          <div class="pricing-header">
+            <div class="pricing-tier-name" data-i18n="tier_3_name">GÓI DOANH NGHIỆP</div>
+            <div class="pricing-tier-tag" data-i18n="tier_3_tag">PRIVATE CHARTER B2B</div>
+            <div class="pricing-price-box">
+              <span class="price-currency">VNĐ</span>
+              <span class="price-num" data-i18n="tier_3_price">160.000.000</span>
+              <span class="price-unit">/suất</span>
+            </div>
+            <div class="pricing-usd-sub" data-i18n="tier_3_usd">~$6,500 USD / Suất trọn gói</div>
+          </div>
+
+          <ul class="pricing-features-list">
+            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f1">Bao trọn 01 suất diễn riêng tư (80 – 100 khách)</span></li>
+            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f2">Tùy biến in Logo doanh nghiệp lên Hộ chiếu & Chai nước hoa</span></li>
+            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f3">Menu yến tiệc ẩm thực tùy chọn theo yêu cầu ngoại giao</span></li>
+            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f4">MC song ngữ, diễn văn tri ân đối tác và khách hàng VIP</span></li>
+            <li class="feature-item"><span class="feature-icon">🏛️</span> <span data-i18n="tier_3_f5">Tối đa tiếp nhận lên đến 170 khách (phụ thu khách vượt mốc)</span></li>
+          </ul>
+
+          <button class="ghost-btn btn-select-tier" data-i18n="tier_3_btn">LIÊN HỆ ĐẶT SHOW RIÊNG</button>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           INTERACTIVE BOOKING FORM WIDGET
+           ==================================================================== -->
+      <div class="booking-widget-card" id="section-booking">
+        <h3 class="widget-title" data-i18n="form_heading">PHIẾU ĐẶT HỘ CHIẾU TRỰC TUYẾN</h3>
+
+        <form id="booking-form">
+          <div class="booking-form-grid">
+            
+            <!-- Step 1: Date Selection (Fri, Sat, Sun) -->
+            <div class="form-group-full">
+              <label class="form-label" data-i18n="form_step1">Bước 1: Chọn ngày diễn</label>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;" data-i18n="form_date_notice">
+                Lịch diễn: Thứ 6 & Thứ 7 (Tiếng Việt) | Chủ Nhật (Quốc tế - EN/FR)
+              </p>
+
+              <div class="date-slots-strip" id="date-slots-container">
+                <div class="date-slot-pill selected" data-day-code="fri" data-date-string="Thứ Sáu, 06/11/2026">
+                  <div class="slot-day">THỨ SÁU</div>
+                  <div class="slot-date">06/11</div>
+                  <div class="slot-lang">Tiếng Việt</div>
+                </div>
+
+                <div class="date-slot-pill" data-day-code="sat" data-date-string="Thứ Bảy, 07/11/2026">
+                  <div class="slot-day">THỨ BẢY</div>
+                  <div class="slot-date">07/11</div>
+                  <div class="slot-lang">Tiếng Việt</div>
+                </div>
+
+                <div class="date-slot-pill" data-day-code="sun" data-date-string="Chủ Nhật, 08/11/2026">
+                  <div class="slot-day">CHỦ NHẬT</div>
+                  <div class="slot-date">08/11</div>
+                  <div class="slot-lang">English & Français</div>
+                </div>
+
+                <div class="date-slot-pill" data-day-code="fri" data-date-string="Thứ Sáu, 13/11/2026">
+                  <div class="slot-day">THỨ SÁU</div>
+                  <div class="slot-date">13/11</div>
+                  <div class="slot-lang">Tiếng Việt</div>
+                </div>
+
+                <div class="date-slot-pill" data-day-code="sat" data-date-string="Thứ Bảy, 14/11/2026">
+                  <div class="slot-day">THỨ BẢY</div>
+                  <div class="slot-date">14/11</div>
+                  <div class="slot-lang">Tiếng Việt</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Shift Selection -->
+            <div class="form-group-full">
+              <label class="form-label" data-i18n="form_step2">Bước 2: Chọn suất diễn</label>
+              
+              <div class="shift-radio-row">
+                <label class="shift-radio-label">
+                  <input type="radio" name="booking-shift" value="1" checked>
+                  <div>
+                    <strong>Suất 1: 18:00 – 20:00</strong>
+                    <div style="font-size:0.75rem; color:var(--text-muted);">(Mở cổng đón khách 17:40)</div>
+                  </div>
+                </label>
+
+                <label class="shift-radio-label">
+                  <input type="radio" name="booking-shift" value="2">
+                  <div>
+                    <strong>Suất 2: 20:30 – 22:30</strong>
+                    <div style="font-size:0.75rem; color:var(--text-muted);">(Mở cổng đón khách 20:10)</div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Live seat availability status -->
+              <div class="live-seat-counter" id="live-seats-remaining">
+                <span class="seat-pulse"></span> Chỉ còn <strong>18/100</strong> chỗ trống
+              </div>
+            </div>
+
+            <!-- Step 3: Tier & Quantity -->
+            <div>
+              <label class="form-label" data-i18n="form_step3">Hạng Vé</label>
+              <select class="form-select" id="booking-tier-select">
+                <option value="standard">Hạng Tiêu Chuẩn (Freedom Pass) - 1.850.000 VNĐ</option>
+                <option value="vip" selected>Hạng Thượng Hạng (Independence VIP) - 2.650.000 VNĐ</option>
+                <option value="corporate">Gói Doanh Nghiệp (Private Charter) - 160.000.000 VNĐ</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label">Số Lượng Vé</label>
+              <div class="quantity-control">
+                <button type="button" class="qty-btn" id="qty-minus">-</button>
+                <input type="text" class="qty-input" id="booking-qty" value="2" readonly>
+                <button type="button" class="qty-btn" id="qty-plus">+</button>
+              </div>
+            </div>
+
+            <!-- Step 4: Personalization -->
+            <div class="form-group-full">
+              <label class="form-label" data-i18n="form_engrave_input">Tên muốn in/khắc lên chai nước hoa (tối đa 24 ký tự):</label>
+              <input type="text" class="form-input" id="booking-engraved-name" placeholder="Ví dụ: TRAN MINH KHOI" value="TRAN MINH KHOI" maxlength="24">
+              <div style="font-size:0.76rem; color:var(--gold-light); margin-top:6px;">
+                ✦ Tên sẽ được khắc laser mạ vàng lên thân lọ nước hoa độc bản mang về.
+              </div>
+            </div>
+
+            <!-- Hidden formula reference -->
+            <input type="hidden" id="form-selected-formula" value="INDEP-1975-B35D45K20">
+
+            <div>
+              <label class="form-label" data-i18n="form_fullname">Họ và tên quý khách:</label>
+              <input type="text" class="form-input" id="booking-fullname" placeholder="Nguyễn Văn A" required>
+            </div>
+
+            <div>
+              <label class="form-label" data-i18n="form_phone">Số điện thoại liên hệ:</label>
+              <input type="tel" class="form-input" id="booking-phone" placeholder="0908 123 456" required>
+            </div>
+
+            <div>
+              <label class="form-label" data-i18n="form_email">Địa chỉ Email nhận vé điện tử:</label>
+              <input type="email" class="form-input" id="booking-email" placeholder="example@domain.com" required>
+            </div>
+
+            <div>
+              <label class="form-label" data-i18n="form_diet">Yêu cầu ẩm thực / Dị ứng thức ăn (nếu có):</label>
+              <input type="text" class="form-input" id="booking-diet" placeholder="Ăn chay, không cồn, dị ứng hải sản...">
+            </div>
+
+            <!-- 24h courtesy hold option -->
+            <div class="form-group-full">
+              <label class="checkbox-row">
+                <input type="checkbox" id="booking-hold-24h">
+                <span class="checkbox-text" data-i18n="form_hold_24h">
+                  Đăng ký giữ chỗ trước trong 24 giờ cho đoàn khách (Không trừ tiền ngay, thanh toán sau qua email xác nhận).
+                </span>
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Price Summary Box -->
+          <div class="booking-summary-strip">
+            <div class="summary-row">
+              <span>Tạm tính (Giá niêm yết):</span>
+              <span id="price-subtotal">5.300.000 VNĐ</span>
+            </div>
+            <div class="summary-row discount-row">
+              <span>Đặc quyền Early Bird (Giảm 15%):</span>
+              <span id="price-discount">-795.000 VNĐ (Mã INDEP15)</span>
+            </div>
+            <div class="summary-row total-row">
+              <span>Tổng thanh toán:</span>
+              <span class="total-val" id="price-total">4.505.000 VNĐ</span>
+            </div>
+          </div>
+
+          <button type="submit" class="gold-btn" id="btn-submit-booking" style="width:100%; padding:18px;" data-i18n="btn_confirm_booking">
+            HOÀN TẤT ĐẶT VÉ & NHẬN HỘ CHIẾU ĐỘC LẬP
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 6: HÀNH TRANG CHUẨN BỊ (ACCORDION - KNOW BEFORE YOU GO)
+       ======================================================================== -->
+  <section class="section-pad" id="section-faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="faq_title">HÀNH TRANG CHUẨN BỊ & LƯU Ý VẬN HÀNH</span>
+        <h2 class="section-title">Những Điều Cần Biết Trước Chuyến Đi</h2>
+        <div class="bamboo-divider">
+          <span class="bamboo-divider-line"></span>
+          <span class="bamboo-divider-knot"></span>
+          <span class="bamboo-divider-line right"></span>
+        </div>
+        <p class="section-desc" data-i18n="faq_sub">
+          Những thông tin thiết yếu giúp quý khách có một đêm trải nghiệm trọn vẹn nhất
+        </p>
+      </div>
+
+      <!-- 4 Tab Accordion -->
+      <div class="accordion-wrapper">
+        
+        <!-- Accordion 1: Time & Gates -->
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <h4 class="accordion-title" data-i18n="faq_1_q">1. Giờ giấc đón khách & Quy tắc di chuyển một chiều như thế nào?</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p class="accordion-text" data-i18n="faq_1_a">
+              Quý khách vui lòng có mặt trước giờ diễn 20 phút (17:40 cho Suất 1; 20:10 cho Suất 2) tại Cổng Nguyễn Du (số 108 Nguyễn Du) để làm thủ tục check-in, nhận Hộ chiếu Độc Lập và đèn bão. Nhằm bảo đảm tính nguyên vẹn của dòng chảy cảm xúc lịch sử, hành trình được thiết kế một chiều khép kín và kết thúc, tiễn khách tại Cổng Nam Kỳ Khởi Nghĩa.
+            </p>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Dresscode -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h4 class="accordion-title" data-i18n="faq_2_q">2. Trang phục tham dự (Dresscode) khuyến nghị là gì?</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p class="accordion-text" data-i18n="faq_2_a">
+              Trang phục khuyến nghị: Lịch sự, trang nhã (Smart Casual / Indochine Elegance / Áo dài truyền thống hoặc cách tân). Quý khách sẽ được trao tặng chiếc Khăn Bandana lụa tơ tằm trong bộ sưu tập ngay tại chặng đầu, có thể dùng để quàng cổ hoặc điểm xuyết cổ tay tạo phong cách đồng điệu trong dạ tiệc khiêu vũ.
+            </p>
+          </div>
+        </div>
+
+        <!-- Accordion 3: Weather & Clear-span Tent -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h4 class="accordion-title" data-i18n="faq_3_q">3. Cam kết thời tiết & Mái che trong mùa mưa Sài Gòn?</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p class="accordion-text" data-i18n="faq_3_a">
+              Đối với các tháng mùa mưa (từ tháng 5 đến tháng 11), ban tổ chức đã lắp đặt sẵn hệ thống mái che bán nguyệt trong suốt chuẩn quốc tế (Clear-span tent) tại khu vực Khán đài ngoài trời, vừa đảm bảo tầm nhìn 3D Mapping không bị che khuất vừa tuyệt đối khô ráo. Đồng thời, toàn bộ khách tham quan được trang bị ô dù thương hiệu cao cấp.
+            </p>
+          </div>
+        </div>
+
+        <!-- Accordion 4: Inclusions & Exclusions -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h4 class="accordion-title" data-i18n="faq_4_q">4. Dịch vụ đã bao gồm & Chi phí phát sinh ngoài chương trình?</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p class="accordion-text" data-i18n="faq_4_a">
+              Giá vé đã bao trọn gói: Vé vào cửa Dinh Độc Lập ngoài giờ đại trà, xem trọn vẹn 120 phút thực cảnh & 3D Mapping, nguyên liệu workshop nước hoa mang về, tiệc Cocktail & Canapés cao cấp, bộ quà tặng sưu tầm độc bản (Hộ chiếu, Túi Tote, Khăn lụa) và bảo hiểm sự kiện. Giá vé không bao gồm chi phí xe đưa đón cá nhân.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CRM Scent ID Refill Section -->
+      <div class="refill-strip-card" id="section-refill">
+        <h3 style="font-family:var(--font-serif); font-size:1.45rem; color:var(--gold-light); margin-bottom:10px;" data-i18n="refill_title">
+          TRA CỨU CÔNG THỨC & TÁI ĐẶT NƯỚC HOA (SCENT ID REFILL)
+        </h3>
+        <p style="font-size:0.9rem; color:var(--text-secondary);" data-i18n="refill_sub">
+          Nhập mã Scent ID in trên Hộ chiếu của quý khách để đặt mua lại hương thơm độc bản hoặc gửi tặng Gift Card
+        </p>
+
+        <div class="refill-input-row">
+          <input type="text" class="form-input" id="refill-scent-input" placeholder="Nhập mã Scent ID (ví dụ: SCENT-INDEP-1975-01)" data-i18n="refill_input_placeholder">
+          <button class="gold-btn btn-sm" id="btn-refill-lookup" data-i18n="refill_lookup_btn">TRA CỨU</button>
+        </div>
+
+        <div id="refill-result-card" style="display:none;"></div>
+      </div>
+
+      <!-- Heritage Conservation Commitment -->
+      <div class="heritage-commit-box">
+        <h4 class="commit-title" data-i18n="heritage_commit_title">Cam Kết Bảo Tồn & Tôn Vinh Di Sản</h4>
+        <p class="commit-desc" data-i18n="heritage_commit_desc">
+          Toàn bộ hệ thống kỹ thuật sử dụng công nghệ loa định hướng giảm tán xạ âm thanh, sàn nổi và hệ thống chiếu sáng bảo vệ cấu trúc công trình di tích quốc gia. 10% doanh thu mỗi đêm diễn được trích trực tiếp vào Quỹ Tu bổ Di tích Dinh Độc Lập và tài trợ vé tham quan giáo dục cho học sinh, cựu chiến binh.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Crest -->
+        <div class="footer-col">
+          <div class="brand-link" style="margin-bottom:18px;">
+            <div class="brand-emblem">✦</div>
+            <div class="brand-text-col">
+              <span class="brand-sub">DI TÍCH QUỐC GIA ĐẶC BIỆT DINH ĐỘC LẬP</span>
+              <span class="brand-title">HƯƠNG ĐỘC LẬP</span>
+            </div>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+            Sản phẩm du lịch đêm đa giác quan cao cấp tái hiện tinh hoa lịch sử và triết lý kiến trúc Đông Dương qua nghệ thuật thực cảnh, 3D mapping và mùi hương độc bản.
+          </p>
+          <div style="font-size:0.84rem; color:var(--gold-primary); font-weight:600;" data-i18n="footer_hotline">
+            Hotline VIP Booking: 1900 1975 – 0908 430 430
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="footer-col">
+          <h4>Khám Phá</h4>
+          <ul class="footer-links-list">
+            <li><a href="#section-senses">5 Giác Quan Lịch Sử</a></li>
+            <li><a href="#section-timeline">Lộ Trình 120 Phút</a></li>
+            <li><a href="#section-lab">Xưởng Pha Chế Hương</a></li>
+            <li><a href="#section-pricing">Bảng Giá Vé</a></li>
+            <li><a href="#section-refill">Tra Cứu Scent ID</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Practical Info -->
+        <div class="footer-col">
+          <h4>Thông Tin</h4>
+          <ul class="footer-links-list">
+            <li><a href="#section-faq">Cổng Nguyễn Du (Đón khách)</a></li>
+            <li><a href="#section-faq">Cổng Nam Kỳ (Lối ra)</a></li>
+            <li><a href="#section-faq">Quy định Trang Phục</a></li>
+            <li><a href="#section-faq">Mái Che Mùa Mưa</a></li>
+            <li><a href="#section-faq">Chính Sách Hoàn/Đổi Vé</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Location -->
+        <div class="footer-col">
+          <h4>Địa Điểm</h4>
+          <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6;" data-i18n="footer_address_val">
+            Di tích Quốc gia Đặc biệt Dinh Độc Lập – Cổng đón khách: 108 Nguyễn Du, P. Bến Thành, Q.1, TP. Hồ Chí Minh.
+          </p>
+          <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted);">
+            Giờ đón khách Suất 1: 17h40 | Suất 2: 20h10
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div data-i18n="footer_rights">
+          © 2026 ĐÊM DI SẢN ĐA GIÁC QUAN: HƯƠNG ĐỘC LẬP (SCENT OF INDEPENDENCE). ALL RIGHTS RESERVED.
+        </div>
+        <div>
+          <span>Được cấp phép bởi Ban Quản lý Di tích Dinh Độc Lập</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL 1: TRAILER 20 GIÂY
+       ======================================================================== -->
+  <div class="heritage-modal" id="trailer-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-icon" id="btn-close-trailer">&times;</button>
+      <h3 style="font-family:var(--font-serif); font-size:1.6rem; color:var(--gold-light); margin-bottom:16px;">
+        HƯƠNG ĐỘC LẬP — CINEMATIC TRAILER
+      </h3>
+      <div class="trailer-screen-box">
+        <img src="/assets/images/show-mua-do.jpg" alt="Trailer thực cảnh">
+        <div class="trailer-screen-subtitles" id="trailer-screen-subtitles">
+          Tháng 4 năm 1975... Thời khắc chuyển giao của lịch sử.
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.85rem; color:var(--text-muted);">Âm thanh vòm định hướng • Độ phân giải 4K</span>
+        <a href="#section-booking" class="gold-btn btn-sm" onclick="document.getElementById('trailer-modal').classList.remove('active')">
+          ĐẶT VÉ TRẢI NGHIỆM THỰC TẾ
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: DIGITAL PASSPORT & VIP TICKET (XUẤT SAU KHI ĐẶT VÉ)
+       ======================================================================== -->
+  <div class="heritage-modal" id="passport-ticket-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-icon" onclick="document.getElementById('passport-ticket-modal').classList.remove('active'); document.body.style.overflow='';">&times;</button>
+      
+      <div class="digital-passport-sheet">
+        <div class="passport-sheet-header">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="brand-emblem" style="width:36px; height:36px; font-size:1rem;">✦</div>
+            <div>
+              <div style="font-size:0.6rem; letter-spacing:2px; color:var(--gold-light);">HỘ CHIẾU ĐỘC LẬP • E-PASSPORT</div>
+              <div style="font-size:1.1rem; font-family:var(--font-serif); color:var(--gold-primary); font-weight:700;">HƯƠNG ĐỘC LẬP</div>
+            </div>
+          </div>
+          <div>
+            <span class="station-pill-index" id="modal-tier-badge">HẠNG THƯỢNG HẠNG (VIP)</span>
+          </div>
+        </div>
+
+        <table class="passport-info-table">
+          <tr>
+            <td>Mã vé điện tử:</td>
+            <td id="modal-ticket-code" style="color:var(--gold-bright); font-family:var(--font-serif);">INDEP-1975-VIP-8892</td>
+          </tr>
+          <tr>
+            <td>Chủ sở hữu Hộ chiếu:</td>
+            <td id="modal-guest-name">Nguyễn Văn A</td>
+          </tr>
+          <tr>
+            <td>Ngày khởi hành:</td>
+            <td id="modal-event-date">Thứ Sáu, 06/11/2026</td>
+          </tr>
+          <tr>
+            <td>Suất diễn:</td>
+            <td id="modal-event-shift">Suất 1: 18:00 – 20:00 (Mở cổng 17:40)</td>
+          </tr>
+          <tr>
+            <td>Cổng đón khách:</td>
+            <td>108 Nguyễn Du, P. Bến Thành, Q.1</td>
+          </tr>
+          <tr>
+            <td>Tên khắc trên chai nước hoa:</td>
+            <td id="modal-perfume-engraved" style="color:var(--gold-light); font-weight:700;">TRAN MINH KHOI</td>
+          </tr>
+          <tr>
+            <td>Mã công thức Scent ID:</td>
+            <td id="modal-scent-id">INDEP-1975-B35D45K20</td>
+          </tr>
+          <tr>
+            <td>Số lượng đăng ký:</td>
+            <td id="modal-qty-seats">2 Vé</td>
+          </tr>
+        </table>
+
+        <!-- Stamped Seals Row on Passport -->
+        <div style="text-align:center; font-size:0.75rem; letter-spacing:1px; color:var(--gold-light); margin-bottom:8px;">
+          3 DẤU MỘC SON HÀNH TRÌNH CHỨNG NHẬN
+        </div>
+
+        <div class="passport-sheet-stamps-grid">
+          <div class="lacquer-stamp-seal stamped">
+            <span class="stamp-num">MỘC I</span>
+            <span class="stamp-name">KHỞI HÀNH</span>
+            <span class="stamp-year">1975</span>
+          </div>
+          <div class="lacquer-stamp-seal stamped">
+            <span class="stamp-num">MỘC II</span>
+            <span class="stamp-name">DẤU ẤN HƯƠNG</span>
+            <span class="stamp-year">ĐẠI YẾN</span>
+          </div>
+          <div class="lacquer-stamp-seal stamped">
+            <span class="stamp-num">MỘC III</span>
+            <span class="stamp-name">HOÀN TẤT</span>
+            <span class="stamp-year">HÒA BÌNH</span>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; text-align:center;">
+          <span id="modal-hold-badge" class="early-bird-banner" style="display:none; padding:6px 16px; font-size:0.78rem;"></span>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:14px; margin-top:24px;">
+          <button class="gold-btn btn-sm" onclick="window.print()">
+            🖨️ IN HỘ CHIẾU & VÉ ĐIỆN TỬ
+          </button>
+          <button class="ghost-btn btn-sm" onclick="alert('Đã gửi mã vé QR và lịch .ics vào email đăng ký của quý khách!')">
+            📲 LƯU VÀO VÍ ĐIỆN TỬ (APPLE/GOOGLE WALLET)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: PASSPORT DRAWER QUICK VIEW
+       ======================================================================== -->
+  <div class="heritage-modal" id="passport-drawer-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-icon" onclick="document.getElementById('passport-drawer-modal').classList.remove('active'); document.body.style.overflow='';">&times;</button>
+      <h3 style="font-family:var(--font-serif); font-size:1.6rem; color:var(--gold-light); margin-bottom:12px;">
+        HỘ CHIẾU ĐỘC LẬP CỦA BẠN
+      </h3>
+      <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:24px;">
+        Khi bạn cuộn chuột qua từng chặng trong phần "Lộ Trình 120 Phút", 3 dấu mộc son sẽ được tự động đóng lên hộ chiếu.
+      </p>
+
+      <div class="digital-passport-sheet">
+        <div class="passport-sheet-stamps-grid">
+          <div class="lacquer-stamp-seal" id="digital-stamp-1">
+            <span class="stamp-num">MỘC I</span>
+            <span class="stamp-name">KHỞI HÀNH</span>
+            <span class="stamp-year">1975</span>
+          </div>
+          <div class="lacquer-stamp-seal" id="digital-stamp-2">
+            <span class="stamp-num">MỘC II</span>
+            <span class="stamp-name">DẤU ẤN HƯƠNG</span>
+            <span class="stamp-year">ĐẠI YẾN</span>
+          </div>
+          <div class="lacquer-stamp-seal" id="digital-stamp-3">
+            <span class="stamp-num">MỘC III</span>
+            <span class="stamp-name">HOÀN TẤT</span>
+            <span class="stamp-year">HÒA BÌNH</span>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+          <a href="#section-timeline" class="gold-btn btn-sm" onclick="document.getElementById('passport-drawer-modal').classList.remove('active'); document.body.style.overflow='';">
+            TIẾP TỤC KHÁM PHÁ LỘ TRÌNH ĐỂ THU THẬP ĐỦ 3 MỘC
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+/* Keyframe Animations & Micro-interactions */
+
+@keyframes goldShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes stampThud {
+  0% {
+    transform: scale(3.5) rotate(-25deg);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  60% {
+    transform: scale(0.92) rotate(4deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  80% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px var(--gold-glow), 0 0 5px var(--gold-primary);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(212, 175, 55, 0.65), 0 0 12px var(--gold-bright);
+    transform: scale(1.06);
+  }
+}
+
+@keyframes redPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--red-glow);
+  }
+  50% {
+    box-shadow: 0 0 24px var(--red-bright);
+  }
+}
+
+@keyframes mistFloat {
+  0% {
+    opacity: 0.8;
+    transform: translate(0, 0) scale(0.6);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(cos(var(--angle)) * var(--dist)), calc(sin(var(--angle)) * var(--dist) - 40px)) scale(2.2);
+  }
+}
+
+@keyframes audioBarBounce {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes borderGlowLoop {
+  0%, 100% { border-color: rgba(212, 175, 55, 0.3); }
+  50% { border-color: rgba(212, 175, 55, 0.85); }
+}
+
+/* Stamp Classes */
+.lacquer-stamp-seal {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid var(--red-lacquer);
+  color: var(--red-lacquer);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  background: radial-gradient(circle, rgba(139, 30, 30, 0.12) 0%, rgba(139, 30, 30, 0.02) 100%);
+  position: relative;
+  opacity: 0.25;
+  transition: opacity 0.4s ease;
+  user-select: none;
+}
+
+.lacquer-stamp-seal::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed var(--red-lacquer);
+  border-radius: 50%;
+}
+
+.lacquer-stamp-seal.stamped {
+  opacity: 1;
+  animation: stampThud 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  box-shadow: 0 0 16px rgba(139, 30, 30, 0.35);
+  background: radial-gradient(circle, rgba(139, 30, 30, 0.25) 0%, rgba(139, 30, 30, 0.08) 100%);
+}
+
+.lacquer-stamp-seal .stamp-num {
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: var(--red-vermilion);
+}
+
+.lacquer-stamp-seal .stamp-name {
+  font-size: 0.58rem;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  font-family: var(--font-sans);
+  color: var(--red-lacquer);
+}
+
+.lacquer-stamp-seal .stamp-year {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--gold-primary);
+  margin-top: 2px;
+}

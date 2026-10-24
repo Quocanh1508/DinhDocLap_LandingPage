@@ -1,0 +1,56 @@
+/* Luxury Indochine Heritage Design Tokens */
+:root {
+  /* Color Palette */
+  --bg-dark: #0B0F19;
+  --bg-deep: #060910;
+  --bg-card: #121826;
+  --bg-card-hover: #182033;
+  --bg-card-translucent: rgba(18, 24, 38, 0.85);
+  
+  /* Imperial Gold Accents */
+  --gold-primary: #D4AF37;
+  --gold-light: #F3E5AB;
+  --gold-bright: #F5D061;
+  --gold-dark: #997A1E;
+  --gold-glow: rgba(212, 175, 55, 0.35);
+  --gold-gradient: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #997A1E 100%);
+  --gold-border: 1px solid rgba(212, 175, 55, 0.35);
+  --gold-border-bright: 1px solid rgba(212, 175, 55, 0.8);
+
+  /* Lacquer Red */
+  --red-lacquer: #8B1E1E;
+  --red-vermilion: #B22222;
+  --red-bright: #D32F2F;
+  --red-glow: rgba(139, 30, 30, 0.45);
+  --red-gradient: linear-gradient(135deg, #B22222 0%, #8B1E1E 60%, #520F0F 100%);
+
+  /* Vintage Cream / Ivory */
+  --cream-ivory: #F5EEDC;
+  --cream-soft: #EAD8B1;
+  --cream-muted: #C5B697;
+  --text-primary: #FAF7F0;
+  --text-secondary: #C5B697;
+  --text-muted: #8E98A8;
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows & Glows */
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.2);
+  --shadow-lacquer: 0 8px 30px rgba(139, 30, 30, 0.35);
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+  /* Transitions */
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease;
+
+  /* Layout */
+  --container-max: 1240px;
+  --header-height: 84px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}

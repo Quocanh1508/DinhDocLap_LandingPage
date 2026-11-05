@@ -98,37 +98,108 @@ function initAudioToggle() {
 
 // Modal handling
 function initModals() {
-  // Trailer Modal
+  // Trailer Modal & Video Player
   const trailerBtn = document.getElementById('btn-open-trailer');
   const trailerModal = document.getElementById('trailer-modal');
   const closeTrailerBtn = document.getElementById('btn-close-trailer');
+  const trailerVideo = document.getElementById('trailer-video-player');
 
-  if (trailerBtn && trailerModal) {
-    trailerBtn.addEventListener('click', () => {
-      trailerModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      // Play trailer simulation
-      startTrailerSimulation();
+  let wasBgmPlaying = false;
+
+  const openTrailer = () => {
+    if (!trailerModal) return;
+    trailerModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Pause background soundscape if it was playing
+    if (soundscape && soundscape.isPlaying) {
+      wasBgmPlaying = true;
+      soundscape.fadeOut(() => {
+        if (soundscape.audio) soundscape.audio.pause();
+      }, 300);
+    }
+
+    // Start video playback
+    if (trailerVideo) {
+      trailerVideo.currentTime = 0;
+      trailerVideo.play().catch(() => {
+        // Silent catch: user can tap the native play button if browser restricts unmuted autoplay
+      });
+    }
+  };
+
+  const closeTrailer = () => {
+    if (!trailerModal) return;
+    trailerModal.classList.remove('active');
+    document.body.style.overflow = '';
+
+    // Pause video
+    if (trailerVideo) {
+      trailerVideo.pause();
+    }
+
+    // Resume background soundscape if it was playing prior to opening trailer
+    if (wasBgmPlaying && soundscape) {
+      if (soundscape.audio) {
+        soundscape.audio.play().then(() => {
+          soundscape.fadeIn(800);
+        }).catch(() => {});
+      }
+      wasBgmPlaying = false;
+    }
+  };
+
+  if (trailerBtn) {
+    trailerBtn.addEventListener('click', openTrailer);
+  }
+
+  if (closeTrailerBtn) {
+    closeTrailerBtn.addEventListener('click', closeTrailer);
+  }
+
+  if (trailerVideo) {
+    // Resume soundscape when video completes playback
+    trailerVideo.addEventListener('ended', () => {
+      if (wasBgmPlaying && soundscape) {
+        if (soundscape.audio) {
+          soundscape.audio.play().then(() => {
+            soundscape.fadeIn(800);
+          }).catch(() => {});
+        }
+        wasBgmPlaying = false;
+      }
+    });
+
+    // If user resumes playing trailer while soundscape is running, gently mute soundscape
+    trailerVideo.addEventListener('play', () => {
+      if (soundscape && soundscape.isPlaying) {
+        wasBgmPlaying = true;
+        soundscape.fadeOut(() => {
+          if (soundscape.audio) soundscape.audio.pause();
+        }, 300);
+      }
     });
   }
 
-  if (closeTrailerBtn && trailerModal) {
-    closeTrailerBtn.addEventListener('click', () => {
-      trailerModal.classList.remove('active');
-      document.body.style.overflow = '';
-      stopTrailerSimulation();
-    });
-  }
-
-  // Close modals on backdrop click
+  // Close modals on backdrop click or close button
   document.querySelectorAll('.heritage-modal').forEach(modal => {
     modal.addEventListener('click', (e) => {
       if (e.target === modal || e.target.classList.contains('modal-close-icon')) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-        stopTrailerSimulation();
+        if (modal.id === 'trailer-modal') {
+          closeTrailer();
+        } else {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
       }
     });
+  });
+
+  // ESC key to close trailer modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && trailerModal && trailerModal.classList.contains('active')) {
+      closeTrailer();
+    }
   });
 
   // Digital Passport floating quick-view button
@@ -139,59 +210,6 @@ function initModals() {
       passportDrawerModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
-  }
-}
-
-// Trailer Simulation with atmospheric video canvas & audio
-let trailerInterval = null;
-function startTrailerSimulation() {
-  const videoOverlay = document.getElementById('trailer-screen-subtitles');
-  if (!videoOverlay) return;
-
-  const scriptsByLang = {
-    vi: [
-      { time: 0, text: "Tháng 4 năm 1975... Thời khắc chuyển giao của lịch sử." },
-      { time: 4, text: "Di tích Quốc gia Đặc biệt Dinh Độc Lập thắp sáng trong đêm." },
-      { time: 8, text: "Tiếng rền của khói lửa, tiếng còi xe tăng, âm vang hòa bình." },
-      { time: 13, text: "Hương hoa sen, trà xanh và khói trầm lưu giữ tự do." },
-      { time: 17, text: "HƯƠNG ĐỘC LẬP – Lưu giữ tự do trong từng giác quan." }
-    ],
-    en: [
-      { time: 0, text: "April 1975... A momentous turning point in history." },
-      { time: 4, text: "Independence Palace illuminated in the nocturnal splendor of Saigon." },
-      { time: 8, text: "Echoes of martial fire, the historic breakthrough, dawn of peace." },
-      { time: 13, text: "Bespoke notes of sacred lotus, royal woods, and eternal incense." },
-      { time: 17, text: "SCENT OF INDEPENDENCE – Preserving freedom in every awakened sense." }
-    ],
-    fr: [
-      { time: 0, text: "Avril 1975... Le tournant décisif de l'Histoire." },
-      { time: 4, text: "Le Palais de l'Indépendance s'illumine dans la nuit saïgonnaise." },
-      { time: 8, text: "Fracas des combats, chars franchissant les grilles, aube de paix." },
-      { time: 13, text: "Effluves de lotus blanc, thé vert et encens sacré de la liberté." },
-      { time: 17, text: "PARFUM D'INDÉPENDANCE – Éveillez vos sens au cœur de la liberté." }
-    ]
-  };
-
-  const script = scriptsByLang[currentLang] || scriptsByLang.vi;
-
-  let sec = 0;
-  videoOverlay.textContent = script[0].text;
-  trailerInterval = setInterval(() => {
-    sec++;
-    const current = script.slice().reverse().find(s => sec >= s.time);
-    if (current) {
-      videoOverlay.textContent = current.text;
-    }
-    if (sec >= 22) {
-      sec = 0;
-    }
-  }, 1000);
-}
-
-function stopTrailerSimulation() {
-  if (trailerInterval) {
-    clearInterval(trailerInterval);
-    trailerInterval = null;
   }
 }
 

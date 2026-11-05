@@ -190,7 +190,7 @@
         </a>
         <button class="ghost-btn" id="btn-open-trailer" data-i18n="cta_watch_trailer">
           <span>▶</span>
-          <span>XEM TRAILER 20 GIÂY</span>
+          <span>XEM CINEMATIC TRAILER</span>
         </button>
       </div>
     </div>
@@ -1298,7 +1298,7 @@
   </footer>
 
   <!-- ========================================================================
-       MODAL 1: TRAILER 20 GIÂY
+       MODAL 1: CINEMATIC TRAILER
        ======================================================================== -->
   <div class="heritage-modal" id="trailer-modal">
     <div class="modal-dialog">
@@ -1307,13 +1307,12 @@
         HƯƠNG ĐỘC LẬP — CINEMATIC TRAILER
       </h3>
       <div class="trailer-screen-box">
-        <img src="/assets/images/show-mua-do.jpg" alt="Trailer thực cảnh">
-        <div class="trailer-screen-subtitles" id="trailer-screen-subtitles">
-          Tháng 4 năm 1975... Thời khắc chuyển giao của lịch sử.
-        </div>
+        <video id="trailer-video-player" src="/assets/video/trailer.mp4" poster="/assets/video/trailer-poster.jpg" controls playsinline preload="metadata">
+          Trình duyệt của bạn không hỗ trợ định dạng video HTML5.
+        </video>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:0.85rem; color:var(--text-muted);" data-i18n="trailer_specs">Âm thanh vòm định hướng • Độ phân giải 4K</span>
+        <span style="font-size:0.85rem; color:var(--text-muted);" data-i18n="trailer_specs">Âm thanh vòm định hướng • Độ phân giải HD</span>
         <a href="#section-booking" class="gold-btn btn-sm" onclick="document.getElementById('trailer-modal').classList.remove('active')" data-i18n="trailer_cta_btn">
           ĐẶT VÉ TRẢI NGHIỆM THỰC TẾ
         </a>

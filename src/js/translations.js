@@ -27,7 +27,7 @@ export const translations = {
     metric_location_label: "Khởi hành",
     metric_location_val: "Cổng Nguyễn Du – Dinh Độc Lập",
     cta_book_now: "ĐẶT HỘ CHIẾU ĐỘC LẬP NGAY",
-    cta_watch_trailer: "XEM TRAILER 20 GIÂY",
+    cta_watch_trailer: "XEM CINEMATIC TRAILER",
     
     // 5 Senses
     senses_title: "ĐÁNH THỨC 5 GIÁC QUAN",
@@ -270,7 +270,7 @@ export const translations = {
 
     // Modals
     trailer_modal_title: "HƯƠNG ĐỘC LẬP — CINEMATIC TRAILER",
-    trailer_specs: "Âm thanh vòm định hướng • Độ phân giải 4K",
+    trailer_specs: "Âm thanh vòm định hướng • Độ phân giải HD",
     trailer_cta_btn: "ĐẶT VÉ TRẢI NGHIỆM THỰC TẾ",
     modal_passport_title: "HỘ CHIẾU ĐỘC LẬP • E-PASSPORT",
     ticket_code_label: "Mã vé điện tử:",
@@ -341,7 +341,7 @@ export const translations = {
     metric_location_label: "Departure",
     metric_location_val: "Nguyen Du Gate – Independence Palace",
     cta_book_now: "RESERVE INDEPENDENCE PASSPORT",
-    cta_watch_trailer: "WATCH 20S TRAILER",
+    cta_watch_trailer: "WATCH CINEMATIC TRAILER",
 
     senses_title: "AWAKENING THE FIVE SENSES",
     senses_heading: "Immerse in History with All Your Senses",
@@ -572,7 +572,7 @@ export const translations = {
     footer_rights: "© 2026 MULTI-SENSORY HERITAGE NOCTURNE: SCENT OF INDEPENDENCE. ALL RIGHTS RESERVED.",
 
     trailer_modal_title: "SCENT OF INDEPENDENCE — CINEMATIC TRAILER",
-    trailer_specs: "Spatial Directional Sound • 4K Ultra HD",
+    trailer_specs: "Spatial Directional Sound • HD Resolution",
     trailer_cta_btn: "BOOK YOUR LIVE NOCTURNE",
     modal_passport_title: "INDEPENDENCE PASSPORT • E-PASSPORT",
     ticket_code_label: "E-Ticket Code:",
@@ -643,7 +643,7 @@ export const translations = {
     metric_location_label: "Départ",
     metric_location_val: "Porte Nguyen Du – Palais de l'Indépendance",
     cta_book_now: "RÉSERVER LE PASSEPORT D'INDÉPENDANCE",
-    cta_watch_trailer: "VOIR LA BANDE-ANNONCE (20S)",
+    cta_watch_trailer: "VOIR LA BANDE-ANNONCE",
 
     senses_title: "L'ÉVEIL DES CINQ SENS",
     senses_heading: "Plongez dans l'Histoire par Tous vos Sens",
@@ -874,7 +874,7 @@ export const translations = {
     footer_rights: "© 2026 NOCTURNE DU PATRIMOINE : PARFUM D'INDÉPENDANCE. TOUS DROITS RÉSERVÉS.",
 
     trailer_modal_title: "PARFUM D'INDÉPENDANCE — BANDE-ANNONCE",
-    trailer_specs: "Son Spatialisé Directionnel • Résolution 4K",
+    trailer_specs: "Son Spatialisé Directionnel • Résolution HD",
     trailer_cta_btn: "RÉSERVER VOTRE NOCTURNE",
     modal_passport_title: "PASSEPORT D'INDÉPENDANCE • E-PASSEPORT",
     ticket_code_label: "Numéro de Billet :",

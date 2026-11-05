@@ -308,6 +308,18 @@
   font-size: 11px;
   font-family: var(--font-sans);
   font-weight: 600;
+  pointer-events: none;
+}
+
+.map-svg-node.active text {
+  fill: #0B0F19;
+  font-weight: 800;
+}
+
+.map-svg-arrow {
+  fill: var(--gold-bright);
+  filter: drop-shadow(0 0 5px var(--gold-primary));
+  animation: pulseGlow 2s infinite ease-in-out;
 }
 
 .map-legend-strip {

@@ -4,7 +4,7 @@ import { translations } from './translations.js';
 export function initScrollytelling() {
   const progressBar = document.getElementById('bamboo-progress-bar');
   const stations = document.querySelectorAll('.journey-card');
-  const mapNodes = document.querySelectorAll('.map-station-node');
+  const mapNodes = document.querySelectorAll('.map-svg-node, .map-station-node');
   const routePath = document.getElementById('svg-route-path');
   const currentShiftText = document.querySelectorAll('.station-time-badge');
   const shiftBtns = document.querySelectorAll('.shift-toggle-btn');

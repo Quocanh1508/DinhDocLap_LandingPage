@@ -69,7 +69,7 @@ export function applyLanguage(lang) {
   const audioStatusText = document.getElementById('audio-status-text');
   if (audioBtn && audioStatusText) {
     if (audioBtn.classList.contains('playing')) {
-      audioStatusText.textContent = dict.audio_playing_text || 'Đang phát: Hoa Anh Đào Rơi Dịu Dàng (NOQURA)';
+      audioStatusText.textContent = dict.audio_playing_text || 'Đang phát: Mộng Chiều Xuân (Ngọc Bích)';
     } else {
       audioStatusText.textContent = dict.audio_label || 'Âm thanh Không gian';
     }
@@ -89,7 +89,7 @@ function initAudioToggle() {
     const dict = translations[currentLang] || translations.vi;
 
     if (isPlaying) {
-      showNotificationToast(dict.toast_audio_on || 'Đang phát: Hoa Anh Đào Rơi Dịu Dàng (NOQURA)');
+      showNotificationToast(dict.toast_audio_on || 'Đang phát: Mộng Chiều Xuân (Ngọc Bích)');
     } else {
       showNotificationToast(dict.toast_audio_off || 'Đã tắt âm thanh không gian');
     }

@@ -1,5 +1,5 @@
 // Web Audio & Background Soundscape Engine
-// Plays "優しく舞う桜 – Cherry Blossoms Fall Softly (NOQURA)" as atmospheric background music
+// Plays "Mộng Chiều Xuân — Sáng tác: Ngọc Bích (Trước 1975)" as atmospheric heritage background music
 // with intelligent autoplay, user-gesture unlock, smooth volume fading, and ultra-refined tactile sound FX.
 
 import { translations } from './translations.js';
@@ -8,7 +8,7 @@ class SoundscapeEngine {
   constructor() {
     this.audio = null;
     this.isPlaying = false;
-    this.audioUrl = '/assets/audio/cherry-blossoms-fall-softly.mp3';
+    this.audioUrl = '/assets/audio/mong-chieu-xuan.mp3';
     this.targetVolume = 0.45; // Gentle, elegant background volume
     this.fadeInterval = null;
     this.unlocked = false;
@@ -256,7 +256,7 @@ class SoundscapeEngine {
     }
     if (audioStatusText) {
       audioStatusText.textContent = playing 
-        ? (dict.audio_playing_text || 'Đang phát: Hoa Anh Đào Rơi Dịu Dàng (NOQURA)')
+        ? (dict.audio_playing_text || 'Đang phát: Mộng Chiều Xuân (Ngọc Bích)')
         : (dict.audio_muted_text || 'Âm thanh: Đang tắt');
     }
   }
